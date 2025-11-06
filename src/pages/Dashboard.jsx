@@ -6,11 +6,11 @@ export default function Dashboard() {
     return (
         <div className="dashboard-page">
             <Header />
+            <NavMenu />
             <div className="dashboard-container">
                 {/* Canvas Here */}
                 <p>Canvas Here</p>
             </div>
-            <NavMenu />
             <Footer />
         </div>
     )

@@ -1,31 +1,46 @@
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SelectedAgent() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const agent = location.state?.agent;
+
+    if (!agent) {
+        return (
+            <div className="selected-agent-page">
+                <p>No agent found. Please create or select an agent from the Agents Page.</p>
+                <button onClick={() => navigate("/agents")}>Back to Agents</button>
+            </div>
+        );
+    }
+
     return (
         <div className="selected-agent-page">
-            <main className="slected-agent-content">
+            <main className="selected-agent-content">
                 <h2>Selected Agent</h2>
 
                 {/* Basic Agent Info  */}
                 <section className="agent-info-section">
                     <h3>Agent Info</h3>
-                    <p id="agent-firstname">Firstname:</p>
-                    <p id="agent-lastname">Lastname:</p>
-                    <p id="agent-agency">Agency:</p>
-                    <p id="agent-email">Email</p>
+                    <p id="agent-firstname">Firstname: {agent.firstName}</p>
+                    <p id="agent-lastname">Lastname: {agent.lastName}</p>
+                    <p id="agent-agency">Agency: {agent.agency}</p>
+                    <p id="agent-email">Email {agent.email}</p>
                 </section>
 
                 {/* Agent Links */}
                 <section className="agent-links-section">
                     <h3>Agent Links</h3>
-                    <p id="agent-website">Website</p>
-                    <p id="agent-twitter">Twitter:</p>
-                    <p id="agent-instagram">Instagram</p>
+                    <p id="agent-website">Website: {agent.website}</p>
+                    <p id="agent-twitter">Twitter: {agent.twitter}</p>
+                    <p id="agent-instagram">Instagram {agent.instagram}</p>
                 </section>
 
                 {/* Agent Notes */}
                 <section className="agent-notes-section">
                     <h3>Agent Notes</h3>
-                    {/* TODO: Agent Notes component here */}
+                    <p>{agent.notes}</p>
                 </section>
 
                 {/* Agent Actions */}
@@ -35,7 +50,7 @@ export default function SelectedAgent() {
                     <button type="button" className="delete-btn">Delete Agent</button>
                 </div>
             </main>
-            
+
         </div>
     )
 }

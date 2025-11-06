@@ -61,7 +61,7 @@ function App() {
           />
 
           <Route
-            path='/selected-agent' element={
+            path='/agents/:id' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Layout>
                   <SelectedAgent />

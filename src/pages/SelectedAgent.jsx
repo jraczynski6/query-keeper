@@ -26,7 +26,7 @@ export default function SelectedAgent() {
                     <p id="agent-firstname">Firstname: {agent.firstName}</p>
                     <p id="agent-lastname">Lastname: {agent.lastName}</p>
                     <p id="agent-agency">Agency: {agent.agency}</p>
-                    <p id="agent-email">Email {agent.email}</p>
+                    <p id="agent-email">Email: {agent.email}</p>
                 </section>
 
                 {/* Agent Links */}
@@ -34,7 +34,7 @@ export default function SelectedAgent() {
                     <h3>Agent Links</h3>
                     <p id="agent-website">Website: {agent.website}</p>
                     <p id="agent-twitter">Twitter: {agent.twitter}</p>
-                    <p id="agent-instagram">Instagram {agent.instagram}</p>
+                    <p id="agent-instagram">Instagram: {agent.instagram}</p>
                 </section>
 
                 {/* Agent Notes */}

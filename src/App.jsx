@@ -81,7 +81,7 @@ function App() {
           />
 
           <Route
-            path='/selected-project' element={
+            path='/projects/:id' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Layout>
                   <SelectedProject />

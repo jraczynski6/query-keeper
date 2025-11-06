@@ -1,14 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
+import AgentCard from "../components/AgentCard";
 
 export default function Agents() {
+    const navigate = useNavigate();
+
+    // Sample Agent array
+    const [agents, setAgents] = useState([
+        {
+            id: 1,
+            firstName: "Jane",
+            lastName: "Doe",
+            agency: "Best Agent Agency",
+            email: "janedoe@email.com",
+            website: "janedoeagent.com",
+            twitter: "@janedoe",
+            instagram: "@janedoe_",
+            notes: "This agent is prefers fantasy"
+        }
+    ]);
+
+    const [SelectedAgent, setSelectedAgent] = useState(agents[0]);
     // state to render modal
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
+    // TODO: Add logic to generate new agent cards
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -18,7 +38,14 @@ export default function Agents() {
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
                         <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
-                        {/* Agent Cards mapped here */}
+                        
+                        {agents.map(( agent ) => (
+                            <AgentCard
+                                key={agent.id}
+                                {...agent}
+                                onSelect={() => setSelectedAgent(agent)}
+                            />
+                        ))}
                     </section>
 
                     {/* Right: Agent Preview */}
@@ -49,6 +76,7 @@ export default function Agents() {
                             </div>
 
                         </div>
+                        {/* TODO: Add logic to open selected agent page */}
                         <button className="edit-agent-btn">Go to Selected Agent</button>
 
                     </section>

@@ -3,9 +3,9 @@ import Footer from "../components/footer"
 
 export default function Landing() {
     return (
-        <div className="landing-container">
+        <div className="landing-page">
             <Header />
-            <main className="landing-main">
+            <main className="landing-content">
                 <h2>Welcome</h2>
                 <p>Welcome Text</p>
                 

@@ -28,6 +28,7 @@ export default function SelectedProject() {
                         </div>
                     </section>
 
+                    {/* TODO: Change project into to form */}
                     {/* Right: Project Info */}
                     <section className="project-info-panel">
                         <h2>Project Info</h2>
@@ -45,6 +46,30 @@ export default function SelectedProject() {
                             <p>Agency</p>
                             <p></p>
                         </div>
+
+                        <fieldset>
+                            <legend>Sample Size</legend>
+                            <div className="sample-size-select">
+                                <label>
+                                    Select sample size:
+                                    <select>
+                                        <option value="">Select...</option>
+                                        <option value="3">3 Pages</option>
+                                        <option value="5">5 Pages</option>
+                                        <option value="10">10 Pages</option>
+                                        <option value="30">30 Pages</option>
+                                        <option value="50">50 Pages</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div className="sample-text-entry">
+                                <label>
+                                    Text for sample size X 
+                                    <textarea placeholder="Text for selected pages"/>
+                                </label>
+                            </div>
+                        </fieldset>
 
                         {/* TODO: Make agent Notes component */}
                     </section>

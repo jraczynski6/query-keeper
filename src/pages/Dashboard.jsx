@@ -7,7 +7,7 @@ export default function Dashboard() {
         <div className="dashboard-page">
             <Header />
             <NavMenu />
-            <div className="dashboard-container">
+            <div className="dashboard-content">
                 {/* Canvas Here */}
                 <p>Canvas Here</p>
             </div>

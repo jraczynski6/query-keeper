@@ -11,7 +11,7 @@ import Agents from "./pages/Agents";
 import SelectedAgent from "./pages/SelectedAgent";
 import Projects from "./pages/Projects";
 import SelectedProject from "./pages/SelectedProject";
-import Author from "./pages/AuthorPage";
+import Author from "./pages/Author";
 import Layout from './components/Layout';
 
 // placeholder for authentication 
@@ -24,8 +24,20 @@ function App() {
       <Router>
         <Routes>
           {/* Public Route */}
-          <Route path='/' element={<Landing />} />
-          <Route path='/about' element={<About />} />
+          <Route
+            path='/' element={
+              <Layout>
+                <Landing />
+              </Layout>
+            }
+          />
+          <Route
+            path='/about' element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
 
           {/* Protected Route */}
           <Route

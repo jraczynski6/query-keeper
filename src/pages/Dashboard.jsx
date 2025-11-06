@@ -1,6 +1,3 @@
-import Header from "../components/Header"
-import NavMenu from "../components/NavMenu/NavMenu"
-import Footer from "../components/footer"
 
 export default function Dashboard() {
     return (

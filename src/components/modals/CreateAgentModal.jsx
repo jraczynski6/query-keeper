@@ -1,9 +1,9 @@
-export default function CreateAgentModal() {
+export default function CreateAgentModal({onClose}) {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2>Create New Agent</h2>
-                <button className="modal-close">X</button>
+                <button className="modal-close" onClick={onClose}>X</button>
 
                 <form className="create-agent-form">
 

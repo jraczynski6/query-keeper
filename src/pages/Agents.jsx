@@ -1,8 +1,14 @@
-import NavMenu from "../components/NavMenu/NavMenu";
-import Header from "../components/Header";
-import Footer from "../components/footer";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CreateAgentModal from "../components/modals/CreateAgentModal";
 
 export default function Agents() {
+    // state to render modal
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -11,7 +17,7 @@ export default function Agents() {
                     {/* Left: Agents List */}
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
-                        <button className="create-agent-btn">Create New Agent</button>
+                        <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
                         {/* Agent Cards mapped here */}
                     </section>
 
@@ -49,6 +55,8 @@ export default function Agents() {
 
                 </div>
             </main>
+            {/* Modal */}
+            {showModal && <CreateAgentModal onClose={closeModal} />}
         </div>
     )
 }

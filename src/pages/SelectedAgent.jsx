@@ -1,6 +1,3 @@
-import Footer from "../components/footer";
-import Header from "../components/Header";
-import NavMenu from "../components/NavMenu/NavMenu";
 
 export default function SelectedAgent() {
     return (

@@ -5,8 +5,6 @@ import NavMenu from "../components/NavMenu/NavMenu";
 export default function SelectedAgent() {
     return (
         <div className="selected-agent-page">
-            <Header />
-            <NavMenu />
             <main className="slected-agent-content">
                 <h2>Selected Agent</h2>
 
@@ -41,7 +39,6 @@ export default function SelectedAgent() {
                 </div>
             </main>
             
-            <Footer />
         </div>
     )
 }

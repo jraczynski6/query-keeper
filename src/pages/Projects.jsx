@@ -5,8 +5,6 @@ import Footer from "../components/footer";
 export default function Projects() {
     return (
         <div className="projects-page">
-            <Header />
-            <NavMenu />
 
             <main className="projects-content">
                 <h1>Projects</h1>
@@ -18,7 +16,7 @@ export default function Projects() {
                 <button>New Project</button>
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }

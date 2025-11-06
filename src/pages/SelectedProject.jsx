@@ -5,8 +5,6 @@ import Footer from "../components/footer";
 export default function SelectedProject() {
     return (
         <div className="selected-project-page">
-            <Header />
-            <NavMenu />
 
             <main className="selected-project-content">
                 <div className="tri-split-container">
@@ -75,7 +73,6 @@ export default function SelectedProject() {
                     </section>
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

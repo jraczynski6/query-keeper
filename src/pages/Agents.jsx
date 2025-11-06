@@ -5,8 +5,6 @@ import Footer from "../components/footer";
 export default function Agents() {
     return (
         <div className="agents-page">
-            <Header />
-            <NavMenu />
             <main className="agents-content">
                 <div className="split-container">
 
@@ -51,7 +49,6 @@ export default function Agents() {
 
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

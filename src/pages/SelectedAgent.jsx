@@ -4,6 +4,7 @@ export default function SelectedAgent() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // TODO: change to useparams
     const agent = location.state?.agent;
 
     if (!agent) {

@@ -1,5 +1,22 @@
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+
 
 export default function SelectedProject() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [project] = useState(location.state?.project || null);
+
+    if (!project) {
+        return (
+            <div className="selected-project-page">
+                <p>No project found. Please select a project from the Projects Page.</p>
+                <button onClick={() => navigate("/projects")}>Back to Projects</button>
+            </div>
+        );
+    }
+    
     return (
         <div className="selected-project-page">
 
@@ -60,8 +77,8 @@ export default function SelectedProject() {
 
                             <div className="sample-text-entry">
                                 <label>
-                                    Text for sample size X 
-                                    <textarea placeholder="Text for selected pages"/>
+                                    Text for sample size X
+                                    <textarea placeholder="Text for selected pages" />
                                 </label>
                             </div>
                         </fieldset>

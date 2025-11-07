@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function RegisterModal({ isOpen, onClose }) {
+export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
     const navigate = useNavigate();
 
     if (!isOpen) return null;
@@ -9,6 +9,7 @@ export default function RegisterModal({ isOpen, onClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         onClose();
+        OnRegistersuccess();
         navigate("/dashboard")
     };
 

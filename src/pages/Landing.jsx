@@ -1,8 +1,10 @@
 import { useState } from "react";
 import RegisterModal from "../components/modals/RegisterModal";
 
-export default function Landing() {
+export default function Landing({setAuthenticated}) {
     const [IsRegisterOpen, setRegisterOpen] = useState(false);
+
+
     return (
         <div className="landing-page">
 
@@ -13,12 +15,15 @@ export default function Landing() {
                 <div className="landing-actions">
                     <button onClick={() => setRegisterOpen(true)}>Register</button>
                 </div>
+
+                {/* Register Modal */}
+                <RegisterModal
+                    isOpen={IsRegisterOpen}
+                    onClose={() => setRegisterOpen(false)}
+                    OnRegistersuccess={() => setAuthenticated(true)}
+                />
             </main>
-            {/* Register Modal */}
-            <RegisterModal
-                isOpen={IsRegisterOpen}
-                onClose={() => setRegisterOpen(false)}
-            />
+
         </div>
     )
 }

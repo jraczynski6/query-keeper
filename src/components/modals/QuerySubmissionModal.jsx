@@ -5,6 +5,11 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
 
     // pull author from project
     const author = project?.author || {};
+    const [selectedSize, setSelectedSize] = React.useState(
+        project.samplesize?.toString() || ""
+    );
+
+    const [sampleText, setSampleText] = React.useState(project.sampleText || "");
 
     return (
         <div className="modal-overlay">
@@ -111,7 +116,19 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                         {/* sample size dropdown */}
                         <div className="form-group">
                             <label htmlFor="sampleSize">Sample Size</label>
-                            <select value={project?.samplesize || ""}>
+                            <select
+                             value={selectedSize}
+                             onChange={(e) => {
+                                const newSize = e.target.value;
+                                setSelectedSize(newSize);
+
+                                if (parseInt(newSize) === project.samplesize) {
+                                    setSampleText(project.sampleText);
+                                } else {
+                                    setSampleText("")
+                                }
+                             }}
+                             >
                                 <option value={""}>Select sample size</option>
                                 <option value={"3"}>3 Pages</option>
                                 <option value={"5"}>5 Pages</option>
@@ -121,13 +138,14 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                             </select>
                         </div>
 
+                        {/* TODO: Add logic for sample size */}
                         <div className="form-group">
                             <label htmlFor="sample">Sample</label>
                             <div className="input-with-copy">
                                 <textarea
                                     id="sample"
                                     placeholder="Populate sample here"
-                                    value={project?.sample || ""}
+                                    value={sampleText}
                                 ></textarea>
                                 <button type="button" className="copy-btn">Copy</button>
                             </div>

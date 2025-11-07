@@ -9,7 +9,7 @@ export default function SelectedProject() {
     const navigate = useNavigate();
     const [project] = useState(location.state?.project || null);
     const [showModal, setShowModal] = useState(false);
-
+    const [selectedSize, setSelectedSize] = useState("")
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
@@ -60,7 +60,7 @@ export default function SelectedProject() {
                             className="agent-info"
                             // TODO: Add useParams to link to selected agent
                             onClick={() => navigate("/agent", { state: { agent: project.agent } })}
-                            >
+                        >
                             <h2>Agent Info</h2>
                             <p>Name: {project.agent.firstName} {project.agent.lastName}</p>
                             <p>Agency: {project.agent.agency}</p>
@@ -71,7 +71,10 @@ export default function SelectedProject() {
                             <div className="sample-size-select">
                                 <label>
                                     Select sample size:
-                                    <select>
+                                    <select
+                                        value={selectedSize}
+                                        onChange={(e) => setSelectedSize(e.target.value)}
+                                    >
                                         <option value="">Select...</option>
                                         <option value="3">3 Pages</option>
                                         <option value="5">5 Pages</option>
@@ -82,12 +85,23 @@ export default function SelectedProject() {
                                 </label>
                             </div>
 
-                            <div className="sample-text-entry">
-                                <label>
-                                    Text for sample size X
-                                    <textarea placeholder="Text for selected pages" />
-                                </label>
-                            </div>
+                            {/* nested ternary is essential for not breaking */}
+                            {selectedSize && parseInt(selectedSize) === project.sampleSize ? (
+                                <div className="sample-text-entry">
+                                    <label>
+                                        Text for {selectedSize} pages:
+                                        <textarea
+                                            placeholder="Text for selected pages"
+                                            value={project.sampleText}
+                                            rows={10}
+                                        />
+                                    </label>
+                                </div>
+                            ) : selectedSize ? (
+                                <p className="no-sample-text">
+                                    No sample available for {selectedSize} pages.
+                                </p>
+                            ) : null}
                         </fieldset>
 
                         {/* TODO: Make agent Notes component */}

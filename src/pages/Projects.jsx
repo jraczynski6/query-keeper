@@ -13,6 +13,8 @@ export default function Projects() {
             title: "Best Novel Ever",
             wordcount: 95000,
             genre: "Fantasy",
+            sampleSize: 3,
+            sampleText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac eros sed lorem porta consequat. Phasellus sed sapien nec justo tincidunt tincidunt. In ut consequat magna, et dictum urna. Cras convallis sem nec ultricies laoreet. Suspendisse suscipit, odio nec iaculis porta, velit magna fermentum erat, sit amet vulputate elit nibh non ante. Morbi luctus, justo non ultrices porttitor, turpis metus rhoncus metus, vitae ultrices lorem lorem non elit. Curabitur dignissim posuere justo nec maximus. Aliquam et diam arcu. In hac habitasse platea dictumst. Integer et nisl odio. Maecenas bibendum justo sed quam interdum pretium.",
             agent: {
                 id: 1,
                 firstName: "Jane",

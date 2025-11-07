@@ -1,9 +1,14 @@
-export default function QuerySubmissionModal() {
+import React from "react";
+
+export default function QuerySubmissionModal({isOpen, onClose, project}) {
+    if (!isOpen) return null;
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button className="close-button">X</button>
+                <button className="close-button" onClick={onClose}>X</button>
                 <h2>Submit a query</h2>
+                <p>Submitting for: {project.title}</p>
 
                 <form className="query-form">
                     {/* Author Specific Section */}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
 
 
 
@@ -7,6 +8,10 @@ export default function SelectedProject() {
     const location = useLocation();
     const navigate = useNavigate();
     const [project] = useState(location.state?.project || null);
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
 
     if (!project) {
         return (
@@ -29,7 +34,7 @@ export default function SelectedProject() {
                         <button>Edit Query</button>
                         <button>Save</button>
                         <button>Delete Project</button>
-                        <button>Submit Query</button>
+                        <button onClick={openModal}>Submit Query</button>
                     </section>
 
                     {/* Center: Editable Document */}
@@ -86,6 +91,12 @@ export default function SelectedProject() {
                     </section>
                 </div>
             </main>
+            {/* Modal */}
+            <QuerySubmissionModal
+                isOpen={showModal}
+                onClose={closeModal}
+                project={project}            
+            />
         </div>
     )
 }

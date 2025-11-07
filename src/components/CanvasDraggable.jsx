@@ -8,9 +8,9 @@ export default function CanvasDraggable({ id, content, position }) {
         position: "absolute", // required for positioning inside canvas
         cursor: "grab",
         transform: transform
-            ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+            ? `translate3d(${position.x + transform.x}px, ${position.y + transform.y}px, 0)`
             : `translate3d(${position.x}px, ${position.y}px, 0)`,
-        userSelect: "none", // prevents text from being selected while dragging
+        userSelect: "none",
     }
 
     return (

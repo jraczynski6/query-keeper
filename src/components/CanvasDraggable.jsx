@@ -2,21 +2,20 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 
 export default function CanvasDraggable({ id, content, position }) {
-    const { attributes, listeners, setNodeRef, transform } = useDraggable({
-        id: 'draggable',
-    });
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
     const style = {
-        position: "absolute",
+        position: "absolute", // required for positioning inside canvas
         cursor: "grab",
         transform: transform
             ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
             : `translate3d(${position.x}px, ${position.y}px, 0)`,
+        userSelect: "none", // prevents text from being selected while dragging
     }
 
     return (
-        <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            {props.children}
-        </button>
+        <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+            {content}
+        </div>
     );
 }

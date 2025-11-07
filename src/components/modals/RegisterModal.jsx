@@ -1,10 +1,23 @@
-export default function RegisterModal() {
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function RegisterModal({ isOpen, onClose }) {
+    const navigate = useNavigate();
+
+    if (!isOpen) return null;
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onClose();
+        navigate("/dashboard")
+    };
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button className="modal-close">X</button>
+                <button className="modal-close" onClick={onClose}>X</button>
                 <h2>Register</h2>
-                <form className="register-form">
+                <form className="register-form" onSubmit={handleSubmit}>
                     <label>
                         Username
                         <input type="text" name="username" required />

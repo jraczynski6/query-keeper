@@ -14,11 +14,11 @@ import SelectedProject from "./pages/SelectedProject";
 import Author from "./pages/Author";
 import Layout from './components/Layout';
 
-// placeholder for authentication 
-// TODO: replace with useState
-const isAuthenticated = true;
+
 
 function App() {
+const [isAuthenticated, setAuthenticated] = useState(false);
+
   return (
     <>
       <Router>
@@ -26,14 +26,20 @@ function App() {
           {/* Public Route */}
           <Route
             path='/' element={
-              <Layout>
+              <Layout
+                isAuthenticated={isAuthenticated}
+                setAuthenticated={setAuthenticated}
+              >
                 <Landing />
               </Layout>
             }
           />
           <Route
             path='/about' element={
-              <Layout>
+              <Layout
+                isAuthenticated={isAuthenticated}
+                setAuthenticated={setAuthenticated}
+              >
                 <About />
               </Layout>
             }
@@ -43,7 +49,10 @@ function App() {
           <Route
             path='/dashboard' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <Dashboard />
                 </Layout>
               </ProtectedRoute>
@@ -53,7 +62,10 @@ function App() {
           <Route
             path='/agents' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <Agents />
                 </Layout>
               </ProtectedRoute>
@@ -63,7 +75,10 @@ function App() {
           <Route
             path='/agents/:id' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <SelectedAgent />
                 </Layout>
               </ProtectedRoute>
@@ -73,7 +88,10 @@ function App() {
           <Route
             path='/projects' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <Projects />
                 </Layout>
               </ProtectedRoute>
@@ -83,7 +101,10 @@ function App() {
           <Route
             path='/projects/:id' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <SelectedProject />
                 </Layout>
               </ProtectedRoute>
@@ -93,7 +114,10 @@ function App() {
           <Route
             path='/author' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Layout>
+                <Layout
+                  isAuthenticated={isAuthenticated}
+                  setAuthenticated={setAuthenticated}
+                >
                   <Author />
                 </Layout>
               </ProtectedRoute>

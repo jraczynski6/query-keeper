@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SignInModal(isOpen, onClose) {
+export default function SignInModal({isOpen, onClose, onSignInSuccess}) {
     const navigate = useNavigate();
 
     if (!isOpen) return null;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        onSignInSuccess();
         onClose();
         navigate("/dashboard")
     };

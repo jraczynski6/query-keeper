@@ -16,7 +16,7 @@ export default function SelectedProject() {
             </div>
         );
     }
-    
+
     return (
         <div className="selected-project-page">
 
@@ -40,16 +40,15 @@ export default function SelectedProject() {
                         </div>
                     </section>
 
-                    {/* TODO: Change project into to form */}
                     {/* Right: Project Info */}
                     <section className="project-info-panel">
                         <h2>Project Info</h2>
 
                         <div className="book-info">
                             <h3>Book Info</h3>
-                            <p>Title</p>
-                            <p>Genre</p>
-                            <p>Word Count</p>
+                            <p>Title: {project.title}</p>
+                            <p>Genre: {project.genre}</p>
+                            <p>Word Count: {project.wordcount}</p>
                         </div>
 
                         <div className="agent-info">

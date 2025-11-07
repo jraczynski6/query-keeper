@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
+import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 
 export default function Projects() {
     const navigate = useNavigate();
@@ -15,6 +16,8 @@ export default function Projects() {
         }
     ]);
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalProject, setModalProject] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
 
     return (
@@ -22,6 +25,14 @@ export default function Projects() {
 
             <main className="projects-content">
                 <h1>Projects</h1>
+
+                {/* Generate Query button (separate from mapped projects) */}
+                <button
+                    className="generate-query-btn"
+                    onClick={() => setModalOpen(true)}
+                >
+                    Generate Query
+                </button>
 
                 <div className="projects-list-panel">
                     {projects.map((project) => (
@@ -46,6 +57,12 @@ export default function Projects() {
                         View Project
                     </button>
                 )}
+
+                {/* Generate Query Modal */}
+                <GenerateQueryModal
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                />
             </main>
         </div>
     )

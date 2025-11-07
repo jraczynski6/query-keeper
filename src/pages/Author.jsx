@@ -1,5 +1,20 @@
-
+import { useState } from "react"
 export default function Author() {
+
+    // Mock Author data
+    const [author, setAuthor] = useState({
+        firstName: "John",
+        lastName: "Smith",
+        email: "johnsmith@email.com",
+        website: "https://johnsmith.com",
+        twitter: "@johnsmith",
+        instagram: "@johnsmith_"
+    });
+
+
+
+
+
     return (
         <div className="author-page">
 
@@ -13,32 +28,62 @@ export default function Author() {
                         <form>
                             <label>
                                 First Name:
-                                <input type="text" placeholder="Enter author's first name" required />
+                                <input
+                                    type="text"
+                                    placeholder="Enter author's first name"
+                                    value={author.firstName}
+                                    onChange={e => setAuthor({ ...author, firstName: e.target.value })}
+                                />
                             </label>
 
                             <label>
                                 Last Name:
-                                <input type="text" placeholder="Enter author's last name" required />
+                                <input
+                                    type="text"
+                                    placeholder="Enter author's last name"
+                                    value={author.lastName}
+                                    onChange={(e) => setAuthor({ ...author, lastName: e.target.value })}
+                                />
                             </label>
 
                             <label>
                                 Email:
-                                <input type="email" placeholder="Enter author's email" required />
+                                <input
+                                    type="email"
+                                    placeholder="Enter author's email"
+                                    value={author.email}
+                                    onChange={(e) => setAuthor({ ...author, email: e.target.value })}
+                                />
                             </label>
 
                             <label>
                                 Website:
-                                <input type="url" placeholder="Enter author's website" />
+                                <input
+                                    type="url"
+                                    placeholder="Enter author's website"
+                                    value={author.website}
+                                    onChange={(e) => setAuthor({ ...author, website: e.target.value })}
+                                />
                             </label>
 
                             <label>
                                 Twitter:
-                                <input type="text" placeholder="Enter twitter handle" />
+                                <input
+                                    type="text"
+                                    placeholder="Enter twitter handle"
+                                    value={author.twitter}
+                                    onChange={(e) => setAuthor({ ...author, twitter: e.target.value })}
+                                />
                             </label>
 
                             <label>
                                 Instagram:
-                                <input type="text" placeholder="Enter instagram handle" />
+                                <input
+                                    type="text"
+                                    placeholder="Enter instagram handle"
+                                    value={author.instagram}
+                                    onChange={(e) => setAuthor({ ...author, instagram: e.target.value })}
+                                />
                             </label>
 
                             <button type="submit" className="save-btn">Save Author</button>
@@ -49,12 +94,12 @@ export default function Author() {
                         <h2>Sample Project Preview</h2>
 
                         <div className="preview-card">
-                            <h3 class="author-name">Author Name</h3>
-                            <p class="author-email">email@example.com</p>
+                            <h3 class="author-name">{author.firstName} {author.lastName}</h3>
+                            <p class="author-email">{author.email}</p>
                             <p class="author-links">
-                                <span>Website:</span>
-                                <span>Twitter: @handle</span>
-                                <span>Instagram: @handle</span>
+                                <span>Website: {author.website}</span>
+                                <span>Twitter: {author.twitter}</span>
+                                <span>Instagram: {author.instagram}</span>
                             </p>
 
                             <div className="sample-project">

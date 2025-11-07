@@ -12,7 +12,26 @@ export default function Projects() {
             id: 1,
             title: "Best Novel Ever",
             wordcount: 95000,
-            genre: "Fantasy"
+            genre: "Fantasy",
+            agent: {
+                id: 1,
+                firstName: "Jane",
+                lastName: "Doe",
+                agency: "Best Agent Agency",
+                email: "janedoe@email.com",
+                website: "janedoeagent.com",
+                twitter: "@janedoe",
+                instagram: "@janedoe_",
+                notes: "This agent is prefers fantasy"
+            },
+            author: {
+                firstName: "John",
+                lastName: "Smith",
+                email: "johnsmith@email.com",
+                website: "https://johnsmith.com",
+                twitter: "@johnsmith",
+                instagram: "@johnsmith_"
+            }
         }
     ]);
 

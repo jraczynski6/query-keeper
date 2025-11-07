@@ -56,11 +56,14 @@ export default function SelectedProject() {
                             <p>Word Count: {project.wordcount}</p>
                         </div>
 
-                        <div className="agent-info">
+                        <div
+                            className="agent-info"
+                            // TODO: Add useParams to link to selected agent
+                            onClick={() => navigate("/agent", { state: { agent: project.agent } })}
+                            >
                             <h2>Agent Info</h2>
-                            <p>Name</p>
-                            <p>Agency</p>
-                            <p></p>
+                            <p>Name: {project.agent.firstName} {project.agent.lastName}</p>
+                            <p>Agency: {project.agent.agency}</p>
                         </div>
 
                         <fieldset>
@@ -95,7 +98,7 @@ export default function SelectedProject() {
             <QuerySubmissionModal
                 isOpen={showModal}
                 onClose={closeModal}
-                project={project}            
+                project={project}
             />
         </div>
     )

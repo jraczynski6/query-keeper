@@ -1,24 +1,69 @@
-import NavMenu from "../components/NavMenu/NavMenu";
-import Header from "../components/Header";
-import Footer from "../components/footer";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ProjectCard from "../components/ProjectCard";
+import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 
 export default function Projects() {
+    const navigate = useNavigate();
+
+    // Sample project Array
+    const [projects, setProjects] = useState([
+        {
+            id: 1,
+            title: "Best Novel Ever",
+            wordcount: 95000,
+            genre: "Fantasy"
+        }
+    ]);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalProject, setModalProject] = useState(null);
+    const [selectedProject, setSelectedProject] = useState(null);
+
     return (
         <div className="projects-page">
-            <Header />
-            <NavMenu />
 
             <main className="projects-content">
                 <h1>Projects</h1>
-                <p>This is the projects page. Content will go here. :P</p>
-                {/* TODO: Add dummy placeholders for projects. use object and map */}
 
-                <div className="project-actions">
-                    {/* TODO: Add handleNewProject on click logic */}
-                <button>New Project</button>
+                {/* Generate Query button (separate from mapped projects) */}
+                <button
+                    className="generate-query-btn"
+                    onClick={() => setModalOpen(true)}
+                >
+                    Generate Query
+                </button>
+
+                <div className="projects-list-panel">
+                    {projects.map((project) => (
+                        <ProjectCard
+                            key={project.id}
+                            {...project}
+                            onSelect={() => setSelectedProject(project)}
+                        />
+                    ))}
                 </div>
+
+
+                {selectedProject && (
+                    <button
+                        className="go-to-project-btn"
+                        onClick={() =>
+                            navigate(`/projects/${selectedProject.id}`, {
+                                state: { project: selectedProject }
+                            })
+                        }
+                    >
+                        View Project
+                    </button>
+                )}
+
+                {/* Generate Query Modal */}
+                <GenerateQueryModal
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                />
             </main>
-            <Footer />
         </div>
     )
 }

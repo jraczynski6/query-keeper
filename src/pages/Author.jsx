@@ -1,12 +1,8 @@
-import NavMenu from "../components/NavMenu/NavMenu";
-import Header from "../components/Header";
-import Footer from "../components/footer";
 
 export default function Author() {
     return (
         <div className="author-page">
-            <Header />
-            <NavMenu />
+
             <main className="author-conent">
                 <div className="split-container">
 
@@ -71,7 +67,6 @@ export default function Author() {
 
                 </div>
             </main>
-            <Footer />
         </div>
     )
 }

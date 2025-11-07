@@ -1,9 +1,18 @@
-export default function GenerateQueryModal() {
+export default function GenerateQueryModal({ isOpen, onClose, project }) {
+    if (!isOpen) return null;
     return (
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2>Generate a Query</h2>
-                <button className="modal-close">X</button>
+
+
+                <button
+                    className="modal-close"
+                    onClick={onClose}
+                >
+                    X</button>
+
+
                 <form className="generate-query-form">
                     {/* Author selection */}
                     <label>
@@ -35,17 +44,17 @@ export default function GenerateQueryModal() {
 
                         <label>
                             Title:
-                            <input type="text" placeholder="Enter book title" required />
+                            <input type="text" placeholder="Enter book title" defaultValue={project?.title || ""} required />
                         </label>
 
                         <label>
                             Word Count:
-                            <input type="number" placeholder="Enter word count" required/>
+                            <input type="number" placeholder="Enter word count" defaultValue={project?.wordcount || ""} required />
                         </label>
 
                         <label>
                             Genre:
-                            <select defaultValue={""}>
+                            <select defaultValue={project?.genre || ""}>
                                 <option value={"nonfiction"}>Nonfiction</option>
                                 <option value={"fantasy"}>Fantasy</option>
                                 <option value={"Sci-fi"}>Sci-fi</option>
@@ -60,7 +69,7 @@ export default function GenerateQueryModal() {
                         </label>
 
                         {/* TODO: Add handleGenreChange logic and custom genre input */}
-                        <label id="customGenreLabel" style={{display: "none"}}>
+                        <label id="customGenreLabel" style={{ display: "none" }}>
                             Enter Genre:
                             <input type="text" id="customGenre" placeholder="Enter genre" />
                         </label>

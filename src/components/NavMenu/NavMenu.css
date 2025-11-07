@@ -1,0 +1,10 @@
+.nav-menu {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}

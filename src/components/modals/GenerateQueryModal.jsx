@@ -1,5 +1,25 @@
+import React, { useState, useEffect } from "react";
+
 export default function GenerateQueryModal({ isOpen, onClose, project }) {
     if (!isOpen) return null;
+
+    // state to track selected author and agent.
+    const [author, setAuthor] = useState(null);
+    const [agents, setAgents] = useState([]);
+    const [selectedAuthorId, setSelectedAuthorId] = useState("");
+    const [selectedAgentId, setSelectedAgentId] = useState("");
+
+    // effect to pull from local storage on modal open.
+    useEffect(() => {
+        const storedAuthor = JSON.parse(localStorage.getItem("author")) || null;
+        const storedAgents = JSON.parse(localStorage.getItem("agents")) || [];
+
+        setAuthor(storedAuthor);
+        setAgents(storedAgents);
+    }, []);
+
+
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -14,12 +34,19 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
 
 
                 <form className="generate-query-form">
+                    {/* TODO: Update Select to accept locally stored arrays */}
                     {/* Author selection */}
                     <label>
                         Author:
-                        <select>
-                            <option>Select an author</option>
-                        </select>
+                        <input
+                            type="text"
+                            // cannot place object directly in JSX Value
+                            value={
+                                author
+                                    ? `${author.firstName || ""} ${author.lastName || ""}`
+                                    : "No author found"
+                            } readOnly />
+
                     </label>
 
                     {/* Agent Selection */}

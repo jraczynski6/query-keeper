@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import queryTemplates from "../../utils/queryTemplates";
 
 export default function GenerateQueryModal({ isOpen, onClose, project }) {
     if (!isOpen) return null;
@@ -15,6 +16,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
     const [genre, setGenre] = useState(project?.genre || "");
     const [sampleSize, setSampleSize] = useState("");
     const [sampleText, setSampleText] = useState("");
+    const [selectedTemplateId, setSelectedTemplateId] = useState("");
 
     // effect to pull from local storage on modal open.
     useEffect(() => {

@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react"
 export default function Author() {
 
+// TODO: Add input validation
+// TODO: Add reset button
+// TODO: accessibility check
+
     // Mock Author data
     const [author, setAuthor] = useState(() => {
         // check local storage
@@ -35,7 +39,7 @@ export default function Author() {
     return (
         <div className="author-page">
 
-            <main className="author-conent">
+            <main className="author-content">
                 <div className="split-container">
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
@@ -10,8 +10,12 @@ export default function Agents() {
     const navigate = useNavigate();
 
     // Sample Agent array
-    const [agents, setAgents] = useState([
-        {
+    const [agents, setAgents] = useState(() => {
+        const savedAgents = localStorage.getItem("agents");
+        if (savedAgents) return JSON.parse(savedAgents);
+
+
+        const defaultAgent = {
             id: 1,
             firstName: "Jane",
             lastName: "Doe",
@@ -20,11 +24,21 @@ export default function Agents() {
             website: "janedoeagent.com",
             twitter: "@janedoe",
             instagram: "@janedoe_",
-            notes: "This agent is prefers fantasy"
-        }
-    ]);
+            notes: "This agent prefers fantasy"
+        };
 
-    const [selectedAgent, setSelectedAgent] = useState(agents[null]);
+        // return default agent
+        localStorage.setItem("agents", JSON.stringify([defaultAgent]));
+        return [defaultAgent];
+    });
+
+
+    // watch agents state change
+    useEffect(() => {
+        localStorage.setItem("agents", JSON.stringify(agents));
+    }, [agents]);
+
+    const [selectedAgent, setSelectedAgent] = useState(agents[0]);
     // state to render modal
     const [showModal, setShowModal] = useState(false);
 
@@ -104,11 +118,20 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgentwithId = {...agentData, id: nextAgentId++}; // Add id before saving to state
-                        setAgents(prev => [...prev, newAgentwithId]); // add new agent to state
+                        const newAgentwithId = { ...agentData, id: nextAgentId++ };
+                        setAgents(prev => [...prev, newAgentwithId]);
                         setSelectedAgent(newAgentwithId);
                     }}
                 />}
         </div>
     )
 }
+
+// TODO: Save agents in localStorage
+// TODO: Edit/Delete agent
+// TODO: Filter/Search agents
+// TODO: Other agents in the same agency
+// TODO: Form validation
+// TODO: Default avatars or profile pictures
+// TODO: Sort agents list
+// TODO: Copy agent info

@@ -15,9 +15,9 @@ export default function CreateAgentModal({ onClose, onCreate }) {
             notes: e.target["agent-notes"].value,
         };
 
-        onCreate(newAgent);
+        onCreate(newAgent); // pass the actual object
         onClose();
-    }
+    };
 
     return (
         <div className="modal-overlay">

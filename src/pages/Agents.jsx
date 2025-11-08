@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
+import { createAgent } from "../utils/agentUtils";
+
+let nextAgentId = 2;
 
 export default function Agents() {
     const navigate = useNavigate();
 
     // Sample Agent array
-    const [agents, setAgents] = useState([
-        {
+    const [agents, setAgents] = useState(() => {
+        const savedAgents = localStorage.getItem("agents");
+        if (savedAgents) return JSON.parse(savedAgents);
+
+
+        const defaultAgent = {
             id: 1,
             firstName: "Jane",
             lastName: "Doe",
@@ -17,18 +24,27 @@ export default function Agents() {
             website: "janedoeagent.com",
             twitter: "@janedoe",
             instagram: "@janedoe_",
-            notes: "This agent is prefers fantasy"
-        }
-    ]);
+            notes: "This agent prefers fantasy"
+        };
 
-    const [selectedAgent, setSelectedAgent] = useState(agents[null]);
+        // return default agent
+        localStorage.setItem("agents", JSON.stringify([defaultAgent]));
+        return [defaultAgent];
+    });
+
+
+    // watch agents state change
+    useEffect(() => {
+        localStorage.setItem("agents", JSON.stringify(agents));
+    }, [agents]);
+
+    const [selectedAgent, setSelectedAgent] = useState(agents[0]);
     // state to render modal
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
-    // TODO: Add logic to generate new agent cards
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -72,7 +88,7 @@ export default function Agents() {
                                 <div className="same-agency-agents">
                                     <h4>Other agents in agency</h4>
                                     <ul>
-                                        {/* Map agents here use filter */}
+                                        {/* TODO: Map agents here use filter */}
                                     </ul>
                                 </div>
                             </div>
@@ -98,7 +114,24 @@ export default function Agents() {
                 </div>
             </main>
             {/* Modal */}
-            {showModal && <CreateAgentModal onClose={closeModal} />}
+            {showModal &&
+                <CreateAgentModal
+                    onClose={closeModal}
+                    onCreate={(agentData) => {
+                        const newAgentwithId = { ...agentData, id: nextAgentId++ };
+                        setAgents(prev => [...prev, newAgentwithId]);
+                        setSelectedAgent(newAgentwithId);
+                    }}
+                />}
         </div>
     )
 }
+
+// TODO: Save agents in localStorage
+// TODO: Edit/Delete agent
+// TODO: Filter/Search agents
+// TODO: Other agents in the same agency
+// TODO: Form validation
+// TODO: Default avatars or profile pictures
+// TODO: Sort agents list
+// TODO: Copy agent info

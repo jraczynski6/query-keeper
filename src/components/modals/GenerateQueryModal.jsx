@@ -18,6 +18,10 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
     const [sampleText, setSampleText] = useState("");
     const [selectedTemplateId, setSelectedTemplateId] = useState("");
 
+    const handleTemplateChange = (e) => {
+        setSelectedTemplateId(e.target.value);
+    }
+
     // effect to pull from local storage on modal open.
     useEffect(() => {
         const storedAuthor = JSON.parse(localStorage.getItem("author")) || null;
@@ -80,7 +84,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
                         Query Template:
                         <select
                             value={selectedTemplateId}
-                            onChange={(e) => setSelectedTemplateId(e.target.value)}
+                            onChange={handleTemplateChange}
                             required
                         >
                             <option value="">Select a template</option>
@@ -98,17 +102,32 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
 
                         <label>
                             Title:
-                            <input type="text" placeholder="Enter book title" defaultValue={project?.title || ""} required />
+                            <input
+                                type="text"
+                                placeholder="Enter book title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                            />
                         </label>
 
                         <label>
                             Word Count:
-                            <input type="number" placeholder="Enter word count" defaultValue={project?.wordCount || ""} required />
+                            <input
+                                type="number"
+                                placeholder="Enter word count"
+                                value={wordCount}
+                                onChange={(e) => setWordCount(e.target.value)}
+                                required
+                            />
                         </label>
 
                         <label>
                             Genre:
-                            <select defaultValue={project?.genre || ""}>
+                            <select
+                                value={genre}
+                                onChange={(e) => setGenre(e.target.value)}
+                            >
                                 <option value={"nonfiction"}>Nonfiction</option>
                                 <option value={"fantasy"}>Fantasy</option>
                                 <option value={"Sci-fi"}>Sci-fi</option>
@@ -159,8 +178,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
         </div>
     )
 }
-// Query generation TODOs 
+// Query generation TODOs
 // TODO: Track form inputs with state
 // TODO: handle generation of Query / add onSubmit to form
 // TODO: Store created projects
-// TODO: store query templates in template literals for dynamic generation 
+// TODO: Add more query templates. min 5

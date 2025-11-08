@@ -78,8 +78,17 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
                     {/* Query Template */}
                     <label>
                         Query Template:
-                        <select>
-                            <option>Select a template</option>
+                        <select
+                            value={selectedTemplateId}
+                            onChange={(e) => setSelectedTemplateId(e.target.value)}
+                            required
+                        >
+                            <option value="">Select a template</option>
+                            {queryTemplates.map((template) => (
+                                <option key={template.id} value={template.id}>
+                                    {template.name}
+                                </option>
+                            ))}
                         </select>
                     </label>
 

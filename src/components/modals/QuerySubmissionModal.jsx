@@ -87,7 +87,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                         <div className="form-group">
                             <label htmlFor="words">Word Count</label>
                             <div className="input-with-copy">
-                                <input id="words" type="text" value={project.wordcount || ""} readOnly />
+                                <input id="words" type="text" value={project.wordCount || ""} readOnly />
                                 <button type="button" className="copy-btn">Copy</button>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                         <div className="form-group">
                             <label>Query Draft</label>
                             <div className="final-query">
-                                <p>{project?.querydraft || "Final query will go here."}</p>
+                                <p>{project?.query || "Final query will go here."}</p>
                             </div>
                         </div>
 

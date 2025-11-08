@@ -1,17 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
+import { useParams } from "react-router-dom";
 
 
 
 export default function SelectedProject() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [project] = useState(location.state?.project || null);
+    const { projectId } = useParams();
+
+    const [project, setProject] = useState(null);
+    const [queryDraft, setQueryDraft] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [selectedSize, setSelectedSize] = useState("")
+    const [selectedSize, setSelectedSize] = useState("");
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
+
+    useEffect(() => {
+        let loadedProject = location.state?.project || null;
+
+        if (!loadedProject && projectId) {
+            let savedProjects = [];
+            try {
+                const raw = localStorage.getItem("projects");
+                savedProjects = raw ? JSON.parse(raw) : [];
+            } catch (err) {
+                console.error("Failed to parse projects from localStorage:", err);
+                savedProjects = [];
+            }
+
+            loadedProject = savedProjects.find(p => p.id == projectId) || null;;
+        }
+
+        if (loadedProject) {
+            setProject(loadedProject);
+            setQueryDraft(loadedProject.query || "");
+            console.log("Loaded project:", loadedProject);
+            console.log("Query draft:", loadedProject.query);
+        }
+    }, [location.state, projectId]);
 
     if (!project) {
         return (
@@ -41,7 +69,12 @@ export default function SelectedProject() {
                     <section className="project-editor-panel">
                         <h2>Editable Document</h2>
                         <div className="project-editor">
-                            <p>Query Draft will appear here</p>
+                            <textarea
+                                value={queryDraft}
+                                onChange={(e) => setQueryDraft(e.target.value)}
+                                rows={15}
+                                style={{ width: "100%" }}
+                            />
                         </div>
                     </section>
 
@@ -53,7 +86,7 @@ export default function SelectedProject() {
                             <h3>Book Info</h3>
                             <p>Title: {project.title}</p>
                             <p>Genre: {project.genre}</p>
-                            <p>Word Count: {project.wordcount}</p>
+                            <p>Word Count: {project.wordCount}</p>
                         </div>
 
                         <div
@@ -117,3 +150,8 @@ export default function SelectedProject() {
         </div>
     )
 }
+
+// TODO: edit query draft
+// TODO: save/delete button
+// TODO: clickable author/agent
+// TODO: form validation

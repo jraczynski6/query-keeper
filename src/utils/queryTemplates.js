@@ -3,10 +3,10 @@ const queryTemplates = [
         id: 1,
         name: "Formal Query",
         template: ({ agent, author, title, wordCount, genre }) => `
-        Dear ${agent.firstName} ${agent.lastName},
-        I am pleased to submit my manuscript titled "${title}", approximately ${wordCount} words, in the ${genre} genre. This work represents a story I have carefully developed, and I believe it aligns with your interests.
+Dear ${agent.firstName} ${agent.lastName},
+I am pleased to submit my manuscript titled "${title}", approximately ${wordCount} words, in the ${genre} genre. This work represents a story I have carefully developed, and I believe it aligns with your interests.
 
-        As the author, I am available for any additional materials or clarifications you may require. My contact details are listed below:
+As the author, I am available for any additional materials or clarifications you may require. My contact details are listed below:
 
 Author: ${author.firstName} ${author.lastName}  
 Email: ${author.email}  

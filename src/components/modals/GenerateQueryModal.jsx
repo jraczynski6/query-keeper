@@ -9,6 +9,13 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
     const [selectedAuthorId, setSelectedAuthorId] = useState("");
     const [selectedAgentId, setSelectedAgentId] = useState("");
 
+    // state to track book info
+    const [title, setTitle] = useState(project?.title || "");
+    const [wordCount, setWordCount] = useState(project?.wordCount || "");
+    const [genre, setGenre] = useState(project?.genre || "");
+    const [sampleSize, setSampleSize] = useState("");
+    const [sampleText, setSampleText] = useState("");
+
     // effect to pull from local storage on modal open.
     useEffect(() => {
         const storedAuthor = JSON.parse(localStorage.getItem("author")) || null;
@@ -85,7 +92,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
 
                         <label>
                             Word Count:
-                            <input type="number" placeholder="Enter word count" defaultValue={project?.wordcount || ""} required />
+                            <input type="number" placeholder="Enter word count" defaultValue={project?.wordCount || ""} required />
                         </label>
 
                         <label>
@@ -141,3 +148,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
         </div>
     )
 }
+// Query generation TODOs 
+// TODO: Track form inputs with state
+// TODO: handle generation of Query / add onSubmit to form
+// TODO: Store created projects
+// TODO: store query templates in template literals for dynamic generation 

@@ -51,9 +51,18 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
 
                     {/* Agent Selection */}
                     <label>
+                        {/* TODO: Add logic for no agent saved */}
                         Agent:
-                        <select>
-                            <option>Select an agent</option>
+                        <select
+                            value={selectedAgentId}
+                            onChange={(e) => setSelectedAgentId(e.target.value)}
+                        >
+                            <option value="">Select an agent</option>
+                            {agents.map((agent) => (
+                                <option key={agent.id} value={agent.id}>
+                                    {agent.firstName} {agent.lastName}
+                                </option>
+                            ))}
                         </select>
                     </label>
 

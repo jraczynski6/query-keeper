@@ -1,11 +1,31 @@
-export default function CreateAgentModal({onClose}) {
+
+
+export default function CreateAgentModal({ onClose, onCreate }) {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newAgent = {
+            firstName: e.target["agent-firstname"].value,
+            lastName: e.target["agent-lastname"].value,
+            agency: e.target["agent-agency"].value,
+            email: e.target["agent-email"].value,
+            website: e.target["agent-website"].value,
+            twitter: e.target["agent-twitter"].value,
+            instagram: e.target["agent-instagram"].value,
+            notes: e.target["agent-notes"].value,
+        };
+
+        onCreate(newAgent);
+        onClose();
+    }
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
                 <h2>Create New Agent</h2>
                 <button className="modal-close" onClick={onClose}>X</button>
 
-                <form className="create-agent-form">
+                <form className="create-agent-form" onSubmit={handleSubmit}>
 
                     {/* Basic Agent Info */}
                     <fieldset>
@@ -49,11 +69,6 @@ export default function CreateAgentModal({onClose}) {
                         <label htmlFor="agent-instagram">
                             Instagram Handle:
                             <input id="agent-instagram" type="text" />
-                        </label>
-
-                        <label htmlFor="agent-website">
-                            Website:
-                            <input id="agent-website" type="text" />
                         </label>
                     </fieldset>
 

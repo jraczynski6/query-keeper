@@ -4,6 +4,8 @@ import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
 
+let nextAgentId = 2;
+
 export default function Agents() {
     const navigate = useNavigate();
 
@@ -28,13 +30,6 @@ export default function Agents() {
 
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
-    // TODO: Add logic to generate new agent cards
-    const handleCreateAgent = () => {
-        const newAgent = createAgent(); //create new agent obj
-        setAgents(prev => [...prev, newAgent]); //save to localState
-    }
-
 
     return (
         <div className="agents-page">
@@ -105,7 +100,15 @@ export default function Agents() {
                 </div>
             </main>
             {/* Modal */}
-            {showModal && <CreateAgentModal onClose={closeModal} />}
+            {showModal &&
+                <CreateAgentModal
+                    onClose={closeModal}
+                    onCreate={(agentData) => {
+                        const newAgentwithId = {...agentData, id: nextAgentId++}; // Add id before saving to state
+                        setAgents(prev => [...prev, newAgentwithId]); // add new agent to state
+                        setSelectedAgent(newAgentwithId);
+                    }}
+                />}
         </div>
     )
 }

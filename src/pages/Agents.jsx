@@ -127,7 +127,6 @@ export default function Agents() {
     )
 }
 
-// TODO: Save agents in localStorage
 // TODO: Edit/Delete agent
 // TODO: Filter/Search agents
 // TODO: Other agents in the same agency
@@ -135,3 +134,4 @@ export default function Agents() {
 // TODO: Default avatars or profile pictures
 // TODO: Sort agents list
 // TODO: Copy agent info
+// TODO: UI Polish

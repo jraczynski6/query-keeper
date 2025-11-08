@@ -1,0 +1,15 @@
+.canvas-draggable {
+    position: absolute;
+    cursor: grab;
+}
+
+.canvas-draggable:active {
+    cursor: grabbing;
+}
+
+.mini-card {
+    width: 180px;
+    min-height: 100px;
+    padding: 12px;
+    border-radius: 10px;
+}

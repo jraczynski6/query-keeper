@@ -1,18 +1,35 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 export default function Author() {
 
     // Mock Author data
-    const [author, setAuthor] = useState({
-        firstName: "John",
-        lastName: "Smith",
-        email: "johnsmith@email.com",
-        website: "https://johnsmith.com",
-        twitter: "@johnsmith",
-        instagram: "@johnsmith_"
-    });
+    const [author, setAuthor] = useState(() => {
+        // check local storage
+        const saved = localStorage.getItem("author");
+        if (saved) {
+            // convert string to object
+            return JSON.parse(saved);
+        }
 
+        return {
+            firstName: "John",
+            lastName: "Smith",
+            email: "johnsmith@email.com",
+            website: "https://johnsmith.com",
+            twitter: "@johnsmith",
+            instagram: "@johnsmith_"
+        };
+        });
+        
+        // Save to local storage on update
+        useEffect(() => {
+            localStorage.setItem("author", JSON.stringify(author));
+        }, [author]);
 
-
+        // form submission 
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            // TODO: Add toast for author info saved
+        }
 
 
     return (
@@ -25,7 +42,7 @@ export default function Author() {
                     {/* Left: Author Form */}
                     <section className="author-form-panel">
                         <h2>Author Information</h2>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <label>
                                 First Name:
                                 <input
@@ -94,9 +111,9 @@ export default function Author() {
                         <h2>Sample Project Preview</h2>
 
                         <div className="preview-card">
-                            <h3 class="author-name">{author.firstName} {author.lastName}</h3>
-                            <p class="author-email">{author.email}</p>
-                            <p class="author-links">
+                            <h3 className="author-name">{author.firstName} {author.lastName}</h3>
+                            <p className="author-email">{author.email}</p>
+                            <p className="author-links">
                                 <span>Website: {author.website}</span>
                                 <span>Twitter: {author.twitter}</span>
                                 <span>Instagram: {author.instagram}</span>

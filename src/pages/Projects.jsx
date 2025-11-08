@@ -83,6 +83,9 @@ export default function Projects() {
                 <GenerateQueryModal
                     isOpen={modalOpen}
                     onClose={() => setModalOpen(false)}
+                    onProjectCreated={(newProject) => {
+                        setProjects((prev) => [...prev, newProject]);
+                    }} 
                 />
             </main>
         </div>

@@ -3,7 +3,11 @@ import queryTemplates from "../../utils/queryTemplates";
 import { generateQuery } from "../../utils/queryGenerationUtils";
 import { useNavigate } from "react-router-dom";
 
-export default function GenerateQueryModal({ isOpen, onClose, project }) {
+
+
+
+
+export default function GenerateQueryModal({ isOpen, onClose, project, onProjectCreated }) {
     if (!isOpen) return null;
 
     // state to track selected author and agent.
@@ -46,6 +50,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
         if (!author || !selectedAgentId || !selectedTemplateId) return;
 
         const agent = agents.find(agent => agent.id === parseInt(selectedAgentId));
+
+
         const generatedText = generateQuery({
             templateId: selectedTemplateId,
             author,
@@ -75,8 +81,11 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
         savedProjects.push(newProject);
         localStorage.setItem("projects", JSON.stringify(savedProjects));
 
-        // navigate to project page
-        navigate(`/projects/${newProject.id}`);
+        if (typeof onProjectCreated === "function") {
+            onProjectCreated(newProject);
+        }
+
+        onClose();
     };
 
     return (
@@ -224,7 +233,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
                     </fieldset>
 
                     <button type="submit">Generate</button>
-                    <button type="button">Cancel</button>
+                    <button type="button" onClick={onClose}>Cancel</button>
                 </form>
             </div>
         </div>

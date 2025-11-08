@@ -3,7 +3,7 @@ export default function AgentCard({
     firstName,
     lastName,
     agency,
-    onSelect
+    onSelect 
 }) {
     return (
         <div className="agent-card" onClick={onSelect}>

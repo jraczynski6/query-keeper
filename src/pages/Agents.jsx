@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
+import { createAgent } from "../utils/agentUtils";
 
 export default function Agents() {
     const navigate = useNavigate();
@@ -29,6 +30,12 @@ export default function Agents() {
     const closeModal = () => setShowModal(false);
 
     // TODO: Add logic to generate new agent cards
+    const handleCreateAgent = () => {
+        const newAgent = createAgent(); //create new agent obj
+        setAgents(prev => [...prev, newAgent]); //save to localState
+    }
+
+
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -72,7 +79,7 @@ export default function Agents() {
                                 <div className="same-agency-agents">
                                     <h4>Other agents in agency</h4>
                                     <ul>
-                                        {/* Map agents here use filter */}
+                                        {/* TODO: Map agents here use filter */}
                                     </ul>
                                 </div>
                             </div>

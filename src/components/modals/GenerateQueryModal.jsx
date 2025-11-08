@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryTemplates from "../../utils/queryTemplates";
+import { generateQuery } from "../../utils/queryGenerationUtils";
+import { useNavigate } from "react-router-dom";
 
 export default function GenerateQueryModal({ isOpen, onClose, project }) {
     if (!isOpen) return null;
@@ -17,6 +19,11 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
     const [sampleSize, setSampleSize] = useState("");
     const [sampleText, setSampleText] = useState("");
     const [selectedTemplateId, setSelectedTemplateId] = useState("");
+    const [generatedQuery, setGeneratedQuery] = useState("");
+
+    // must use hooks before function calls.
+    const navigate = useNavigate();
+
 
     const handleTemplateChange = (e) => {
         setSelectedTemplateId(e.target.value);
@@ -32,6 +39,45 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
     }, []);
 
 
+    // handleSubmit
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!author || !selectedAgentId || !selectedTemplateId) return;
+
+        const agent = agents.find(agent => agent.id === parseInt(selectedAgentId));
+        const generatedText = generateQuery({
+            templateId: selectedTemplateId,
+            author,
+            agent,
+            title,
+            wordCount,
+            genre,
+        });
+
+        // create project
+        let nextProjectId = parseInt(localStorage.getItem("nextProjectId") || "1");
+        const newProject = {
+            id: nextProjectId,
+            title,
+            wordCount,
+            genre,
+            author,
+            agent,
+            templateId: selectedTemplateId,
+            query: generatedText,
+        };
+        // update nextProjectId
+        localStorage.setItem("nextProjectId", (nextProjectId + 1).toString());
+
+        // save project
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        savedProjects.push(newProject);
+        localStorage.setItem("projects", JSON.stringify(savedProjects));
+
+        // navigate to project page
+        navigate(`/projects/${newProject.id}`);
+    };
 
     return (
         <div className="modal-overlay">
@@ -46,7 +92,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
                     X</button>
 
 
-                <form className="generate-query-form">
+                <form className="generate-query-form" onSubmit={handleSubmit}>
                     {/* TODO: Update Select to accept locally stored arrays */}
                     {/* Author selection */}
                     <label>
@@ -154,7 +200,10 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
 
                         <label>
                             Select sample size:
-                            <select>
+                            <select
+                                value={sampleSize}
+                                onChange={(e) => setSampleSize(e.target.value)}
+                            >
                                 <option value={""}>Select...</option>
                                 <option value={"3"}>3 Pages</option>
                                 <option value={"5"}>5 Pages</option>
@@ -167,7 +216,10 @@ export default function GenerateQueryModal({ isOpen, onClose, project }) {
                         {/* TODO: Show text area only when size selected */}
                         <label>
                             Enter text for selected page size:
-                            <textarea placeholder="Enter text for selected pages" />
+                            <textarea
+                                value={sampleText}
+                                onChange={(e) => setSampleText(e.target.value)}
+                                placeholder="Enter text for selected pages" />
                         </label>
                     </fieldset>
 

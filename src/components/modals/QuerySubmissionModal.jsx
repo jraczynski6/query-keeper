@@ -10,14 +10,29 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
     );
 
     const [sampleText, setSampleText] = React.useState(project.sampleText || "");
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!project) return;
+
+        //create updated project object
         const updatedProject = {
             ...project,
             sampleSize: Number(selectedSize),
             sampleText: sampleText,
         };
+        // update projects 
         if (onSubmit) onSubmit(updatedProject);
+
+        // locally store updated project
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const updatedProjects = savedProjects.map(p => 
+            p.id === updatedProject.id ? updatedProject : p
+        );
+        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+
+
         onClose();
     }
 
@@ -136,7 +151,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                                 if (parseInt(newSize, 10) === project?.sampleSize) {
                                     setSampleText(project?.sampleText || "");
                                 } else {
-                                    setSampleText("")
+                                    setSampleText("");
                                 }
                              }}
                              >

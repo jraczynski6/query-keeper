@@ -14,8 +14,31 @@ export default function SelectedProject() {
     const [queryDraft, setQueryDraft] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [selectedSize, setSelectedSize] = useState("");
+    const [sampleText, setSampleText] = useState("")
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
+
+    //save project 
+    // TODO: update to handle more than sample size
+    const saveProject = () => {
+        if (!project) return;
+
+        const updatedProject = {
+            ...project,
+            sampleSize: selectedSize ? Number(selectedSize) : project.sampleSize,
+            sampleText: sampleText,
+            query: queryDraft
+        };
+        setProject(updatedProject);
+
+        //update local storage
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const updatedProjects = savedProjects.map(p =>
+            p.id === updatedProject.id ? updatedProject : p
+        );
+        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+    };
+
 
     useEffect(() => {
         let loadedProject = location.state?.project || null;
@@ -60,7 +83,7 @@ export default function SelectedProject() {
                     <section className="project-actions-panel">
                         <h2>Actions</h2>
                         <button>Edit Query</button>
-                        <button>Save</button>
+                        <button onClick={saveProject}>Save</button>
                         <button>Delete Project</button>
                         <button onClick={openModal}>Submit Query</button>
                     </section>
@@ -106,7 +129,17 @@ export default function SelectedProject() {
                                     Select sample size:
                                     <select
                                         value={selectedSize}
-                                        onChange={(e) => setSelectedSize(e.target.value)}
+                                        onChange={(e) => {
+                                            const newSize = e.target.value;
+                                            setSelectedSize(newSize);
+
+                                            // Load saved text
+                                            if (parseInt(newSize, 10) === project.sampleSize) {
+                                                setSampleText(project.sampleText || "");
+                                            } else {
+                                                setSampleText("");
+                                            }
+                                        }}
                                     >
                                         <option value="">Select...</option>
                                         <option value="3">3 Pages</option>
@@ -125,15 +158,22 @@ export default function SelectedProject() {
                                         Text for {selectedSize} pages:
                                         <textarea
                                             placeholder="Text for selected pages"
-                                            value={project.sampleText}
+                                            value={sampleText}
+                                            onChange={(e) => setSampleText(e.target.value)}
                                             rows={10}
                                         />
                                     </label>
                                 </div>
                             ) : selectedSize ? (
-                                <p className="no-sample-text">
-                                    No sample available for {selectedSize} pages.
-                                </p>
+                                <label>
+                                    Text for {selectedSize} pages:
+                                    <textarea
+                                        placeholder="Enter text for selected pages"
+                                        value={sampleText}
+                                        onChange={(e) => setSampleText(e.target.value)}
+                                        rows={10}
+                                    />
+                                </label>
                             ) : null}
                         </fieldset>
 

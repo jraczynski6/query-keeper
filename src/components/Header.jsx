@@ -13,11 +13,20 @@ export default function Header({ isAuthenticated, onSignInClick }) {
 
     return (
         <header className="app-header">
-            <h1>Query Keeper</h1>
+
+            <div className="left">
+                <h1 className="app-name">Query Keeper</h1>
+            </div>
+
+            <div className="center">
                 <h2>{pageTitle}</h2>
-            {!isAuthenticated && (
-                <button onClick={onSignInClick}>Sign-In</button>
-            )}
+            </div>
+
+            <div className="right">
+                {!isAuthenticated && (
+                    <button onClick={onSignInClick}>Sign-In</button>
+                )}
+            </div>
         </header>
     );
 }

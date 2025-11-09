@@ -12,7 +12,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated }) 
     const [isSignInOpen, setSignInOpen] = useState(false);
 
     return (
-        <div className="app-layout">
+        <div className="layout-container">
             <Header
                 isAuthenticated={isAuthenticated} // conditionally render based on auth state
                 onSignInClick={() => setSignInOpen(true)}

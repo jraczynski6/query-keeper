@@ -18,7 +18,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated }) 
                 onSignInClick={() => setSignInOpen(true)}
                 setAuthenticated={setAuthenticated}
             />
-            <NavMenu />
+            <NavMenu isAuthenticated={isAuthenticated} />
             <main className="main-content">
                 {React.Children.map(children, (child) => //child are specific pages 
                     React.cloneElement(child, { setAuthenticated }) //clone setAuthenticated into every child

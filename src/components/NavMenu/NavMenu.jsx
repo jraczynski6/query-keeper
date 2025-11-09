@@ -3,13 +3,18 @@ import "./navMenu.css";
 import { useState } from "react";
 import NotificationShelf from "../NotificationShelf/NotificationShelf";
 
-export default function NavMenu() {
+export default function NavMenu({ isAuthenticated }) {
 
     // notification shelf state
     const [isShelfOpen, setShelfOpen] = useState(false);
 
-
-
+    const handleNotificationClick = () => {
+        if (isAuthenticated) {
+            setShelfOpen(prev => !prev);
+        } else {
+            // TODO: add alert to sign in.
+        }
+    }
 
     return (
         <nav className="nav-menu">
@@ -46,7 +51,7 @@ export default function NavMenu() {
 
                 {/* Add link for shelf */}
                 <li>
-                    <button onClick={() => setShelfOpen(prev => !prev)}>Notifications</button>
+                    <button onClick={handleNotificationClick}>Notifications</button>
                 </li>
             </ul>
 

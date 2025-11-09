@@ -1,7 +1,7 @@
-
+// TODO: use timestamp id
 let nextId = 1;
 
-export function createAgent(overrides = {}) {
+export function createAgent(overrides = {}) { //override default
     return {
         id: nextId++,
         firstName: "Jane",

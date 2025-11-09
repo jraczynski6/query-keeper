@@ -4,9 +4,10 @@ export default function SelectedAgent() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // TODO: change to useparams
+    // TODO: change to useparams to fetch by ID
     const agent = location.state?.agent;
 
+    // fallback UI
     if (!agent) {
         return (
             <div className="selected-agent-page">

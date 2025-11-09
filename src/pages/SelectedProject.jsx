@@ -6,10 +6,11 @@ import { useParams } from "react-router-dom";
 
 
 export default function SelectedProject() {
-    const location = useLocation();
+    const location = useLocation(); //access state project passed to page
     const navigate = useNavigate();
-    const { projectId } = useParams();
+    const { projectId } = useParams(); //project id from route
 
+    //Project State
     const [project, setProject] = useState(null);
     const [queryDraft, setQueryDraft] = useState("");
     const [selectedSize, setSelectedSize] = useState("");
@@ -20,35 +21,37 @@ export default function SelectedProject() {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
-    // Generate modal state
+    // Generate modal state 
+    // TODO: Regenerate Query
     const [showGenerate, setShowGenerate] = useState(false);
     const openGenerate = () => setShowGenerate(true);
     const closeGenerate = () => setShowGenerate(false);
 
     //save project 
     const saveProject = () => {
-        if (!project) return;
+        if (!project) return; // fallback
 
         const updatedProject = {
-            ...project,
-            sampleSize: selectedSize ? Number(selectedSize) : project.sampleSize,
+            ...project, //copy properties 
+            sampleSize: selectedSize ? Number(selectedSize) : project.sampleSize, // convert sampleSize from string to number
             sampleText: sampleText,
             query: queryDraft
         };
         setProject(updatedProject);
 
-        //update local storage
+        //update project arrays in local storage
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-        const updatedProjects = savedProjects.map(p =>
+        const updatedProjects = savedProjects.map(p => //replace old project
             p.id === updatedProject.id ? updatedProject : p
         );
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
     };
 
-
+    // load project when component mounts or params change
     useEffect(() => {
         let loadedProject = location.state?.project || null;
-
+        
+        // fallback
         if (!loadedProject && projectId) {
             let savedProjects = [];
             try {
@@ -70,6 +73,7 @@ export default function SelectedProject() {
         }
     }, [location.state, projectId]);
 
+    //fallback no project
     if (!project) {
         return (
             <div className="selected-project-page">

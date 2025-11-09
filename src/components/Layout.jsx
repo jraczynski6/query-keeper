@@ -7,18 +7,20 @@ import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 
 export default function Layout({ children, isAuthenticated, setAuthenticated }) {
+
+    //signin modal state
     const [isSignInOpen, setSignInOpen] = useState(false);
 
     return (
         <div className="app-layout">
             <Header
-                isAuthenticated={isAuthenticated}
+                isAuthenticated={isAuthenticated} // conditionally render based on auth statu
                 onSignInClick={() => setSignInOpen(true)}
             />
             <NavMenu />
             <main className="main-content">
-                {React.Children.map(children, (child) =>
-                    React.cloneElement(child, { setAuthenticated })
+                {React.Children.map(children, (child) => //child are specific pages 
+                    React.cloneElement(child, { setAuthenticated }) //clone setAuthenticated into every child
                 )}
             </main>
             <Footer />

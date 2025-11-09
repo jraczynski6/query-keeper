@@ -1,6 +1,8 @@
 
 
 export default function CreateAgentModal({ onClose, onCreate }) {
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -19,6 +21,9 @@ export default function CreateAgentModal({ onClose, onCreate }) {
         onClose();
     };
 
+
+
+    
     return (
         <div className="modal-overlay">
             <div className="modal-content">

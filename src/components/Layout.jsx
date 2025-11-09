@@ -14,7 +14,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated }) 
     return (
         <div className="app-layout">
             <Header
-                isAuthenticated={isAuthenticated} // conditionally render based on auth statu
+                isAuthenticated={isAuthenticated} // conditionally render based on auth state
                 onSignInClick={() => setSignInOpen(true)}
             />
             <NavMenu />

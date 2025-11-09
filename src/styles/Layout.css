@@ -37,6 +37,38 @@ footer {
     background-color: #f9f9f9;
 }
 
+.app-footer {
+    display: flex;
+    flex-direction: column;
+    /* stack by default */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    gap: 1.5rem;
+    /* spacing between sections */
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    gap: 2rem;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .layout-container {
     display: flex;
     flex-direction: column;

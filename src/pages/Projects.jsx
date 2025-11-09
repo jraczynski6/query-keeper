@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
+import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
 
 export default function Projects() {
     const navigate = useNavigate();
@@ -54,6 +55,11 @@ John Smith`,
     const [modalProject, setModalProject] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
 
+    // sync localStorage
+    useEffect(() => {
+        localStorage.setItem("projects", JSON.stringify(projects));
+    }, [projects]);
+
     return (
         <div className="projects-page">
 
@@ -93,13 +99,21 @@ John Smith`,
                 )}
 
                 {/* Generate Query Modal */}
-                <GenerateQueryModal
-                    isOpen={modalOpen}
-                    onClose={() => setModalOpen(false)}
-                    onProjectCreated={(newProject) => {
-                        setProjects((prev) => [...prev, newProject]);
-                    }} 
-                />
+                {selectedProject && (
+                    <QuerySubmissionModal
+                        isOpen={modalOpen}
+                        onClose={() => setModalOpen(false)}
+                        project={selectedProject}
+                        onSubmit={(updatedProject) => {
+                            // update projects with sample size/text
+                            setProjects(prevProjects =>
+                                prevProjects.map(p =>
+                                    p.id === updatedProject.id ? updatedProject : p
+                                )
+                            );
+                        }}
+                    />
+                )}
             </main>
         </div>
     )

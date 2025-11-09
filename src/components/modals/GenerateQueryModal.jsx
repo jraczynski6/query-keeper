@@ -20,8 +20,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     const [title, setTitle] = useState(project?.title || "");
     const [wordCount, setWordCount] = useState(project?.wordCount || "");
     const [genre, setGenre] = useState(project?.genre || "");
-    const [sampleSize, setSampleSize] = useState("");
-    const [sampleText, setSampleText] = useState("");
+    const [sampleSize, setSampleSize] = useState(project?.sampleSize?.toString() || "");
+    const [sampleText, setSampleText] = useState(project?.sampleText ||"");
     const [selectedTemplateId, setSelectedTemplateId] = useState("");
     const [generatedQuery, setGeneratedQuery] = useState("");
 
@@ -72,6 +72,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
             agent,
             templateId: selectedTemplateId,
             query: generatedText,
+            sampleSize: Number(sampleSize),
+            sampleText: sampleText,
         };
         // update nextProjectId
         localStorage.setItem("nextProjectId", (nextProjectId + 1).toString());
@@ -208,7 +210,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                         <legend>Sample Size</legend>
 
                         <label>
-                            Select sample size:
+                            Sample size - Pages:
                             <select
                                 value={sampleSize}
                                 onChange={(e) => setSampleSize(e.target.value)}
@@ -228,7 +230,9 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                             <textarea
                                 value={sampleText}
                                 onChange={(e) => setSampleText(e.target.value)}
-                                placeholder="Enter text for selected pages" />
+                                placeholder="Enter text for selected pages"
+                                rows={8}
+                                />
                         </label>
                     </fieldset>
 

@@ -6,10 +6,20 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
     // pull author from project
     const author = project?.author || {};
     const [selectedSize, setSelectedSize] = React.useState(
-        project.samplesize?.toString() || ""
+        project.sampleSize?.toString() || ""
     );
 
     const [sampleText, setSampleText] = React.useState(project.sampleText || "");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const updatedProject = {
+            ...project,
+            sampleSize: Number(selectedSize),
+            sampleText: sampleText,
+        };
+        if (onSubmit) onSubmit(updatedProject);
+        onClose();
+    }
 
     return (
         <div className="modal-overlay">
@@ -18,7 +28,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                 <h2>Submit a query</h2>
                 <p>Submitting for: {project.title}</p>
 
-                <form className="query-form">
+                <form className="query-form" onSubmit={handleSubmit}>
                     {/* Author Specific Section */}
                     <section className="form-section">
                         <h3>Author Specific</h3>
@@ -121,9 +131,10 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                              onChange={(e) => {
                                 const newSize = e.target.value;
                                 setSelectedSize(newSize);
-
-                                if (parseInt(newSize) === project.samplesize) {
-                                    setSampleText(project.sampleText);
+                                
+                                // 10 is necessary to parse normal number
+                                if (parseInt(newSize, 10) === project?.sampleSize) {
+                                    setSampleText(project?.sampleText || "");
                                 } else {
                                     setSampleText("")
                                 }
@@ -146,6 +157,8 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                                     id="sample"
                                     placeholder="Populate sample here"
                                     value={sampleText}
+                                    onChange={(e) => setSampleText(e.target.value)}
+                                    rows={8}
                                 ></textarea>
                                 <button type="button" className="copy-btn">Copy</button>
                             </div>
@@ -154,7 +167,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
 
                     {/* Form Actions */}
                     <div className="form-actions">
-                        <button type="button" className="cancel-btn">Cancel</button>
+                        <button type="button" className="cancel-btn" onClick={onClose}>Cancel</button>
                         <button type="submit" className="submit-btn">Submit Query</button>
                     </div>
 

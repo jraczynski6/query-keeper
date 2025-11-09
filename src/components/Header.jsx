@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-export default function Header({ isAuthenticated, onSignInClick }) {
+export default function Header({ isAuthenticated, onSignInClick, setAuthenticated }) {
     const location = useLocation();
 
     //convert path to page title
@@ -11,6 +11,12 @@ export default function Header({ isAuthenticated, onSignInClick }) {
             .replace(/-/g, " ") //replace hyphens
             .replace(/\b\w/g, c => c.toUpperCase()); //capitalize letters. 
 
+
+    const onSignOutClick = () => {
+        setAuthenticated(false);
+    };
+
+    
     return (
         <header className="app-header">
 
@@ -23,8 +29,10 @@ export default function Header({ isAuthenticated, onSignInClick }) {
             </div>
 
             <div className="right">
-                {!isAuthenticated && (
-                    <button onClick={onSignInClick}>Sign-In</button>
+                {!isAuthenticated ? (
+                    <button className="sign-in-btn" onClick={onSignInClick}>Sign-In</button>
+                ) : (
+                    <button className="sign-out-btn" onClick={onSignOutClick}>Sign-Out</button>
                 )}
             </div>
         </header>

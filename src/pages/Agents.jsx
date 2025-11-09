@@ -4,17 +4,19 @@ import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
 
+// Warning: resets to 2 on page reset. potential
+// TODO: use timestamp for all project id's created.
 let nextAgentId = 2;
 
 export default function Agents() {
     const navigate = useNavigate();
 
-    // Sample Agent array
+    // check local storage for saved agent. 
     const [agents, setAgents] = useState(() => {
         const savedAgents = localStorage.getItem("agents");
         if (savedAgents) return JSON.parse(savedAgents);
 
-
+        // Default agent 
         const defaultAgent = {
             id: 1,
             firstName: "Jane",
@@ -27,21 +29,23 @@ export default function Agents() {
             notes: "This agent prefers fantasy"
         };
 
-        // return default agent
+        //  save default agent
         localStorage.setItem("agents", JSON.stringify([defaultAgent]));
         return [defaultAgent];
     });
 
 
-    // watch agents state change
+    // watch agents state change and sync to localStorage
     useEffect(() => {
         localStorage.setItem("agents", JSON.stringify(agents));
     }, [agents]);
 
+    // state to track selected agent
     const [selectedAgent, setSelectedAgent] = useState(agents[0]);
-    // state to render modal
+    // state to manage modal visibility
     const [showModal, setShowModal] = useState(false);
 
+    //modal open/close
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
@@ -54,11 +58,12 @@ export default function Agents() {
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
                         <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
-
+                        
+                        {/* map agents using id */}
                         {agents.map((agent) => (
                             <AgentCard
                                 key={agent.id}
-                                {...agent}
+                                {...agent} //pass all properties to component
                                 onSelect={() => setSelectedAgent(agent)}
                             />
                         ))}
@@ -88,7 +93,7 @@ export default function Agents() {
                                 <div className="same-agency-agents">
                                     <h4>Other agents in agency</h4>
                                     <ul>
-                                        {/* TODO: Map same agency agents here use filter */}
+                                        {/* TODO: Map same agency agents here use strict equality */}
                                     </ul>
                                 </div>
                             </div>
@@ -97,13 +102,13 @@ export default function Agents() {
                                 <p>Select an agent card to view Details</p>
                             </div>
                         )}
-
+                        {/* navigation hook: push route with state */}
                         {selectedAgent && (
                             <button
                                 className="edit-agent-btn"
                                 onClick={() =>
                                     navigate(`/agents/${selectedAgent.id}`, {
-                                        state: { agent: selectedAgent },
+                                        state: { agent: selectedAgent }, //pass data between pages, no params
                                     })
                                 }
                             >
@@ -118,8 +123,9 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgentwithId = { ...agentData, id: nextAgentId++ };
-                        setAgents(prev => [...prev, newAgentwithId]);
+                        // TODO: Refactor to generate ID with timestamp
+                        const newAgentwithId = { ...agentData, id: nextAgentId++ }; //create new agent object w/id
+                        setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
                         setSelectedAgent(newAgentwithId);
                     }}
                 />}

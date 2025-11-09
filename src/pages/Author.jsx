@@ -9,7 +9,8 @@ export default function Author() {
             // convert string to object
             return JSON.parse(saved);
         }
-
+        
+        // default author data
         return {
             firstName: "John",
             lastName: "Smith",
@@ -49,7 +50,7 @@ export default function Author() {
                                     type="text"
                                     placeholder="Enter author's first name"
                                     value={author.firstName}
-                                    onChange={e => setAuthor({ ...author, firstName: e.target.value })}
+                                    onChange={(e) => setAuthor({ ...author, firstName: e.target.value })} // copy author, replace firstName
                                 />
                             </label>
 

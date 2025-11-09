@@ -4,6 +4,8 @@ import CanvasDraggable from "../components/CanvasDraggable";
 import "../styles/Dashboard.css"
 
 export default function Dashboard() {
+    
+    // mock data cards
     const [items, setItems] = useState([
         {
             id: "project1",
@@ -24,14 +26,14 @@ export default function Dashboard() {
 
     const handleDragEnd = (event) => {
         const { id } = event.active;
-        // delta - distance from current and starting position
-        const { x, y } = event.delta;
+        const { x, y } = event.delta; // delta - distance from current and starting position
 
         setItems((prevItems) =>
             prevItems.map((item) =>
                 item.id === id
                     ? {
                         ...item,
+                        // calculate new coordinates
                         position: { x: item.position.x + x, y: item.position.y + y },
                     }
                     : item

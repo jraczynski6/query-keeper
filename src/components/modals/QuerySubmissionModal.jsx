@@ -6,10 +6,35 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
     // pull author from project
     const author = project?.author || {};
     const [selectedSize, setSelectedSize] = React.useState(
-        project.samplesize?.toString() || ""
+        project.sampleSize?.toString() || ""
     );
 
     const [sampleText, setSampleText] = React.useState(project.sampleText || "");
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!project) return;
+
+        //create updated project object
+        const updatedProject = {
+            ...project,
+            sampleSize: Number(selectedSize),
+            sampleText: sampleText,
+        };
+        // update projects 
+        if (onSubmit) onSubmit(updatedProject);
+
+        // locally store updated project
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const updatedProjects = savedProjects.map(p => 
+            p.id === updatedProject.id ? updatedProject : p
+        );
+        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+
+
+        onClose();
+    }
 
     return (
         <div className="modal-overlay">
@@ -18,7 +43,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                 <h2>Submit a query</h2>
                 <p>Submitting for: {project.title}</p>
 
-                <form className="query-form">
+                <form className="query-form" onSubmit={handleSubmit}>
                     {/* Author Specific Section */}
                     <section className="form-section">
                         <h3>Author Specific</h3>
@@ -87,7 +112,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                         <div className="form-group">
                             <label htmlFor="words">Word Count</label>
                             <div className="input-with-copy">
-                                <input id="words" type="text" value={project.wordcount || ""} readOnly />
+                                <input id="words" type="text" value={project.wordCount || ""} readOnly />
                                 <button type="button" className="copy-btn">Copy</button>
                             </div>
                         </div>
@@ -109,7 +134,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                         <div className="form-group">
                             <label>Query Draft</label>
                             <div className="final-query">
-                                <p>{project?.querydraft || "Final query will go here."}</p>
+                                <p>{project?.query || "Final query will go here."}</p>
                             </div>
                         </div>
 
@@ -121,11 +146,12 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                              onChange={(e) => {
                                 const newSize = e.target.value;
                                 setSelectedSize(newSize);
-
-                                if (parseInt(newSize) === project.samplesize) {
-                                    setSampleText(project.sampleText);
+                                
+                                // 10 is necessary to parse normal number
+                                if (parseInt(newSize, 10) === project?.sampleSize) {
+                                    setSampleText(project?.sampleText || "");
                                 } else {
-                                    setSampleText("")
+                                    setSampleText("");
                                 }
                              }}
                              >
@@ -138,7 +164,6 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                             </select>
                         </div>
 
-                        {/* TODO: Add logic for sample size */}
                         <div className="form-group">
                             <label htmlFor="sample">Sample</label>
                             <div className="input-with-copy">
@@ -146,6 +171,8 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                                     id="sample"
                                     placeholder="Populate sample here"
                                     value={sampleText}
+                                    onChange={(e) => setSampleText(e.target.value)}
+                                    rows={8}
                                 ></textarea>
                                 <button type="button" className="copy-btn">Copy</button>
                             </div>
@@ -154,7 +181,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
 
                     {/* Form Actions */}
                     <div className="form-actions">
-                        <button type="button" className="cancel-btn">Cancel</button>
+                        <button type="button" className="cancel-btn" onClick={onClose}>Cancel</button>
                         <button type="submit" className="submit-btn">Submit Query</button>
                     </div>
 

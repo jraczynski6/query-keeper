@@ -3,12 +3,6 @@ import { DndContext } from "@dnd-kit/core";
 import CanvasDraggable from "../components/CanvasDraggable";
 import "../styles/Dashboard.css"
 
-
-// TODO: Add canvasRef for boundaries  
-// TODO: Add logic for pinning mini cards and linking to source page
-// TODO: Add new card button
-// TODO: Add focus on card select
-
 export default function Dashboard() {
     const [items, setItems] = useState([
         {
@@ -66,3 +60,8 @@ export default function Dashboard() {
         </div>
     )
 }
+
+// TODO: Add canvasRef for boundaries  
+// TODO: Add logic for pinning mini cards and linking to source page
+// TODO: Add new card button
+// TODO: Add focus on card select

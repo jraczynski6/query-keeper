@@ -1,17 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
+import { useParams } from "react-router-dom";
 
 
 
 export default function SelectedProject() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [project] = useState(location.state?.project || null);
+    const { projectId } = useParams();
+
+    const [project, setProject] = useState(null);
+    const [queryDraft, setQueryDraft] = useState("");
+    const [selectedSize, setSelectedSize] = useState("");
+    const [sampleText, setSampleText] = useState("");
+
+    // Submission modal state
     const [showModal, setShowModal] = useState(false);
-    const [selectedSize, setSelectedSize] = useState("")
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
+
+    // Generate modal state
+    const [showGenerate, setShowGenerate] = useState(false);
+    const openGenerate = () => setShowGenerate(true);
+    const closeGenerate = () => setShowGenerate(false);
+
+    //save project 
+    const saveProject = () => {
+        if (!project) return;
+
+        const updatedProject = {
+            ...project,
+            sampleSize: selectedSize ? Number(selectedSize) : project.sampleSize,
+            sampleText: sampleText,
+            query: queryDraft
+        };
+        setProject(updatedProject);
+
+        //update local storage
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const updatedProjects = savedProjects.map(p =>
+            p.id === updatedProject.id ? updatedProject : p
+        );
+        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+    };
+
+
+    useEffect(() => {
+        let loadedProject = location.state?.project || null;
+
+        if (!loadedProject && projectId) {
+            let savedProjects = [];
+            try {
+                const raw = localStorage.getItem("projects");
+                savedProjects = raw ? JSON.parse(raw) : [];
+            } catch (err) {
+                console.error("Failed to parse projects from localStorage:", err);
+                savedProjects = [];
+            }
+
+            loadedProject = savedProjects.find(p => p.id == projectId) || null;;
+        }
+
+        if (loadedProject) {
+            setProject(loadedProject);
+            setQueryDraft(loadedProject.query || "");
+            console.log("Loaded project:", loadedProject);
+            console.log("Query draft:", loadedProject.query);
+        }
+    }, [location.state, projectId]);
 
     if (!project) {
         return (
@@ -32,7 +89,7 @@ export default function SelectedProject() {
                     <section className="project-actions-panel">
                         <h2>Actions</h2>
                         <button>Edit Query</button>
-                        <button>Save</button>
+                        <button onClick={saveProject}>Save</button>
                         <button>Delete Project</button>
                         <button onClick={openModal}>Submit Query</button>
                     </section>
@@ -41,7 +98,12 @@ export default function SelectedProject() {
                     <section className="project-editor-panel">
                         <h2>Editable Document</h2>
                         <div className="project-editor">
-                            <p>Query Draft will appear here</p>
+                            <textarea
+                                value={queryDraft}
+                                onChange={(e) => setQueryDraft(e.target.value)}
+                                rows={15}
+                                style={{ width: "100%" }}
+                            />
                         </div>
                     </section>
 
@@ -53,7 +115,7 @@ export default function SelectedProject() {
                             <h3>Book Info</h3>
                             <p>Title: {project.title}</p>
                             <p>Genre: {project.genre}</p>
-                            <p>Word Count: {project.wordcount}</p>
+                            <p>Word Count: {project.wordCount}</p>
                         </div>
 
                         <div
@@ -73,7 +135,17 @@ export default function SelectedProject() {
                                     Select sample size:
                                     <select
                                         value={selectedSize}
-                                        onChange={(e) => setSelectedSize(e.target.value)}
+                                        onChange={(e) => {
+                                            const newSize = e.target.value;
+                                            setSelectedSize(newSize);
+
+                                            // Load saved text
+                                            if (parseInt(newSize, 10) === project.sampleSize) {
+                                                setSampleText(project.sampleText || "");
+                                            } else {
+                                                setSampleText("");
+                                            }
+                                        }}
                                     >
                                         <option value="">Select...</option>
                                         <option value="3">3 Pages</option>
@@ -92,15 +164,22 @@ export default function SelectedProject() {
                                         Text for {selectedSize} pages:
                                         <textarea
                                             placeholder="Text for selected pages"
-                                            value={project.sampleText}
+                                            value={sampleText}
+                                            onChange={(e) => setSampleText(e.target.value)}
                                             rows={10}
                                         />
                                     </label>
                                 </div>
                             ) : selectedSize ? (
-                                <p className="no-sample-text">
-                                    No sample available for {selectedSize} pages.
-                                </p>
+                                <label>
+                                    Text for {selectedSize} pages:
+                                    <textarea
+                                        placeholder="Enter text for selected pages"
+                                        value={sampleText}
+                                        onChange={(e) => setSampleText(e.target.value)}
+                                        rows={10}
+                                    />
+                                </label>
                             ) : null}
                         </fieldset>
 
@@ -117,3 +196,11 @@ export default function SelectedProject() {
         </div>
     )
 }
+
+// TODO: edit query draft
+// TODO: save/delete button
+// TODO: clickable author/agent
+// TODO: form validation
+// TODO: Add page preview for sample text 
+// TODO: make copy buttons work
+// TODO: implement delete project

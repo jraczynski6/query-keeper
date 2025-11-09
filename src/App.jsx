@@ -99,7 +99,7 @@ const [isAuthenticated, setAuthenticated] = useState(false);
           />
 
           <Route
-            path='/projects/:id' element={
+            path='/projects/:projectId' element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <Layout
                   isAuthenticated={isAuthenticated}

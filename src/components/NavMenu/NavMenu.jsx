@@ -3,7 +3,6 @@ import "./navMenu.css" ;
 
 export default function NavMenu() {
     return (
-        // TODO: Add authcontext for conditional nav menu
         <nav className="nav-menu">
             <ul>
                 <li>

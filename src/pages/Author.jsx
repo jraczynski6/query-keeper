@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react"
 export default function Author() {
 
-// TODO: Add input validation
-// TODO: Add reset button
-// TODO: accessibility check
-
     // Mock Author data
     const [author, setAuthor] = useState(() => {
         // check local storage
@@ -136,3 +132,8 @@ export default function Author() {
         </div>
     )
 }
+
+
+// TODO: Add input validation
+// TODO: Add reset button
+// TODO: accessibility check

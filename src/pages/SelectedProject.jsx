@@ -26,7 +26,6 @@ export default function SelectedProject() {
     const closeGenerate = () => setShowGenerate(false);
 
     //save project 
-    // TODO: update to handle more than sample size
     const saveProject = () => {
         if (!project) return;
 

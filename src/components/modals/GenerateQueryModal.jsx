@@ -104,7 +104,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
 
                 <form className="generate-query-form" onSubmit={handleSubmit}>
-                    {/* TODO: Update Select to accept locally stored arrays */}
                     {/* Author selection */}
                     <label>
                         Author:
@@ -121,7 +120,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
                     {/* Agent Selection */}
                     <label>
-                        {/* TODO: Add logic for no agent saved */}
                         Agent:
                         <select
                             value={selectedAgentId}
@@ -224,7 +222,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                             </select>
                         </label>
 
-                        {/* TODO: Show text area only when size selected */}
                         <label>
                             Enter text for selected page size:
                             <textarea

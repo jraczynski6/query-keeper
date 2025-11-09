@@ -164,7 +164,6 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
                             </select>
                         </div>
 
-                        {/* TODO: Add logic for sample size */}
                         <div className="form-group">
                             <label htmlFor="sample">Sample</label>
                             <div className="input-with-copy">

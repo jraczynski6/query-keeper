@@ -88,7 +88,7 @@ export default function Agents() {
                                 <div className="same-agency-agents">
                                     <h4>Other agents in agency</h4>
                                     <ul>
-                                        {/* TODO: Map agents here use filter */}
+                                        {/* TODO: Map same agency agents here use filter */}
                                     </ul>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@ export default function Agents() {
     )
 }
 
-// TODO: Save agents in localStorage
+
 // TODO: Edit/Delete agent
 // TODO: Filter/Search agents
 // TODO: Other agents in the same agency

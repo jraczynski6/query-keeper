@@ -1,10 +1,28 @@
 .nav-menu {
-    display: flex;
-    justify-content: flex-start;
-    gap: 2rem;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
 
 .nav-menu ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-menu li {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-menu li + li {
+    border-left: 1px solid #ccc; /* vertical line between items */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    display: block;
+    color: #333;
 }

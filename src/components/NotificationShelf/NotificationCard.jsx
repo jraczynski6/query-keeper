@@ -1,4 +1,5 @@
 import React from "react";
+import "./NotificationCard.css";
 
 export default function NotificationCard({message, onClose}) {
 

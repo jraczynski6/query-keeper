@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NotificationCard from "./NotificationCard";
+import "./NotificationShelf.css";
 
 export default function NotificationShelf({ onClose }) {
 
@@ -19,22 +20,24 @@ export default function NotificationShelf({ onClose }) {
 
 
     return (
-        <div className="notifications-shelf">
-            <div className="shelf-header">
-                
-                <h3>Notifications</h3>
+        <div className="notifications-shelf-overlay">
+            <div className="notifications-shelf">
+                <div className="shelf-header">
 
-                <button className="close-shelf-btn" onClick={onClose}>X</button>
-            </div>
+                    <h3>Notifications</h3>
 
-            <div className="shelf-content">
-                {notifications.map(n => (
-                    <NotificationCard
-                        key={n.id}
-                        message={n.message}
-                        onClose={() => removeNotification(n.id)}
-                    />
-                ))}
+                    <button className="close-shelf-btn" onClick={onClose}>X</button>
+                </div>
+
+                <div className="shelf-content">
+                    {notifications.map(n => (
+                        <NotificationCard
+                            key={n.id}
+                            message={n.message}
+                            onClose={() => removeNotification(n.id)}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

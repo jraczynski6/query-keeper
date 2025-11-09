@@ -5,11 +5,14 @@ import NavMenu from "./NavMenu/NavMenu";
 import "../styles/Layout.css";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
+import NotificationShelf from "./NotificationShelf/NotificationShelf";
 
 export default function Layout({ children, isAuthenticated, setAuthenticated }) {
 
     //signin modal state
     const [isSignInOpen, setSignInOpen] = useState(false);
+
+    const [isShelfOpen, setShelfOpen] = useState(false);
 
     return (
         <div className="layout-container">
@@ -18,7 +21,13 @@ export default function Layout({ children, isAuthenticated, setAuthenticated }) 
                 onSignInClick={() => setSignInOpen(true)}
                 setAuthenticated={setAuthenticated}
             />
-            <NavMenu isAuthenticated={isAuthenticated} />
+            <NavMenu
+                isAuthenticated={isAuthenticated}
+                onToggleShelf={() => setShelfOpen(prev => !prev)}
+            />
+
+            {isShelfOpen && <NotificationShelf onClose={() => setShelfOpen(false)} />}
+
             <main className="main-content">
                 {React.Children.map(children, (child) => //child are specific pages 
                     React.cloneElement(child, { setAuthenticated }) //clone setAuthenticated into every child

@@ -50,7 +50,9 @@ John Smith`,
             }
         }
     ]);
-
+    const [showGenerate, setShowGenerate] = useState(false);
+    const openGenerate = () => setShowGenerate(true);
+    const closeGenerate = () => setShowGenerate(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalProject, setModalProject] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -69,7 +71,7 @@ John Smith`,
                 {/* Generate Query button (separate from mapped projects) */}
                 <button
                     className="generate-query-btn"
-                    onClick={() => setModalOpen(true)}
+                    onClick={openGenerate}
                 >
                     Generate Query
                 </button>
@@ -99,21 +101,14 @@ John Smith`,
                 )}
 
                 {/* Generate Query Modal */}
-                {selectedProject && (
-                    <QuerySubmissionModal
-                        isOpen={modalOpen}
-                        onClose={() => setModalOpen(false)}
-                        project={selectedProject}
-                        onSubmit={(updatedProject) => {
-                            // update projects with sample size/text
-                            setProjects(prevProjects =>
-                                prevProjects.map(p =>
-                                    p.id === updatedProject.id ? updatedProject : p
-                                )
-                            );
-                        }}
-                    />
-                )}
+                <GenerateQueryModal
+                    isOpen={showGenerate}
+                    onClose={closeGenerate}
+                    onProjectCreated={(newProject) => {
+                        // Add the newly generated project to projects list
+                        setProjects(prev => [...prev, newProject]);
+                    }}
+                />
             </main>
         </div>
     )

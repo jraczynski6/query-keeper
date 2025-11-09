@@ -12,11 +12,18 @@ export default function SelectedProject() {
 
     const [project, setProject] = useState(null);
     const [queryDraft, setQueryDraft] = useState("");
-    const [showModal, setShowModal] = useState(false);
     const [selectedSize, setSelectedSize] = useState("");
-    const [sampleText, setSampleText] = useState("")
+    const [sampleText, setSampleText] = useState("");
+
+    // Submission modal state
+    const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
+
+    // Generate modal state
+    const [showGenerate, setShowGenerate] = useState(false);
+    const openGenerate = () => setShowGenerate(true);
+    const closeGenerate = () => setShowGenerate(false);
 
     //save project 
     // TODO: update to handle more than sample size

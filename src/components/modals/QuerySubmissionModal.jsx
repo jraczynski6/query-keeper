@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function QuerySubmissionModal({ isOpen, onClose, project }) {
+
+    //fallback
     if (!isOpen) return null;
 
     // pull author from project

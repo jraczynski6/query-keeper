@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
-import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
 
 export default function Projects() {
     const navigate = useNavigate();
 
-    // Sample project Array
+    // Mock data project object
     const [projects, setProjects] = useState([
         {
             id: 1,
@@ -50,14 +49,20 @@ John Smith`,
             }
         }
     ]);
+
+    //generate modal visibility
     const [showGenerate, setShowGenerate] = useState(false);
     const openGenerate = () => setShowGenerate(true);
     const closeGenerate = () => setShowGenerate(false);
+
+    // edit and submit placeholder
     const [modalOpen, setModalOpen] = useState(false);
     const [modalProject, setModalProject] = useState(null);
+
+    // selected project state for navigation
     const [selectedProject, setSelectedProject] = useState(null);
 
-    // sync localStorage
+    // sync localStorage on state change
     useEffect(() => {
         localStorage.setItem("projects", JSON.stringify(projects));
     }, [projects]);
@@ -68,7 +73,6 @@ John Smith`,
             <main className="projects-content">
                 <h1>Projects</h1>
 
-                {/* Generate Query button (separate from mapped projects) */}
                 <button
                     className="generate-query-btn"
                     onClick={openGenerate}
@@ -76,6 +80,7 @@ John Smith`,
                     Generate Query
                 </button>
 
+                {/* display project Cards */}
                 <div className="projects-list-panel">
                     {projects.map((project) => (
                         <ProjectCard
@@ -86,13 +91,13 @@ John Smith`,
                     ))}
                 </div>
 
-
+                {/* conditional render for selected project navigation */}
                 {selectedProject && (
                     <button
                         className="go-to-project-btn"
                         onClick={() =>
                             navigate(`/projects/${selectedProject.id}`, {
-                                state: { project: selectedProject }
+                                state: { project: selectedProject } //pass project state
                             })
                         }
                     >

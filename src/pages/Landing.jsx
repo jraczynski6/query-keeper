@@ -2,6 +2,8 @@ import { useState } from "react";
 import RegisterModal from "../components/modals/RegisterModal";
 
 export default function Landing({setAuthenticated}) {
+
+    // modal open
     const [IsRegisterOpen, setRegisterOpen] = useState(false);
 
 
@@ -20,7 +22,7 @@ export default function Landing({setAuthenticated}) {
                 <RegisterModal
                     isOpen={IsRegisterOpen}
                     onClose={() => setRegisterOpen(false)}
-                    OnRegistersuccess={() => setAuthenticated(true)}
+                    OnRegistersuccess={() => setAuthenticated(true)} // callback update state
                 />
             </main>
 

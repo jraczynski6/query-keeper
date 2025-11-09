@@ -8,11 +8,20 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function GenerateQueryModal({ isOpen, onClose, project, onProjectCreated }) {
+
+    //fallback
     if (!isOpen) return null;
 
-    // state to track selected author and agent.
+
+    // State Hooks
+
+
+    // track author
     const [author, setAuthor] = useState(null);
+    // track agents
     const [agents, setAgents] = useState([]);
+
+    // track selected agent and author
     const [selectedAuthorId, setSelectedAuthorId] = useState("");
     const [selectedAgentId, setSelectedAgentId] = useState("");
 
@@ -22,18 +31,22 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     const [genre, setGenre] = useState(project?.genre || "");
     const [sampleSize, setSampleSize] = useState(project?.sampleSize?.toString() || "");
     const [sampleText, setSampleText] = useState(project?.sampleText ||"");
+
+    //track selected template
     const [selectedTemplateId, setSelectedTemplateId] = useState("");
+    // store generated query
     const [generatedQuery, setGeneratedQuery] = useState("");
 
+    // 
     // must use hooks before function calls.
     const navigate = useNavigate();
 
-
+    // template change
     const handleTemplateChange = (e) => {
         setSelectedTemplateId(e.target.value);
     }
 
-    // effect to pull from local storage on modal open.
+    // load author and agents when modal opens
     useEffect(() => {
         const storedAuthor = JSON.parse(localStorage.getItem("author")) || null;
         const storedAgents = JSON.parse(localStorage.getItem("agents")) || [];
@@ -43,15 +56,17 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     }, []);
 
 
-    // handleSubmit
+    // handleSubmit form submission
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        //fallback
         if (!author || !selectedAgentId || !selectedTemplateId) return;
 
+        //find selected agent
         const agent = agents.find(agent => agent.id === parseInt(selectedAgentId));
 
-
+        // generate query using utils.
         const generatedText = generateQuery({
             templateId: selectedTemplateId,
             author,
@@ -76,6 +91,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
             sampleText: sampleText,
         };
         // update nextProjectId
+        // TODO: change to timestamp
         localStorage.setItem("nextProjectId", (nextProjectId + 1).toString());
 
         // save project
@@ -83,6 +99,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         savedProjects.push(newProject);
         localStorage.setItem("projects", JSON.stringify(savedProjects));
 
+        // new project created.
         if (typeof onProjectCreated === "function") {
             onProjectCreated(newProject);
         }
@@ -90,6 +107,10 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         onClose();
     };
 
+
+
+
+    
     return (
         <div className="modal-overlay">
             <div className="modal-content">

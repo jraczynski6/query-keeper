@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 import CanvasDraggable from "../components/CanvasDraggable";
-import "../styles/Dashboard.css"
+import "../styles/Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+    const navigate = useNavigate();
 
+    
     // mock data cards
     const [items, setItems] = useState([
         {
             id: "project1",
             content: <div className="mini-card project-card">
                 <h4>Project: Best Novel Ever</h4>
+                <button onClick={() => navigate("/projects/1")}>Go to Page</button>
             </div>,
             position: { x: 50, y: 50 },
         },
@@ -19,6 +23,7 @@ export default function Dashboard() {
             content: <div className="mini-card agent-card">
                 <h4>Jane Doe</h4>
                 <p>Best Agent Agency</p>
+                <button onClick={() => navigate("/agents/1")}>Go to Page</button>
             </div>,
             position: { x: 200, y: 100 },
         },

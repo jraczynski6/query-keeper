@@ -1,25 +1,11 @@
 import React from "react";
 import "../styles/ProjectCard.css";
-import { Link } from "react-router-dom";
 import { useDashboard } from "../contexts/DashboardContext";
 import { useNavigate } from "react-router-dom";
-import Projects from "../pages/Projects";
 
-export default function ProjectCard({ project, id, onSelect, onPin, agent, isSelected }) {
-    const { pinItem } = useDashboard();
+export default function ProjectCard({ project, onSelect, onPin, isSelected }) {
     const navigate = useNavigate();
-    const { title, wordCount, genre} = project; // destructure
-
-    // go to page
-    const goToPage = (e) => {
-        e.stopPropagation();
-        navigate(`/projects/${id}`);
-    };
-
-    const handleUnpin = (e) => {
-        e.stopPropagation();
-        unpinItem(item);
-    };
+    const { title, wordCount, genre, agent } = project; // destructure
 
     return (
         <div className="project-card" onClick={onSelect}>
@@ -35,7 +21,13 @@ export default function ProjectCard({ project, id, onSelect, onPin, agent, isSel
             )}
 
             {isSelected && (
-                <button className="pin-btn" onClick={(e) => { e.stopPropagation(); onPin(); }}>
+                <button
+                    className="pin-btn"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onPin();
+                    }}
+                >
                     Pin to Dashboard
                 </button>
             )}

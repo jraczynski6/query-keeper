@@ -15,7 +15,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
     // State Hooks
 
-
     // track author
     const [author, setAuthor] = useState(null);
     // track agents
@@ -77,7 +76,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         });
 
         // create project
-        let nextProjectId = parseInt(localStorage.getItem("nextProjectId") || "1");
         const newProject = {
             id: nextProjectId,
             title,

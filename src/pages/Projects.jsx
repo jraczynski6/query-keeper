@@ -6,11 +6,19 @@ import { Link } from "react-router-dom";
 
 export default function Projects() {
 
+    // for pinItem
     const { pinItem } = useDashboard();
+
     // Mock data project object
-    const [projects, setProjects] = useState([
-        {
-            id: 1,
+    const [projects, setProjects] = useState(() => {
+
+        //read mock data
+        const savedProjects = localStorage.getItem("projects");
+        if (savedProjects) return JSON.parse(savedProjects);
+
+        //default 
+        const defaultProject = {
+            id: crypto.randomUUID(),
             title: "Best Novel Ever",
             wordCount: 95000,
             genre: "Fantasy",
@@ -30,7 +38,7 @@ John Smith`,
             sampleSize: 3,
             sampleText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac eros sed lorem porta consequat. Phasellus sed sapien nec justo tincidunt tincidunt. In ut consequat magna, et dictum urna. Cras convallis sem nec ultricies laoreet. Suspendisse suscipit, odio nec iaculis porta, velit magna fermentum erat, sit amet vulputate elit nibh non ante. Morbi luctus, justo non ultrices porttitor, turpis metus rhoncus metus, vitae ultrices lorem lorem non elit. Curabitur dignissim posuere justo nec maximus. Aliquam et diam arcu. In hac habitasse platea dictumst. Integer et nisl odio. Maecenas bibendum justo sed quam interdum pretium.",
             agent: {
-                id: 1,
+                id: crypto.randomUUID(),
                 firstName: "Jane",
                 lastName: "Doe",
                 agency: "Best Agent Agency",
@@ -41,6 +49,7 @@ John Smith`,
                 notes: "This agent is prefers fantasy"
             },
             author: {
+                id: crypto.randomUUID(),
                 firstName: "John",
                 lastName: "Smith",
                 email: "johnsmith@email.com",
@@ -48,8 +57,11 @@ John Smith`,
                 twitter: "@johnsmith",
                 instagram: "@johnsmith_"
             }
-        }
-    ]);
+        };
+
+        localStorage.setItem("projects", JSON.stringify([defaultProject]));
+        return [defaultProject];
+    });
 
     //generate modal visibility
     const [showGenerate, setShowGenerate] = useState(false);

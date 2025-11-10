@@ -5,12 +5,11 @@ import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
 import { useDashboard } from "../contexts/DashboardContext";
 
-// Warning: resets to 2 on page reset. potential
-// TODO: use timestamp for all project id's created.
-let nextAgentId = 2;
-
 export default function Agents() {
+    
+    //for pinItem
     const { pinItem } = useDashboard();
+
     // check local storage for saved agent. 
     const [agents, setAgents] = useState(() => {
         const savedAgents = localStorage.getItem("agents");
@@ -18,7 +17,7 @@ export default function Agents() {
 
         // Default agent 
         const defaultAgent = {
-            id: 1,
+            id: crypto.randomUUID(),
             firstName: "Jane",
             lastName: "Doe",
             agency: "Best Agent Agency",
@@ -52,11 +51,11 @@ export default function Agents() {
 
     const handlePin = (agent) => {
         pinItem({
-            id: `agent-${agent.id}`,       // unique
+            id: `agent-${agent.id}`,
             type: "agent",
-            agentData: agent,              // required by Dashboard
-            link: `/agents/${agent.id}`,   // navigation link
-            position: { x: 50, y: 50 }    // default position
+            agentData: agent, // required by Dashboard
+            link: `/agents/${agent.id}`, // navigation link : Broken 
+            position: { x: 50, y: 50 } // default position
         });
     };
 
@@ -132,8 +131,7 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        // TODO: Refactor to generate ID with timestamp
-                        const newAgentwithId = { ...agentData, id: nextAgentId++ }; //create new agent object w/id
+                        const newAgentwithId = { ...agentData, id: crypto.randomUUID }; // generate id
                         setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
                         setSelectedAgent(newAgentwithId);
                     }}

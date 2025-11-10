@@ -101,3 +101,4 @@ export default function Dashboard() {
 // TODO: Add new card button
 // TODO: Add focus on card select
 // TODO: add sensor to stop dragging. 
+// TODO: Alt: Create list of generated projects on dashboard

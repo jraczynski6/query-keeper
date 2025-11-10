@@ -66,10 +66,11 @@ John Smith`,
     //handlePin logic
     const handlePin = (project) => {
         pinItem({
-            id: project.id,
+            id: `project-${project.id}`,
             type: "project",
-            projectName: project.title,
+            projectData: project,      // store the full project object
             link: `/projects/${project.id}`,
+            position: { x: 50, y: 50 }
         });
     };
 
@@ -92,32 +93,27 @@ John Smith`,
                 </button>
 
                 {/* display project Cards */}
-                <div className="projects-list-panel">
-                    {projects.map((project) => (
+                {projects.map(project => (
+                    <div key={project.id} className="project-card-wrapper">
                         <ProjectCard
-                            key={project.id}
                             project={project}
                             agent={project.agent}
                             isSelected={selectedProject?.id === project.id}
                             onSelect={() => setSelectedProject(project)}
                             onPin={() => handlePin(project)}
                         />
-                    ))}
-                </div>
-
-                {/* conditional render for selected project navigation */}
-                {selectedProject && (
-                    <button
-                        className="go-to-project-btn"
-                        onClick={() =>
-                            navigate(`/projects/${selectedProject.id}`, {
-                                state: { project: selectedProject } //pass project state
-                            })
-                        }
-                    >
-                        View Project
-                    </button>
-                )}
+                        <button
+                            className="go-to-project-btn"
+                            onClick={() =>
+                                navigate(`/projects/${project.id}`, {
+                                    state: { project } // project is defined
+                                })
+                            }
+                        >
+                            View Project
+                        </button>
+                    </div>
+                ))}
 
                 {/* Generate Query Modal */}
                 <GenerateQueryModal

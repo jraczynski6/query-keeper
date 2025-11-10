@@ -6,11 +6,11 @@ const DashboardContext = createContext();
 export function DashboardProvider({ children }) {
 
     //global array 
-    const [pinnedItems, SetPinnedItems] = useState([]);
+    const [pinnedItems, setPinnedItems] = useState([]);
 
     //add new pinned item
     const pinItem = (item) => {
-        SetPinnedItems((prev) => {
+        setPinnedItems((prev) => {
             //prevent duplicate by id
             const alreadyPinned = prev.some((i) => i.id === item.id);
 
@@ -21,14 +21,14 @@ export function DashboardProvider({ children }) {
 
     //unpin by id
     const unpinItem = ({ id }) => {
-        SetPinnedItems((prev) =>
+        setPinnedItems((prev) =>
             prev.filter((i) => !(i.id === id))
         );
     };
 
     //update position
     const updatePosition = (id, position) => {
-        SetPinnedItems((prev) =>
+        setPinnedItems((prev) =>
         prev.map((i) => (i.id === id ? {...i, position} : i))
         );
     };

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDashboard } from "../contexts/DashboardContext";
 
 export default function Dashboard() {
-    const { pinnedItems, setPinnedItems } = useDashboard();
+    const { pinnedItems, updatePosition } = useDashboard();
     const navigate = useNavigate();
 
 
@@ -35,20 +35,13 @@ export default function Dashboard() {
         const { id } = event.active;
         const { x, y } = event.delta; // delta - distance from current and starting position
 
-        setPinnedItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id
-                    ? {
-                        ...item,
-                        // calculate new coordinates
-                        position: {
-                            x: item.position.x + x,
-                            y: item.position.y + y
-                        },
-                    }
-                    : item
-            )
-        );
+        const item = pinnedItems.find(i => i.id === id);
+        if (!item) return;
+
+        updatePosition(id, {
+            x: item.position.x + x,
+            y: item.position.y + y
+        });
     };
 
 
@@ -64,7 +57,12 @@ export default function Dashboard() {
                                 id={item.id}
                                 content={
                                     <div className={`mini-card ${item.type}-card`}>
-                                        <h4>{item.title || item.name}</h4>
+                                        <h4>{item.projectData.title}</h4>
+                                        <p>Wordcount: {item.projectData.wordCount}</p>
+                                        <p>Genre: {item.projectData.genre}</p>
+                                        {item.projectData.agent && (
+                                            <p>Agent: {item.projectData.agent.firstName} {item.projectData.agent.lastName}</p>
+                                        )}
                                         <button onClick={() => navigate(item.link)}>Go to Page</button>
                                     </div>
                                 }

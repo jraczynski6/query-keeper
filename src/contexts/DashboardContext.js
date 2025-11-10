@@ -5,12 +5,20 @@ const DashboardContext = createContext();
 export function DashboardProvider({ children }) {
 
     // state for pinned items
-    const [pinnedItems, SetPinnedItems] = useState([]);
+    const [pinnedItems, setPinnedItems] = useState([]);
 
     // pin item
     const pinItem = (item) => {
-        if (!pinnedItems) {
-            SetPinnedItems([...pinnedItems, item])
-        }
-    }
+        setPinnedItems(prevItems => {
+            return [...prevItems, item]
+        });
+    };
+
+    // TODO: add unpin logic
+
+    return (
+        <DashboardContext.Provider value={{ pinnedItems, pinItem}}>
+            {children}
+        </DashboardContext.Provider>
+    )
 };

@@ -20,5 +20,8 @@ export function DashboardProvider({ children }) {
         <DashboardContext.Provider value={{ pinnedItems, pinItem}}>
             {children}
         </DashboardContext.Provider>
-    )
-};
+    );
+}
+export function useDashboard() {
+    return useContext(DashboardContext);
+}

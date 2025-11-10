@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
+import { useDashboard } from "../contexts/DashboardContext";
 
 // Warning: resets to 2 on page reset. potential
 // TODO: use timestamp for all project id's created.
@@ -10,7 +11,7 @@ let nextAgentId = 2;
 
 export default function Agents() {
     const navigate = useNavigate();
-
+    const { pinItem } = useDashboard();
     // check local storage for saved agent. 
     const [agents, setAgents] = useState(() => {
         const savedAgents = localStorage.getItem("agents");
@@ -49,6 +50,17 @@ export default function Agents() {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
+
+    const handlePin = (agent) => {
+        pinItem({
+            id: agent.id,
+            type: "agent",
+            name: `${agent.firstName} ${agent.lastName}`,
+            agency: agent.agency,
+            link: `/agents/${agent.id}`,
+        });
+    };
+    
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -58,7 +70,7 @@ export default function Agents() {
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
                         <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
-                        
+
                         {/* map agents using id */}
                         {agents.map((agent) => (
                             <AgentCard

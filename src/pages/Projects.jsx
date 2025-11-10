@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
+import { useDashboard } from "../contexts/DashboardContext";
 
 export default function Projects() {
     const navigate = useNavigate();
-
+    const { pinItem } = useDashboard();
     // Mock data project object
     const [projects, setProjects] = useState([
         {
@@ -62,6 +63,16 @@ John Smith`,
     // selected project state for navigation
     const [selectedProject, setSelectedProject] = useState(null);
 
+    //handlePin logic
+    const handlePin = (project) => {
+        pinItem({
+            id: project.id,
+            type: "project",
+            projectName: project.title,
+            link: `/projects/${project.id}`,
+        });
+    };
+
     // sync localStorage on state change
     useEffect(() => {
         localStorage.setItem("projects", JSON.stringify(projects));
@@ -85,8 +96,11 @@ John Smith`,
                     {projects.map((project) => (
                         <ProjectCard
                             key={project.id}
-                            {...project}
+                            project={project}
+                            agent={project.agent}
+                            isSelected={selectedProject?.id === project.id}
                             onSelect={() => setSelectedProject(project)}
+                            onPin={() => handlePin(project)}
                         />
                     ))}
                 </div>

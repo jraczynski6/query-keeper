@@ -63,7 +63,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         if (!author || !selectedAgentId || !selectedTemplateId) return;
 
         //find selected agent
-        const agent = agents.find(agent => agent.id === parseInt(selectedAgentId));
+        const agent = agents.find(agent => agent.id === selectedAgentId);
 
         // generate query using utils.
         const generatedText = generateQuery({
@@ -77,7 +77,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
         // create project
         const newProject = {
-            id: nextProjectId,
+            id: crypto.randomUUID(),
             title,
             wordCount,
             genre,
@@ -88,9 +88,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
             sampleSize: Number(sampleSize),
             sampleText: sampleText,
         };
-        // update nextProjectId
-        // TODO: change to timestamp
-        localStorage.setItem("nextProjectId", (nextProjectId + 1).toString());
 
         // save project
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];

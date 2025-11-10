@@ -53,14 +53,14 @@ export default function Agents() {
 
     const handlePin = (agent) => {
         pinItem({
-            id: agent.id,
+            id: `agent-${agent.id}`,       // unique
             type: "agent",
-            name: `${agent.firstName} ${agent.lastName}`,
-            agency: agent.agency,
-            link: `/agents/${agent.id}`,
+            agentData: agent,              // required by Dashboard
+            link: `/agents/${agent.id}`,   // navigation link
+            position: { x: 50, y: 50 }    // default position
         });
     };
-    
+
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -77,6 +77,7 @@ export default function Agents() {
                                 key={agent.id}
                                 {...agent} //pass all properties to component
                                 onSelect={() => setSelectedAgent(agent)}
+                                onPin={() => handlePin(agent)}
                             />
                         ))}
                     </section>

@@ -57,13 +57,27 @@ export default function Dashboard() {
                                 id={item.id}
                                 content={
                                     <div className={`mini-card ${item.type}-card`}>
-                                        <h4>{item.projectData.title}</h4>
-                                        <p>Wordcount: {item.projectData.wordCount}</p>
-                                        <p>Genre: {item.projectData.genre}</p>
-                                        {item.projectData.agent && (
-                                            <p>Agent: {item.projectData.agent.firstName} {item.projectData.agent.lastName}</p>
+                                        {item.type === "project" && item.projectData ? (
+                                            <>
+                                                <h4>{item.projectData.title}</h4>
+                                                <p>Wordcount: {item.projectData.wordCount}</p>
+                                                <p>Genre: {item.projectData.genre}</p>
+                                                {item.projectData.agent && (
+                                                    <p>Agent: {item.projectData.agent.firstName} {item.projectData.agent.lastName}</p>
+                                                )}
+                                            </>
+                                        ) : item.type === "agent" && item.agentData ? (
+                                            <>
+                                                <h4>{item.agentData.firstName} {item.agentData.lastName}</h4>
+                                                <p>Agency: {item.agentData.agency}</p>
+                                                <p>Email: {item.agentData.email}</p>
+                                            </>
+                                        ) : (
+                                            <p>Data unavailable</p> // fallback for undefined items
                                         )}
-                                        <button onClick={() => navigate(item.link)}>Go to Page</button>
+                                        {item.link && (
+                                            <button onClick={() => navigate(item.link)}>Go to Page</button>
+                                        )}
                                     </div>
                                 }
                                 position={item.position}

@@ -7,7 +7,6 @@ export default function NotificationShelf() {
             </div>
 
             <div className="shelf-content">
-                {/* TODO: Create notification card component */}
             </div>
         </div>
     )

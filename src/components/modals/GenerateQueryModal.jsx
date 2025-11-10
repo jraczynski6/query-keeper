@@ -15,7 +15,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
     // State Hooks
 
-
     // track author
     const [author, setAuthor] = useState(null);
     // track agents
@@ -64,7 +63,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         if (!author || !selectedAgentId || !selectedTemplateId) return;
 
         //find selected agent
-        const agent = agents.find(agent => agent.id === parseInt(selectedAgentId));
+        const agent = agents.find(agent => agent.id === selectedAgentId);
 
         // generate query using utils.
         const generatedText = generateQuery({
@@ -77,9 +76,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         });
 
         // create project
-        let nextProjectId = parseInt(localStorage.getItem("nextProjectId") || "1");
         const newProject = {
-            id: nextProjectId,
+            id: crypto.randomUUID(),
             title,
             wordCount,
             genre,
@@ -90,9 +88,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
             sampleSize: Number(sampleSize),
             sampleText: sampleText,
         };
-        // update nextProjectId
-        // TODO: change to timestamp
-        localStorage.setItem("nextProjectId", (nextProjectId + 1).toString());
 
         // save project
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
@@ -262,7 +257,4 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     )
 }
 // Query generation TODOs
-// TODO: Track form inputs with state
-// TODO: handle generation of Query / add onSubmit to form
-// TODO: Store created projects
 // TODO: Add more query templates. min 5

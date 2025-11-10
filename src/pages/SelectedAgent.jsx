@@ -1,11 +1,14 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
 
 export default function SelectedAgent() {
-    const location = useLocation();
+    const { id } = useParams();
+    // keep naviagate for back button 
     const navigate = useNavigate();
 
-    // TODO: change to useparams to fetch by ID
-    const agent = location.state?.agent;
+    const agents = JSON.parse(localStorage.getItem("agents")) || [];
+    const agent = agents.find(a => a.id.toString() === id);
+
 
     // fallback UI
     if (!agent) {

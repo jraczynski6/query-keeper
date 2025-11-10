@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
-
-// Warning: resets to 2 on page reset. potential
-// TODO: use timestamp for all project id's created.
-let nextAgentId = 2;
+import { useDashboard } from "../contexts/DashboardContext";
 
 export default function Agents() {
-    const navigate = useNavigate();
+    
+    //for pinItem
+    const { pinItem } = useDashboard();
 
     // check local storage for saved agent. 
     const [agents, setAgents] = useState(() => {
@@ -18,7 +17,7 @@ export default function Agents() {
 
         // Default agent 
         const defaultAgent = {
-            id: 1,
+            id: crypto.randomUUID(),
             firstName: "Jane",
             lastName: "Doe",
             agency: "Best Agent Agency",
@@ -49,6 +48,17 @@ export default function Agents() {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
+
+    const handlePin = (agent) => {
+        pinItem({
+            id: `agent-${agent.id}`,
+            type: "agent",
+            agentData: agent, // required by Dashboard
+            link: `/agents/${agent.id}`, // navigation link : Broken 
+            position: { x: 50, y: 50 } // default position
+        });
+    };
+
     return (
         <div className="agents-page">
             <main className="agents-content">
@@ -58,13 +68,14 @@ export default function Agents() {
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
                         <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
-                        
+
                         {/* map agents using id */}
                         {agents.map((agent) => (
                             <AgentCard
                                 key={agent.id}
                                 {...agent} //pass all properties to component
                                 onSelect={() => setSelectedAgent(agent)}
+                                onPin={() => handlePin(agent)}
                             />
                         ))}
                     </section>
@@ -104,15 +115,12 @@ export default function Agents() {
                         )}
                         {/* navigation hook: push route with state */}
                         {selectedAgent && (
-                            <button
+                            <Link
+                                to={`/agents/${selectedAgent.id}`}
                                 className="edit-agent-btn"
-                                onClick={() =>
-                                    navigate(`/agents/${selectedAgent.id}`, {
-                                        state: { agent: selectedAgent }, //pass data between pages, no params
-                                    })
-                                }
                             >
-                                Go to Selected Agent</button>
+                                Go To Selected Agent
+                            </Link>
                         )}
                     </section>
 
@@ -123,8 +131,7 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        // TODO: Refactor to generate ID with timestamp
-                        const newAgentwithId = { ...agentData, id: nextAgentId++ }; //create new agent object w/id
+                        const newAgentwithId = { ...agentData, id: crypto.randomUUID }; // generate id
                         setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
                         setSelectedAgent(newAgentwithId);
                     }}

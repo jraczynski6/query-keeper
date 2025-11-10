@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 
 
 export default function SelectedProject() {
-    const location = useLocation(); //access state project passed to page
+
     const navigate = useNavigate();
     const { projectId } = useParams(); //project id from route
 
@@ -49,29 +48,17 @@ export default function SelectedProject() {
 
     // load project when component mounts or params change
     useEffect(() => {
-        let loadedProject = location.state?.project || null;
-        
-        // fallback
-        if (!loadedProject && projectId) {
-            let savedProjects = [];
-            try {
-                const raw = localStorage.getItem("projects");
-                savedProjects = raw ? JSON.parse(raw) : [];
-            } catch (err) {
-                console.error("Failed to parse projects from localStorage:", err);
-                savedProjects = [];
-            }
-
-            loadedProject = savedProjects.find(p => p.id == projectId) || null;;
-        }
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const loadedProject = savedProjects.find(p => p.id.toString() === projectId);
 
         if (loadedProject) {
             setProject(loadedProject);
             setQueryDraft(loadedProject.query || "");
-            console.log("Loaded project:", loadedProject);
-            console.log("Query draft:", loadedProject.query);
+            setSelectedSize(loadedProject.sampleSize?.toString() || "");
+            setSampleText(loadedProject.sampleText || "");
         }
-    }, [location.state, projectId]);
+    }, [projectId]);
+
 
     //fallback no project
     if (!project) {
@@ -122,14 +109,14 @@ export default function SelectedProject() {
                             <p>Word Count: {project.wordCount}</p>
                         </div>
 
-                        <div
-                            className="agent-info"
-                            // TODO: Add useParams to link to selected agent
-                            onClick={() => navigate("/agent", { state: { agent: project.agent } })}
-                        >
+                        <div className="agent-info">
                             <h2>Agent Info</h2>
-                            <p>Name: {project.agent.firstName} {project.agent.lastName}</p>
-                            <p>Agency: {project.agent.agency}</p>
+                            <p>
+                                <Link to={`/agents/${project.agent.id}`}>
+                                    {project.agent.firstName} {project.agent.lastName}
+                                </Link>
+                            </p>
+                            <p>{project.agent.agency}</p>
                         </div>
 
                         <fieldset>
@@ -187,7 +174,6 @@ export default function SelectedProject() {
                             ) : null}
                         </fieldset>
 
-                        {/* TODO: Make agent Notes component */}
                     </section>
                 </div>
             </main>
@@ -205,6 +191,5 @@ export default function SelectedProject() {
 // TODO: save/delete button
 // TODO: clickable author/agent
 // TODO: form validation
-// TODO: Add page preview for sample text 
+// TODO: Add page preview for sample text
 // TODO: make copy buttons work
-// TODO: implement delete project

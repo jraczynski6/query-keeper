@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
+import { useDashboard } from "../contexts/DashboardContext";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
-    const navigate = useNavigate();
+
+    // for pinItem
+    const { pinItem } = useDashboard();
 
     // Mock data project object
-    const [projects, setProjects] = useState([
-        {
-            id: 1,
+    const [projects, setProjects] = useState(() => {
+
+        //read mock data
+        const savedProjects = localStorage.getItem("projects");
+        if (savedProjects) return JSON.parse(savedProjects);
+
+        //default 
+        const defaultProject = {
+            id: crypto.randomUUID(),
             title: "Best Novel Ever",
             wordCount: 95000,
             genre: "Fantasy",
@@ -29,7 +38,7 @@ John Smith`,
             sampleSize: 3,
             sampleText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac eros sed lorem porta consequat. Phasellus sed sapien nec justo tincidunt tincidunt. In ut consequat magna, et dictum urna. Cras convallis sem nec ultricies laoreet. Suspendisse suscipit, odio nec iaculis porta, velit magna fermentum erat, sit amet vulputate elit nibh non ante. Morbi luctus, justo non ultrices porttitor, turpis metus rhoncus metus, vitae ultrices lorem lorem non elit. Curabitur dignissim posuere justo nec maximus. Aliquam et diam arcu. In hac habitasse platea dictumst. Integer et nisl odio. Maecenas bibendum justo sed quam interdum pretium.",
             agent: {
-                id: 1,
+                id: crypto.randomUUID(),
                 firstName: "Jane",
                 lastName: "Doe",
                 agency: "Best Agent Agency",
@@ -40,6 +49,7 @@ John Smith`,
                 notes: "This agent is prefers fantasy"
             },
             author: {
+                id: crypto.randomUUID(),
                 firstName: "John",
                 lastName: "Smith",
                 email: "johnsmith@email.com",
@@ -47,8 +57,11 @@ John Smith`,
                 twitter: "@johnsmith",
                 instagram: "@johnsmith_"
             }
-        }
-    ]);
+        };
+
+        localStorage.setItem("projects", JSON.stringify([defaultProject]));
+        return [defaultProject];
+    });
 
     //generate modal visibility
     const [showGenerate, setShowGenerate] = useState(false);
@@ -61,6 +74,18 @@ John Smith`,
 
     // selected project state for navigation
     const [selectedProject, setSelectedProject] = useState(null);
+
+    //handlePin logic
+    const handlePin = (project) => {
+        pinItem({
+            id: `project-${project.id}`,
+            type: "project",
+            projectData: project,      // store the full project object
+            link: `/projects/${project.id}`,
+            state: { project },
+            position: { x: 50, y: 50 }
+        });
+    };
 
     // sync localStorage on state change
     useEffect(() => {
@@ -81,29 +106,20 @@ John Smith`,
                 </button>
 
                 {/* display project Cards */}
-                <div className="projects-list-panel">
-                    {projects.map((project) => (
+                {projects.map(project => (
+                    <div key={project.id} className="project-card-wrapper">
                         <ProjectCard
-                            key={project.id}
-                            {...project}
+                            project={project}
+                            agent={project.agent}
+                            isSelected={selectedProject?.id === project.id}
                             onSelect={() => setSelectedProject(project)}
+                            onPin={() => handlePin(project)}
                         />
-                    ))}
-                </div>
-
-                {/* conditional render for selected project navigation */}
-                {selectedProject && (
-                    <button
-                        className="go-to-project-btn"
-                        onClick={() =>
-                            navigate(`/projects/${selectedProject.id}`, {
-                                state: { project: selectedProject } //pass project state
-                            })
-                        }
-                    >
-                        View Project
-                    </button>
-                )}
+                        <Link to={`/projects/${project.id}`} className="go-to-project-btn">
+                            View Project
+                        </Link>
+                    </div>
+                ))}
 
                 {/* Generate Query Modal */}
                 <GenerateQueryModal

@@ -55,7 +55,7 @@ function App() {
                     isAuthenticated={isAuthenticated}
                     setAuthenticated={setAuthenticated}
                   >
-                    <Dashboard />
+                    <Dashboard isAuthenticated={isAuthenticated} />
                   </Layout>
                 </ProtectedRoute>
               }

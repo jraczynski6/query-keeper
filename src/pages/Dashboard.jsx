@@ -2,12 +2,13 @@ import React from "react";
 import { DndContext } from "@dnd-kit/core";
 import CanvasDraggable from "../components/CanvasDraggable";
 import "../styles/Dashboard.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDashboard } from "../contexts/DashboardContext";
 
 export default function Dashboard() {
-    const { pinnedItems, updatePosition } = useDashboard();
-
+    const isAuthenticated = true; // temporary fix
+    const { pinnedItems, updatePosition } = useDashboard({ isAuthenticated });
+    const navigate = useNavigate();
 
     // // mock data cards
     // const [items, setItems] = useState([
@@ -75,9 +76,14 @@ export default function Dashboard() {
                                             <p>Data unavailable</p> // fallback for undefined items
                                         )}
                                         {item.link && (
-                                            <Link to={item.link} className="go-to-link">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation(); // prevent drag interference
+                                                    navigate(`/projects/${item.projectData.id}`);
+                                                }}
+                                            >
                                                 Go to Page
-                                            </Link>
+                                            </button>
                                         )}
                                     </div>
                                 }
@@ -94,3 +100,4 @@ export default function Dashboard() {
 // TODO: Add canvasRef for boundaries
 // TODO: Add new card button
 // TODO: Add focus on card select
+// TODO: add sensor to stop dragging. 

@@ -70,6 +70,7 @@ John Smith`,
             type: "project",
             projectData: project,      // store the full project object
             link: `/projects/${project.id}`,
+            state: { project },
             position: { x: 50, y: 50 }
         });
     };

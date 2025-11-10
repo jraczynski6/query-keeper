@@ -262,7 +262,4 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     )
 }
 // Query generation TODOs
-// TODO: Track form inputs with state
-// TODO: handle generation of Query / add onSubmit to form
-// TODO: Store created projects
 // TODO: Add more query templates. min 5

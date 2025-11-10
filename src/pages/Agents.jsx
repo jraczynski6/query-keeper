@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
@@ -10,7 +10,6 @@ import { useDashboard } from "../contexts/DashboardContext";
 let nextAgentId = 2;
 
 export default function Agents() {
-    const navigate = useNavigate();
     const { pinItem } = useDashboard();
     // check local storage for saved agent. 
     const [agents, setAgents] = useState(() => {
@@ -117,15 +116,12 @@ export default function Agents() {
                         )}
                         {/* navigation hook: push route with state */}
                         {selectedAgent && (
-                            <button
+                            <Link
+                                to={`/agents/${selectedAgent.id}`}
                                 className="edit-agent-btn"
-                                onClick={() =>
-                                    navigate(`/agents/${selectedAgent.id}`, {
-                                        state: { agent: selectedAgent }, //pass data between pages, no params
-                                    })
-                                }
                             >
-                                Go to Selected Agent</button>
+                                Go To Selected Agent
+                            </Link>
                         )}
                     </section>
 

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 import { useDashboard } from "../contexts/DashboardContext";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
-    const navigate = useNavigate();
+
     const { pinItem } = useDashboard();
     // Mock data project object
     const [projects, setProjects] = useState([
@@ -102,16 +102,9 @@ John Smith`,
                             onSelect={() => setSelectedProject(project)}
                             onPin={() => handlePin(project)}
                         />
-                        <button
-                            className="go-to-project-btn"
-                            onClick={() =>
-                                navigate(`/projects/${project.id}`, {
-                                    state: { project } // project is defined
-                                })
-                            }
-                        >
+                        <Link to={`/projects/${project.id}`} className="go-to-project-btn">
                             View Project
-                        </button>
+                        </Link>
                     </div>
                 ))}
 

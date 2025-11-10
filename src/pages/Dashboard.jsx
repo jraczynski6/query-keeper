@@ -2,12 +2,11 @@ import React from "react";
 import { DndContext } from "@dnd-kit/core";
 import CanvasDraggable from "../components/CanvasDraggable";
 import "../styles/Dashboard.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDashboard } from "../contexts/DashboardContext";
 
 export default function Dashboard() {
     const { pinnedItems, updatePosition } = useDashboard();
-    const navigate = useNavigate();
 
 
     // // mock data cards
@@ -76,7 +75,9 @@ export default function Dashboard() {
                                             <p>Data unavailable</p> // fallback for undefined items
                                         )}
                                         {item.link && (
-                                            <button onClick={() => navigate(item.link)}>Go to Page</button>
+                                            <Link to={item.link} className="go-to-link">
+                                                Go to Page
+                                            </Link>
                                         )}
                                     </div>
                                 }
@@ -91,6 +92,5 @@ export default function Dashboard() {
 }
 
 // TODO: Add canvasRef for boundaries
-// TODO: Add logic for pinning mini cards and linking to source page
 // TODO: Add new card button
 // TODO: Add focus on card select

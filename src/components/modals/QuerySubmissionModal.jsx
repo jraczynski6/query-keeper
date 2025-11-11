@@ -1,7 +1,7 @@
 import React from "react";
 import "./QuerySubmissionModal.css";
 
-export default function QuerySubmissionModal({ isOpen, onClose, project }) {
+export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmit }) {
 
     //fallback
     if (!isOpen) return null;
@@ -193,3 +193,5 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
         </div >
     )
 }
+
+// TODO: Add handleCopy logic and update buttons.

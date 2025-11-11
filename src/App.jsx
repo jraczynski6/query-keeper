@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
 import { DashboardProvider } from './contexts/DashboardContext';
+import "./index.css";
+
+
 
 // Pages
 import Landing from './pages/Landing';
@@ -14,7 +17,6 @@ import Projects from "./pages/Projects";
 import SelectedProject from "./pages/SelectedProject";
 import Author from "./pages/Author";
 import Layout from './components/Layout';
-
 
 
 function App() {

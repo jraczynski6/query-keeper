@@ -1,7 +1,11 @@
 .nav-menu {
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background-color: #2c2f33;
+    /* slightly darker than page bg */
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .nav-menu ul {
@@ -17,8 +21,9 @@
     text-align: center;
 }
 
-.nav-menu li + li {
-    border-left: 1px solid #ccc; /* vertical line between items */
+.nav-menu li+li {
+    border-left: 1px solid #ccc;
+    /* vertical line between items */
 }
 
 .nav-menu a {
@@ -28,12 +33,43 @@
 }
 
 .nav-link-btn {
-    background: none;
+    background-color: var(--color-notification-btn);
+    color: var(--color-text);
     border: none;
-    padding: 0;
-    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
     font: inherit;
-    color: inherit;
     cursor: pointer;
     text-decoration: none;
+}
+
+
+/* Semantic colors with high contrast */
+.nav-menu a.home {
+    color: #FFFFFF;
+    /* bright for contrast */
+}
+
+.nav-menu a.projects {
+    color: #4D8CF7;
+    /* lighter blue for visibility */
+}
+
+.nav-menu a.agents {
+    color: #A074FF;
+    /* lighter purple */
+}
+
+.nav-menu a.notifications {
+    color: #FF6B6B;
+    /* lighter red */
+}
+
+.nav-menu a.author {
+    color: #FF5CA1;
+    /* lighter violet-red */
+}
+
+.nav-menu a.about {
+    color: var(--color-about);
 }

@@ -1,0 +1,26 @@
+/* custom css variables */
+:root {
+    --bg-color: #3f4246;
+    --color-text: #EAEAEA;
+    --color-text-secondary: #9A9A9A;
+
+    --color-projects: #062A79;
+    --color-agents: #512887;
+    --color-notifications: #CB0815;
+    --color-author: #891446;
+    --color-critical: #AE0C00;
+    --color-about: #00BFFF;
+    /* new semantic color */
+    --color-notification-btn: #FF4C4C;
+    /* new semantic color */
+
+    --gradient-canvas: linear-gradient(135deg, #512887 0%, #891446 40%, #AE0C00 100%);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--color-text);
+    font-family: "Inter", system-ui, sans-serif;
+}

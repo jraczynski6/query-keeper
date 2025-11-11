@@ -1,4 +1,4 @@
-import '../styles/AgentCard.css';
+import './AgentCard.css';
 export default function AgentCard({
     firstName,
     lastName,

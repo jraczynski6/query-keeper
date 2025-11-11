@@ -1,7 +1,7 @@
 import React from "react";
 import { DndContext } from "@dnd-kit/core";
 import CanvasDraggable from "../components/CanvasDraggable";
-import "../styles/Dashboard.css";
+import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useDashboard } from "../contexts/DashboardContext";
 

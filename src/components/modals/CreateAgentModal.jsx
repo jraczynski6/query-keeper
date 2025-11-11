@@ -1,4 +1,4 @@
-import "../../styles/CreateAgentModal.css"
+import "./CreateAgentModal.css";
 
 export default function CreateAgentModal({ onClose, onCreate }) {
 

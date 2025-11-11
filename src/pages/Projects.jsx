@@ -3,7 +3,7 @@ import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 import { useDashboard } from "../contexts/DashboardContext";
 import { Link } from "react-router-dom";
-import "../styles/Projects.css";
+import "./Projects.css";
 
 export default function Projects() {
 

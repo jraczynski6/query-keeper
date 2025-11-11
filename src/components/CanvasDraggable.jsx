@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
-import "../styles/CanvasDraggable.css";
+import "./CanvasDraggable.css";
 
 export default function CanvasDraggable({ id, content, position }) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });

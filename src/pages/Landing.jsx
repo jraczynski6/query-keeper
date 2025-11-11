@@ -1,6 +1,6 @@
 import { useState } from "react";
 import RegisterModal from "../components/modals/RegisterModal";
-import "../styles/LandingPage.css";
+import "./LandingPage.css";
 
 export default function Landing({setAuthenticated}) {
 

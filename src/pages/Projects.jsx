@@ -97,7 +97,7 @@ John Smith`,
         <div className="projects-page">
 
             <main className="projects-content">
-                <h1>Projects</h1>
+                <h2>Projects</h2>
 
                 <div className="button-wrapper">
                     <button

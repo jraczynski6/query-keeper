@@ -17,6 +17,10 @@
     border: 2px solid #2AC0B9; /* project theme accent */
 }
 
+.projects-content h2 {
+    border-bottom: 2px solid #2AC0B9;
+}
+
 /* Grid layout for project cards container */
 .project-cards-container {
     display: grid;

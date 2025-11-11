@@ -1,14 +1,14 @@
 /* Selected Agent Page Content */
 .selected-agent-content {
-    background-color: #2a2a2a;      /* main panel */
+    background-color: #2a2a2a;   
     color: #f1f1f1;
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border: 2px solid #6B4DBF;      /* purple accent border */
+    border: 2px solid #6B4DBF;
 
     display: flex;
-    flex-direction: column;          /* stack name on top */
+    flex-direction: column;
     gap: 2rem;
 
     max-width: 1200px;
@@ -30,13 +30,13 @@
 .agent-panels {
     display: flex;
     gap: 2rem;
-    flex-wrap: wrap;                 /* responsive wrap on small screens */
+    flex-wrap: wrap;
 }
 
 /* Left panel: basic info */
 .agent-info-section {
     flex: 1 1 400px;
-    background-color: #383838;       /* subtle panel */
+    background-color: #383838;  
     border-radius: 0.5rem;
     padding: 1rem;
 }
@@ -45,7 +45,7 @@
 .agent-links-section,
 .agent-notes-section {
     flex: 1 1 500px;
-    background-color: #383838;       /* consistent panel background */
+    background-color: #383838;  
     border-radius: 0.5rem;
     padding: 1rem;
 }

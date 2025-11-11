@@ -6,18 +6,14 @@
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-
     width: 100%;          /* full width of parent */
     box-sizing: border-box; /* include padding/border in width */
     margin: 0;             /* remove auto margin */
     margin-top: 10px;
     margin-bottom: 10px;
-
     display: flex;
     flex-direction: column;     
     gap: 2rem;
-
-    border: 2px solid #6B4DBF; /* purple accent */
     overflow-x: hidden;         /* prevent horizontal scroll */
 }
 
@@ -62,6 +58,7 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
     min-height: 300px;
     transition: box-shadow 0.2s ease;
+    border: 2px solid #6B4DBF;
 }
 
 /* Right panel preview */
@@ -71,10 +68,8 @@
     border-radius: 0.75rem;
     padding: 1.5rem;
     color: #f1f1f1;
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 2px solid #6B4DBF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     position: relative;
 }
 

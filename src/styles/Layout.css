@@ -1,5 +1,6 @@
 .app-header {
-    background-color: #2c2f33; /* slightly darker than --bg-color */
+    background-color: #2c2f33;
+    /* slightly darker than --bg-color */
     border-bottom: 1px solid #555;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -41,23 +42,27 @@ footer {
     color: var(--color-text-secondary);
 }
 
+.footer-note p {
+    font-size: 0.875rem;
+    color: var(--color-text); /* main text brighter */
+}
+
 .app-footer {
     display: flex;
     flex-direction: column;
-    /* stack by default */
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    border-top: 1px solid #ddd;
-    background-color: #f9f9f9;
+    background-color: var(--bg-color);
+    color: var(--color-text);
+    /* brighter main text */
     gap: 1.5rem;
-    /* spacing between sections */
+    border-top: 1px solid #444;
 }
 
 .footer-nav {
     display: flex;
     justify-content: center;
-    width: 300px;
     gap: 2rem;
 }
 
@@ -80,4 +85,11 @@ footer {
     justify-content: space-between;
     padding: 1rem 2rem;
     background-color: var(--bg-color);
+}
+
+.footer-newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
 }

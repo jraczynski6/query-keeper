@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
+import "../styles/SelectedAgent.css";
 
 export default function SelectedAgent() {
     const { id } = useParams();

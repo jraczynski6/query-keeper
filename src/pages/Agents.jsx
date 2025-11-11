@@ -4,6 +4,7 @@ import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
 import { useDashboard } from "../contexts/DashboardContext";
+import "../styles/Agents.css"
 
 export default function Agents() {
     

@@ -1,0 +1,35 @@
+.selected-agent-content {
+    background-color: #2a2a2a; 
+    color: var(--color-text);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    max-width: 1200px;
+    margin: 2rem auto;
+
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;
+
+    max-height: 80vh; 
+    overflow-y: auto;
+}
+
+
+
+.selected-agent-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Left panel: basic info */
+.agent-info-section {
+    flex: 1 1 400px;
+}
+
+/* Right panel: links, notes, actions */
+.agent-links-section,
+.agent-notes-section {
+    flex: 1 1 500px;
+}

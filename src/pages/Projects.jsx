@@ -3,6 +3,7 @@ import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 import { useDashboard } from "../contexts/DashboardContext";
 import { Link } from "react-router-dom";
+import "../styles/Projects.css";
 
 export default function Projects() {
 
@@ -97,13 +98,15 @@ John Smith`,
 
             <main className="projects-content">
                 <h1>Projects</h1>
-
-                <button
-                    className="generate-query-btn"
-                    onClick={openGenerate}
-                >
-                    Generate Query
-                </button>
+                
+                <div className="button-wrapper">
+                    <button
+                        className="generate-query-btn"
+                        onClick={openGenerate}
+                    >
+                        Generate Query
+                    </button>
+                </div>
 
                 {/* display project Cards */}
                 {projects.map(project => (

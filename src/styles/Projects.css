@@ -1,0 +1,42 @@
+.projects-content {
+    background-color: #2a2a2a;  /* darker panel for readability */
+    color: var(--color-text);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: flex-start; /* or center */
+    gap: 1rem;
+}
+
+/* Buttons styling */
+.generate-query-btn,
+.go-to-project-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+
+    display: inline-block; 
+    width: auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.generate-query-btn {
+    background-color: #4D8CF7;
+    color: #fff;
+}
+
+.go-to-project-btn {
+    background-color: #62C370;
+    color: #fff;
+}

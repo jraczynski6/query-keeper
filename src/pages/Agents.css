@@ -10,6 +10,8 @@
     width: 100%;          /* full width of parent */
     box-sizing: border-box; /* include padding/border in width */
     margin: 0;             /* remove auto margin */
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     display: flex;
     flex-direction: column;     
@@ -110,7 +112,7 @@
     margin-top: 1rem;       /* space between card and button */
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    background-color: #6B4DBF;  /* purple accent */
+    background-color: #4d8cf7;  /* purple accent */
     color: #fff;
     text-decoration: none;
     font-weight: 500;

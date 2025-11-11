@@ -1,4 +1,5 @@
 import React from "react";
+import "./QuerySubmissionModal.css";
 
 export default function QuerySubmissionModal({ isOpen, onClose, project }) {
 
@@ -40,7 +41,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project }) {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="query-submission-modal-content">
                 <button className="close-button" onClick={onClose}>X</button>
                 <h2>Submit a query</h2>
                 <p>Submitting for: {project.title}</p>

@@ -1,0 +1,174 @@
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Box */
+.query-submission-modal-content {
+    background-color: #2a2a2a; /* dark panel */
+    border: 2px solid #6B4DBF;  /* project accent color */
+    border-radius: 0.75rem;
+    padding: 2rem;
+    color: #f1f1f1;
+    max-width: 650px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #ff6b6b;
+}
+
+/* Form Sections */
+.query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.form-section {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+}
+
+.form-section h3 {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+/* Labels and Inputs */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    margin-bottom: 0.25rem;
+}
+
+input,
+textarea,
+select {
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: #383b3f;
+    color: #f1f1f1;
+    font-size: 0.95rem;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #6B4DBF; /* accent color */
+    box-shadow: 0 0 5px rgba(107, 77, 191, 0.5);
+}
+
+/* Textarea */
+textarea {
+    min-height: 80px;
+    max-height: 200px;
+}
+
+/* Input with copy button */
+.input-with-copy {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.copy-btn {
+    background-color: #3a3d42;
+    color: #f1f1f1;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+    background-color: #4a4e54;
+}
+
+/* Final Query Display */
+.final-query {
+    background-color: #383b3f;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #f1f1f1;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cancel-btn {
+    background-color: #3a3d42;
+    color: #f1f1f1;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #4a4e54;
+}
+
+.submit-btn {
+    background-color: #6B4DBF; /* project accent */
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #7d5ce3;
+}

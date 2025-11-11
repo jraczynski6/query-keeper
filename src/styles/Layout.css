@@ -1,8 +1,9 @@
 .app-header {
-    background-color: #2c2f33;
+    background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
     /* slightly darker than --bg-color */
     border-bottom: 1px solid #555;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,8 +53,9 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 1rem;
     padding: 2rem;
-    background-color: var(--bg-color);
+    background: white;
     color: var(--color-text);
     /* brighter main text */
     gap: 1.5rem;

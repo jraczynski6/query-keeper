@@ -24,7 +24,7 @@ export default function SelectedAgent() {
     return (
         <div className="selected-agent-page">
             <main className="selected-agent-content">
-                <h2>Selected Agent</h2>
+                <h2>{agent.firstName} {agent.lastName}</h2>
 
                 {/* Basic Agent Info  */}
                 <section className="agent-info-section">

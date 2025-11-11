@@ -2,6 +2,7 @@
     background-color: #2a2a2a;  /* same dark gray as agents */
     color: #f1f1f1;
     padding: 2rem;
+    
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     max-width: 1200px;
@@ -24,7 +25,7 @@
     background-color: #2e2e34;  /* slightly darker than previous #383b3f for better contrast */
     padding: 1.5rem;
     border-radius: 0.5rem;
-    border: 2px solid #FF6B6B; /* updated lighter red accent */
+    border: 2px solid #FF5CA1; /* updated lighter red accent */
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
@@ -32,6 +33,7 @@
 .author-form-panel h2 {
     text-align: center;
     margin-bottom: 1rem;
+    border-bottom: 2px solid #FF5CA1;
 }
 
 .author-form-panel form {
@@ -79,12 +81,13 @@
     padding: 1rem;
     background-color: #383b3f; /* same as agent cards */
     border-radius: 0.5rem;
-    border: 2px solid #FF6B6B; /* lighter red accent */
+    border: 2px solid #FF5CA1; /* lighter red accent */
     text-align: center;
 }
 
 .author-preview h2 {
     text-align: center;
+    border-bottom: 2px solid #FF5CA1;
 }
 
 .preview-card h3.author-name {

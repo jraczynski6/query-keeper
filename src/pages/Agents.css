@@ -1,33 +1,53 @@
-.agents-list-panel,
-.agent-preview-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertical centering */
-    align-items: center;     /* horizontal centering */
-    gap: 1rem;               /* spacing between inner items */
-}
 
+/* agent content container */
 .agents-content {
     background-color: #2a2a2a;  
     color: #f1f1f1;
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    max-width: 1200px;
-    min-height: 80vh;         
-    margin: 2rem auto;
+
+    width: 100%;          /* full width of parent */
+    box-sizing: border-box; /* include padding/border in width */
+    margin: 0;             /* remove auto margin */
+
     display: flex;
     flex-direction: column;     
     gap: 2rem;
+
+    border: 2px solid #6B4DBF; /* purple accent */
+    overflow-x: hidden;         /* prevent horizontal scroll */
 }
 
+/* Flex container for list and preview */
 .split-container {
     display: flex;
     gap: 2rem;
-    flex-wrap: wrap;         
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Left panel (list) */
+.agents-list-panel,
+.agent-preview-panel {
+    flex: 1;         /* share available space */
+    min-width: 0;    /* important for flex items to shrink */
+}
+
+/* shared panels */
+/* Shared panel headers */
+.agents-list-panel h2,
+.agent-preview-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #f1f1f1;             /* light text */
+    margin: 0 0 1rem 0;         /* bottom margin for spacing */
+    padding-bottom: 0.25rem;    /* optional underline spacing */
+    border-bottom: 2px solid #6B4DBF; /* purple accent line */
+}
+
+
+
+/* Left panel list */
 .agents-list-panel {
     flex: 1 1 350px;
     display: flex;
@@ -42,7 +62,7 @@
     transition: box-shadow 0.2s ease;
 }
 
-/* Right panel (preview) */
+/* Right panel preview */
 .agent-preview-panel {
     flex: 1 1 400px;
     background: linear-gradient(180deg, #33373d 0%, #2b2e33 100%);
@@ -54,6 +74,18 @@
         0 0 0 1px rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
+}
+
+.agent-preview-card {
+    background-color: #2a2a2a;       /* gray background for contrast */
+    border: 2px solid #6B4DBF;       /* purple accent outline */
+    border-radius: 0.75rem;          /* rounded corners */
+    padding: 1.5rem;                 /* space inside the card */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 10px rgba(107,77,191,0.4); /* subtle pop */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.2s ease;
 }
 
 .create-agent-btn {
@@ -74,13 +106,16 @@
 }
 
 .edit-agent-btn {
-    background-color: #4d8cf7; /* your main accent blue */
-    color: #fff;
-    border: none;
-    text-decoration: none;
-    padding: 0.6rem 1.25rem;
+    display: inline-block;
+    margin-top: 1rem;       /* space between card and button */
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
+    background-color: #6B4DBF;  /* purple accent */
+    color: #fff;
+    text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    cursor: pointer;
+}
+
+.edit-agent-btn:hover {
+    background-color: #7C5EDF; /* slightly lighter on hover */
 }

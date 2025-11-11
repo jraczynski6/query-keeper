@@ -24,7 +24,7 @@
     background-color: #2e2e34;  /* slightly darker than previous #383b3f for better contrast */
     padding: 1.5rem;
     border-radius: 0.5rem;
-    border: 2px solid #2ca3c0; /* author theme accent */
+    border: 2px solid #FF6B6B; /* updated lighter red accent */
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
@@ -60,7 +60,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
     border: none;
-    background-color: #4d8cf7; /* keep button color consistent with agents */
+    background-color: #4d8cf7; /* button color consistent with agents/projects */
     color: #fff;
     cursor: pointer;
     font-weight: 500;
@@ -79,7 +79,7 @@
     padding: 1rem;
     background-color: #383b3f; /* same as agent cards */
     border-radius: 0.5rem;
-    border: 2px solid #2ca3c0; /* author accent */
+    border: 2px solid #FF6B6B; /* lighter red accent */
     text-align: center;
 }
 
@@ -101,5 +101,5 @@
     background-color: #383b3f;
     padding: 0.75rem;
     border-radius: 0.4rem;
-    border: 1px solid #2ca3c0;
+    border: 1px solid #FF6B6B; /* lighter red accent */
 }

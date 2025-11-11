@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import queryTemplates from "../../utils/queryTemplates";
 import { generateQuery } from "../../utils/queryGenerationUtils";
 import { useNavigate } from "react-router-dom";
+import "./GenerateQueryModal.css";
 
 
 
@@ -108,7 +109,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="generate-query-modal-content">
                 <h2>Generate a Query</h2>
 
 

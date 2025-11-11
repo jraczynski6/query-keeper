@@ -98,7 +98,7 @@ John Smith`,
 
             <main className="projects-content">
                 <h1>Projects</h1>
-                
+
                 <div className="button-wrapper">
                     <button
                         className="generate-query-btn"
@@ -108,21 +108,33 @@ John Smith`,
                     </button>
                 </div>
 
-                {/* display project Cards */}
-                {projects.map(project => (
-                    <div key={project.id} className="project-card-wrapper">
-                        <ProjectCard
-                            project={project}
-                            agent={project.agent}
-                            isSelected={selectedProject?.id === project.id}
-                            onSelect={() => setSelectedProject(project)}
-                            onPin={() => handlePin(project)}
-                        />
-                        <Link to={`/projects/${project.id}`} className="go-to-project-btn">
+                {/* Project cards container */}
+                <div className="project-cards-container">
+                    {projects.map(project => (
+                        <div key={project.id} className="project-card-wrapper">
+                            <ProjectCard
+                                project={project}
+                                agent={project.agent}
+                                isSelected={selectedProject?.id === project.id}
+                                onSelect={() => setSelectedProject(project)}
+                                onPin={() => handlePin(project)}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Bottom-centered View Project button */}
+                {selectedProject && (
+                    <div className="view-project-container">
+                        <Link
+                            to={`/projects/${selectedProject.id}`}
+                            className="view-project-btn"
+                        >
                             View Project
                         </Link>
                     </div>
-                ))}
+                )}
+
 
                 {/* Generate Query Modal */}
                 <GenerateQueryModal

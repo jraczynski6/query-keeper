@@ -36,15 +36,15 @@
     font-weight: 500;
     text-decoration: none;
     color: var(--color-text, #e4e6eb);
-   background-color: #3a3d42;
+    background-color: #3a3d42;
     transition: all 0.2s ease;
     box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
 
 .nav-link-btn {
-    background-color: var(--color-notification-btn);
-    color: var(--color-text);
+    background-color: #3a3d42;
+    color: #35922f;
     border: none;
     padding: 0.5rem 0.75rem;
     border-radius: 0.25rem;
@@ -70,16 +70,11 @@
     /* lighter purple */
 }
 
-.nav-menu a.notifications {
-    color: #FF6B6B;
-    /* lighter red */
-}
-
 .nav-menu a.author {
     color: #FF5CA1;
     /* lighter violet-red */
 }
 
 .nav-menu a.about {
-    color: var(--color-about);
+    color: #c57418;
 }

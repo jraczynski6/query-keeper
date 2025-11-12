@@ -1,6 +1,6 @@
 .dashboard-page {
-  background-color: #000; /* core dark background */
-  color: #EAEAEA; /* default text color */
+  background-color: #000;
+  color: #EAEAEA;
   min-height: 100vh;
   padding: 20px;
   display: flex;
@@ -18,8 +18,8 @@
 .dashboard-canvas {
   position: relative;
   flex: 1;
-  background-color: #121212; /* slightly lighter than bg for canvas area */
-  border: 2px solid #BBBBBB; /* silver accent border for canvas */
+  background-color: #121212; 
+  border: 2px solid #BBBBBB;
   border-radius: 12px;
   padding: 20px;
   overflow: hidden;

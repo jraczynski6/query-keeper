@@ -1,4 +1,4 @@
-/* Landing page container - hero style */
+/* Landing page container */
 .landing-page {
   display: flex;
   justify-content: center;
@@ -88,7 +88,6 @@
   }
 
 }
-
 
 /* Tablet Query */
 @media (min-width: 768px) and (max-width: 1199px) {

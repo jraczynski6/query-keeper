@@ -1,14 +1,14 @@
 /* About page container */
 .about-page {
     color: var(--color-text, #EAEAEA);
-    min-height: 100vh;        /* at least full screen height */
+    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;  /* top-align instead of center for long content */
+    align-items: flex-start;
     padding: 2rem;
     box-sizing: border-box;
-    overflow-y: auto;         /* allow scrolling if content is tall */
+    overflow-y: auto;
 }
 
 /* About content box */
@@ -64,7 +64,7 @@
 @media (max-width: 767px) {
     .about-page {
         padding: 1rem;
-        align-items: flex-start; /* keep top alignment */
+        align-items: flex-start;
     }
 
     .about-content {

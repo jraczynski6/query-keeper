@@ -26,7 +26,6 @@
 
 .nav-menu li+li {
     border-left: 1px solid #ccc;
-    /* vertical line between items */
 }
 
 .nav-menu a {
@@ -54,25 +53,25 @@
 }
 
 
-/* Semantic colors with high contrast */
+/* nav menu link colors */
 .nav-menu a.dashboard {
     color: #DDDDDD;
-    /* bright for contrast */
+
 }
 
 .nav-menu a.projects {
     color: #2AC0B9;
-    /* lighter blue for visibility */
+
 }
 
 .nav-menu a.agents {
     color: #A074FF;
-    /* lighter purple */
+
 }
 
 .nav-menu a.author {
     color: #FF5CA1;
-    /* lighter violet-red */
+
 }
 
 .nav-menu a.about {
@@ -99,11 +98,11 @@
   .nav-menu li {
     flex: none;
     margin: 0.25rem 0;
-    border-left: none; /* remove vertical separators */
+    border-left: none;
   }
 
    .nav-menu li+li {
-    border-left: none; /* ensure no vertical lines */
+    border-left: none;
   }
 
   .nav-menu a {

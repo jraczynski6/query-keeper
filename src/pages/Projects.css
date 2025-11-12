@@ -16,7 +16,7 @@
     align-items: center;
     gap: 2rem;
 
-    border: 2px solid #2AC0B9; /* project theme accent */
+    border: 2px solid #2AC0B9;
 }
 
 .projects-content h2 {

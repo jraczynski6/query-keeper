@@ -53,27 +53,100 @@ export default function SelectedAgent() {
                 <h2>{agent.firstName} {agent.lastName}</h2>
 
                 <div className="agent-panels">
-                    {/* Basic Agent Info  */}
+                    {/* Basic Agent Info */}
                     <section className="agent-info-section">
                         <h3>Agent Info</h3>
-                        <p id="agent-firstname">Firstname: {agent.firstName}</p>
-                        <p id="agent-lastname">Lastname: {agent.lastName}</p>
-                        <p id="agent-agency">Agency: {agent.agency}</p>
-                        <p id="agent-email">Email: {agent.email}</p>
+
+                        <div className="form-group">
+                            <label htmlFor="firstName">Firstname</label>
+                            {isEditing ? (
+                                <input
+                                    id="firstName"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                <p>{agent.firstName}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="lastName">Lastname</label>
+                            {isEditing ? (
+                                <input
+                                    id="lastName"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                <p>{agent.lastName}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="agency">Agency</label>
+                            {isEditing ? (
+                                <input
+                                    id="agency"
+                                    name="agency"
+                                    value={formData.agency}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                <p>{agent.agency}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            {isEditing ? (
+                                <input
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            ) : (
+                                <p>{agent.email}</p>
+                            )}
+                        </div>
                     </section>
 
                     {/* Agent Links */}
                     <section className="agent-links-section">
                         <h3>Agent Links</h3>
-                        <p id="agent-website">Website: {agent.website}</p>
-                        <p id="agent-twitter">Twitter: {agent.twitter}</p>
-                        <p id="agent-instagram">Instagram: {agent.instagram}</p>
+
+                        <div className="form-group">
+                            <label htmlFor="website">Website</label>
+                            {isEditing ? <input id="website" name="website" value={formData.website} onChange={handleChange} /> : <p>{agent.website}</p>}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="twitter">Twitter</label>
+                            {isEditing ? <input id="twitter" name="twitter" value={formData.twitter} onChange={handleChange} /> : <p>{agent.twitter}</p>}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="instagram">Instagram</label>
+                            {isEditing ? <input id="instagram" name="instagram" value={formData.instagram} onChange={handleChange} /> : <p>{agent.instagram}</p>}
+                        </div>
                     </section>
 
                     {/* Agent Notes */}
                     <section className="agent-notes-section">
                         <h3>Agent Notes</h3>
-                        <p>{agent.notes}</p>
+                        <div className="form-group">
+                            {isEditing ? (
+                                <>
+                                    <label htmlFor="notes">Notes</label>
+                                    <textarea id="notes" name="notes" value={formData.notes} onChange={handleChange} />
+                                </>
+                            ) : (
+                                <p>{agent.notes}</p>
+                            )}
+                        </div>
                     </section>
 
                     {/* Agent Actions */}

@@ -1,4 +1,3 @@
-/* Page container */
 /* Selected Agent Page Container */
 .selected-agent-content {
     background-color: #2a2a2a;
@@ -6,14 +5,13 @@
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border: 2px solid #6B4DBF;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
 
-    max-width: 800px; /* narrower for single-column layout */
+    max-width: 800px;
     width: 90%;
     margin: 2rem auto;
 
@@ -23,45 +21,46 @@
 /* Container for all panels */
 .agent-panels {
     display: flex;
-    flex-direction: column;   /* stack vertically */
-    gap: 2rem;                /* spacing between panels */
-    width: 100%;              /* fill the page container */
-    align-items: center;      /* center panels horizontally */
-    justify-content: center;  /* center panels vertically if desired */
+    flex-direction: column;   
+    gap: 2rem;              
+    width: 100%;             
+    align-items: center;     
+    justify-content: center; 
 }
 
 .agent-info-section,
 .agent-links-section,
 .agent-notes-section {
     width: 100%;
-    max-width: 600px; /* all panels same max width */
+    max-width: 600px;
     background-color: #383838;
     border-radius: 0.5rem;
     padding: 1rem;
+    border: 2px solid #6B4DBF;
 }
 
 /* Panel headers */
+.selected-agent-content h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+    text-align: center;
+    border-bottom: 2px solid #6B4DBF ;
+}
+
 .agent-info-section h3,
 .agent-links-section h3,
 .agent-notes-section h3 {
     margin-bottom: 1rem;
     color: #fff;
-    text-align: center; /* center the heading */
-}
-
-/* Agent Name spans full width */
-.selected-agent-content h2 {
-    margin-bottom: 1rem;
-    color: #fff;
     text-align: center;
 }
 
-
-/* Headers in panels match agent page style */
 .selected-agent-content h3 {
     margin-bottom: 1rem;
     color: #fff;
 }
+
+
 
 /* Agent actions buttons */
 .agent-actions {
@@ -107,10 +106,12 @@
 }
 
 
+
+/* form */
 .form-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* left align labels and inputs */
+    align-items: flex-start;
     gap: 0.25rem;
     width: 100%;
     margin-bottom: 1rem;

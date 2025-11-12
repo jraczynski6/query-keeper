@@ -17,21 +17,7 @@ export default function Agents() {
         if (savedAgents) return JSON.parse(savedAgents);
 
         // Default agent 
-        const defaultAgent = {
-            id: crypto.randomUUID(),
-            firstName: "Jane",
-            lastName: "Doe",
-            agency: "Best Agent Agency",
-            email: "janedoe@email.com",
-            website: "janedoeagent.com",
-            twitter: "@janedoe",
-            instagram: "@janedoe_",
-            notes: "This agent prefers fantasy"
-        };
-
-        //  save default agent
-        localStorage.setItem("agents", JSON.stringify([defaultAgent]));
-        return [defaultAgent];
+        const defaultAgent = createAgent();
     });
 
 
@@ -132,9 +118,9 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgentwithId = { ...agentData, id: crypto.randomUUID() }; // generate id
-                        setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
-                        setSelectedAgent(newAgentwithId);
+                        const newAgent = createAgent(agentData); 
+                        setAgents(prev => [...prev, newAgent]);
+                        setSelectedAgent(newAgent);
                     }}
                 />}
         </div>

@@ -132,7 +132,7 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgentwithId = { ...agentData, id: crypto.randomUUID }; // generate id
+                        const newAgentwithId = { ...agentData, id: crypto.randomUUID() }; // generate id
                         setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
                         setSelectedAgent(newAgentwithId);
                     }}

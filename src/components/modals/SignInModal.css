@@ -69,7 +69,6 @@
   background-color: #2AC0B9;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .modal-content button[type="submit"]:hover {
@@ -87,7 +86,6 @@
   background-color: #555555; /* gray for secondary action */
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .cancel-button:hover {
@@ -105,7 +103,6 @@
   background-color: #555555; /* darker gray to distinguish */
   color: #fff;               /* white text */
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
   box-sizing: border-box;    /* prevent shrinking */
 }
 

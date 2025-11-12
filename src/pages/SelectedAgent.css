@@ -1,6 +1,7 @@
-/* Selected Agent Page Content */
+/* Page container */
+/* Selected Agent Page Container */
 .selected-agent-content {
-    background-color: #2a2a2a;   
+    background-color: #2a2a2a;
     color: #f1f1f1;
     padding: 2rem;
     border-radius: 0.75rem;
@@ -9,14 +10,43 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
 
-    max-width: 1200px;
-    width: 95%;
+    max-width: 800px; /* narrower for single-column layout */
+    width: 90%;
     margin: 2rem auto;
 
-    max-height: 80vh;
-    overflow-y: auto;
+    /* Page scrolls normally */
+}
+
+/* Container for all panels */
+.agent-panels {
+    display: flex;
+    flex-direction: column;   /* stack vertically */
+    gap: 2rem;                /* spacing between panels */
+    width: 100%;              /* fill the page container */
+    align-items: center;      /* center panels horizontally */
+    justify-content: center;  /* center panels vertically if desired */
+}
+
+.agent-info-section,
+.agent-links-section,
+.agent-notes-section {
+    width: 100%;
+    max-width: 600px; /* all panels same max width */
+    background-color: #383838;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Panel headers */
+.agent-info-section h3,
+.agent-links-section h3,
+.agent-notes-section h3 {
+    margin-bottom: 1rem;
+    color: #fff;
+    text-align: center; /* center the heading */
 }
 
 /* Agent Name spans full width */
@@ -26,29 +56,6 @@
     text-align: center;
 }
 
-/* Container for left/right panels */
-.agent-panels {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-/* Left panel: basic info */
-.agent-info-section {
-    flex: 1 1 400px;
-    background-color: #383838;  
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
-
-/* Right panel: links, notes, actions */
-.agent-links-section,
-.agent-notes-section {
-    flex: 1 1 500px;
-    background-color: #383838;  
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
 
 /* Headers in panels match agent page style */
 .selected-agent-content h3 {

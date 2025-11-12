@@ -1,0 +1,58 @@
+/* Landing page container - hero style */
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* align to top instead of center */
+  min-height: calc(100vh - 80px); /* subtract header height */
+  background-color: var(--bg-color);
+  font-family: "Inter", system-ui, sans-serif;
+  padding: 4rem 2rem; /* space at top */
+}
+
+/* Landing content box */
+.landing-content {
+  text-align: center;
+  padding: 6rem 5rem;
+  background-color: #1a1a1a;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+  max-width: 1400px;
+  width: 85%;
+  color: #EAEAEA;
+  font-size: 1.2rem;
+  margin-top: 5vh; /* push it slightly down from top */
+}
+
+/* Headings */
+.landing-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #EAEAEA;
+}
+
+/* Paragraphs */
+.landing-content p {
+  color: #CCCCCC;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* CTA button */
+.landing-content .cta-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #BBBBBB;
+  background-color: #35922f;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.landing-content .cta-button:hover {
+  background-color: #42b636;
+  transform: translateY(-1px);
+}

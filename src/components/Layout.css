@@ -1,0 +1,93 @@
+.app-header {
+    background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
+    /* slightly darker than --bg-color */
+    border-bottom: 1px solid #555;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+
+.left,
+.center,
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Footer container for app */
+/* Compact dark footer */
+.app-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem; /* reduced padding */
+    border-top: 1px solid #555;
+    background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
+    color: #EAEAEA;
+    gap: 1rem; /* smaller spacing between elements */
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
+    max-width: 100%; /* prevent overflow */
+    box-sizing: border-box;
+}
+
+/* Footer nav links */
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* smaller spacing */
+    flex-wrap: wrap; /* wrap on small screens */
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #BBBBBB;
+    transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+    color: #EAEAEA;
+}
+
+/* Footer note / copyright */
+.footer-note p {
+    font-size: 0.8rem; /* slightly smaller text */
+    color: #999999;
+    text-align: center;
+}
+
+/* Footer newsletter section */
+.footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* Newsletter form styling */
+.footer-newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    max-width: 100%; /* prevent overflow */
+}

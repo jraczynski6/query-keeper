@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./RegisterModal.css";
 
 export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
     const navigate = useNavigate();

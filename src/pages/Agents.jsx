@@ -4,6 +4,7 @@ import CreateAgentModal from "../components/modals/CreateAgentModal";
 import AgentCard from "../components/AgentCard";
 import { createAgent } from "../utils/agentUtils";
 import { useDashboard } from "../contexts/DashboardContext";
+import "./Agents.css";
 
 export default function Agents() {
     
@@ -85,7 +86,7 @@ export default function Agents() {
                         <h2>Agent preview</h2>
 
                         {selectedAgent ? (
-                            <div className="preview-card">
+                            <div className="agent-preview-card">
                                 <h3>{selectedAgent.firstName} {selectedAgent.lastName}</h3>
                                 <p className="agent-agency">{selectedAgent.agency}</p>
                                 <p className="agent-email">{selectedAgent.email}</p>

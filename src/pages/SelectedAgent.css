@@ -1,0 +1,100 @@
+/* Selected Agent Page Content */
+.selected-agent-content {
+    background-color: #2a2a2a;   
+    color: #f1f1f1;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: 2px solid #6B4DBF;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    max-width: 1200px;
+    width: 95%;
+    margin: 2rem auto;
+
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Agent Name spans full width */
+.selected-agent-content h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+    text-align: center;
+}
+
+/* Container for left/right panels */
+.agent-panels {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Left panel: basic info */
+.agent-info-section {
+    flex: 1 1 400px;
+    background-color: #383838;  
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Right panel: links, notes, actions */
+.agent-links-section,
+.agent-notes-section {
+    flex: 1 1 500px;
+    background-color: #383838;  
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Headers in panels match agent page style */
+.selected-agent-content h3 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+/* Agent actions buttons */
+.agent-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.agent-actions button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.edit-btn {
+    background-color: #4d8cf7;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background-color: #5aa2ff;
+}
+
+.save-btn {
+    background-color: #3a3d42;
+    color: #f1f1f1;
+}
+
+.save-btn:hover {
+    background-color: #4a4e54;
+}
+
+.delete-btn {
+    background-color: #bf4d6b;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #d35f7b;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./footer";
 import Header from "./Header";
 import NavMenu from "./NavMenu/NavMenu";
-import "../styles/Layout.css";
+import "./Layout.css";
 import { useState } from "react";
 import SignInModal from "./modals/SignInModal";
 import NotificationShelf from "./NotificationShelf/NotificationShelf";

@@ -1,0 +1,87 @@
+/* Projects main content panel */
+.projects-content {
+    background-color: #2a2a2a;  /* dark panel */
+    color: #f1f1f1;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin: 2rem auto;
+    max-width: 1200px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    border: 2px solid #2AC0B9; /* project theme accent */
+}
+
+.projects-content h2 {
+    border-bottom: 2px solid #2AC0B9;
+}
+
+/* Grid layout for project cards container */
+.project-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Buttons wrapper */
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Buttons styling */
+.generate-query-btn,
+.go-to-project-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.generate-query-btn {
+    background-color: #4D8CF7;  /* same as view project */
+    color: #fff;
+    text-align: center;
+}
+
+.generate-query-btn:hover {
+    background-color: #5aa2ff;  /* same hover as view project */
+}
+
+.go-to-project-btn {
+    background-color: #3A3D42; /* neutral for secondary action */
+    color: #fff;
+}
+
+.go-to-project-btn:hover {
+    background-color: #4A4E54;
+}
+
+.view-project-container {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    margin-top: auto;        /* push to the bottom of flex container */
+    padding-top: 1rem;
+}
+
+.view-project-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #4D8CF7;  /* reuse generate-query-btn color or adjust */
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}

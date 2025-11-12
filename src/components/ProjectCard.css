@@ -1,0 +1,12 @@
+.project-card {
+    width: 250px;              
+    height: 250px;             
+    padding: 1rem;                /* inner spacing */
+    border-radius: 0.75rem;       /* rounded corners */
+    border: 1px solid #ccc;       /* subtle border */
+    background-color: #0c7fa6;
+    color: #000000;               /* text color */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

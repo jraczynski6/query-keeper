@@ -1,4 +1,4 @@
-
+import "./CreateAgentModal.css";
 
 export default function CreateAgentModal({ onClose, onCreate }) {
 
@@ -26,7 +26,7 @@ export default function CreateAgentModal({ onClose, onCreate }) {
     
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="create-agent-modal-content">
                 <h2>Create New Agent</h2>
                 <button className="modal-close" onClick={onClose}>X</button>
 

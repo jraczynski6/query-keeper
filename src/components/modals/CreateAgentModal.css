@@ -1,0 +1,138 @@
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.65); /* dark semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Box */
+/* Agents modal content */
+.create-agent-modal-content {
+    background-color: #2a2a2a; /* same dark panel as Agents page */
+    border: 2px solid #6B4DBF;  /* Agents accent */
+    border-radius: 0.75rem;
+    padding: 2rem;
+    color: #f1f1f1;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh; /* prevents cutting off */
+    overflow-y: auto; /* scroll inside modal if content is tall */
+    position: relative;
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #ff6b6b; /* highlight on hover */
+}
+
+/* Form */
+.create-agent-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Fieldsets */
+.create-agent-form fieldset {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+}
+
+/* Legends */
+.create-agent-form legend {
+    font-weight: 600;
+    color: #ffffff;
+    padding: 0 0.5rem;
+}
+
+/* Labels and inputs */
+.create-agent-form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+}
+
+.create-agent-form input,
+.create-agent-form textarea {
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: #383b3f;
+    color: #f1f1f1;
+    font-size: 0.95rem;
+    resize: vertical;
+}
+
+.create-agent-form input:focus,
+.create-agent-form textarea:focus {
+    outline: none;
+    border-color: #4d8cf7;
+    box-shadow: 0 0 5px rgba(77, 140, 247, 0.5);
+}
+
+/* Textarea */
+.create-agent-form textarea {
+    min-height: 80px;
+    max-height: 200px;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.form-actions button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.form-actions button[type="submit"] {
+    background-color: #4d8cf7;
+    color: #fff;
+}
+
+.form-actions button[type="submit"]:hover {
+    background-color: #5aa2ff;
+}
+
+.form-actions button[type="button"] {
+    background-color: #3a3d42;
+    color: #f1f1f1;
+}
+
+.form-actions button[type="button"]:hover {
+    background-color: #4a4e54;
+}

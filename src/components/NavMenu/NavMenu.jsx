@@ -1,57 +1,42 @@
-import { NavLink } from "react-router-dom"
-import "./navMenu.css";
-import { useState } from "react";
-import NotificationShelf from "../NotificationShelf/NotificationShelf";
+import { NavLink } from "react-router-dom";
+import "./NavMenu.css";
 
 export default function NavMenu({ isAuthenticated, onToggleShelf }) {
 
     const handleNotificationClick = () => {
         if (isAuthenticated) {
-            onToggleShelf();;
+            onToggleShelf();
         } else {
             // TODO: add alert to sign in.
         }
     }
 
+    const navItems = [
+        { to: "/dashboard", label: "Dashboard", semantic: "dashboard" },
+        { to: "/agents", label: "Agents", semantic: "agents" },
+        { to: "/projects", label: "Projects", semantic: "projects" },
+        { to: "/author", label: "Author", semantic: "author" },
+        { to: "/about", label: "About", semantic: "about" },
+    ];
+
     return (
         <nav className="nav-menu">
             <ul>
-                <li>
-                    <NavLink to={"/dashboard"} className={({ isActive }) => isActive ? "active" : ""}>
-                        Dashboard
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={"/agents"} className={({ isActive }) => isActive ? "active" : ""}>
-                        Agents
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={"/projects"} className={({ isActive }) => isActive ? "active" : ""}>
-                        Projects
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={"/author"} className={({ isActive }) => isActive ? "active" : ""}>
-                        Author
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to={"/about"} className={({ isActive }) => isActive ? "active" : ""}>
-                        About
-                    </NavLink>
-                </li>
+                {navItems.map((item) => (
+                    <li key={item.to}>
+                        <NavLink
+                            to={item.to}
+                            className={({ isActive }) => `${item.semantic} ${isActive ? "active" : ""}`}
+                        >
+                            {item.label}
+                        </NavLink>
+                    </li>
+                ))}
 
                 <li>
                     <button onClick={handleNotificationClick} className="nav-link-btn">Notifications</button>
                 </li>
             </ul>
-
-
         </nav>
-    )
+    );
 }

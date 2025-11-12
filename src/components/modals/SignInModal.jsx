@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./SignInModal.css";
 
 export default function SignInModal({isOpen, onClose, onSignInSuccess}) {
     const navigate = useNavigate();

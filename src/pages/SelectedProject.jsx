@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
 import { useParams, useNavigate, Link } from "react-router-dom";
-
+import "./SelectedProject.css";
 
 
 export default function SelectedProject() {

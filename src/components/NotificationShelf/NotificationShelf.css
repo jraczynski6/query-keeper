@@ -1,40 +1,80 @@
 .notifications-shelf-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.825); /* darker semi-transparent overlay */
-    display: flex;
-    justify-content: flex-end; /* align shelf to right */
-    z-index: 1000;
-
-    /* Prevent clicks from passing through */
-    pointer-events: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.825); /* dark overlay */
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+  pointer-events: auto;
 }
 
+/* Shelf container */
 .notifications-shelf {
   position: fixed;
   top: 0;
   right: 0;
-  width: 30vw; /* 30% of the viewport width */
+  width: 30vw;
   height: 100vh;
-  background: rgba(40, 40, 40, 0.9);
-  color: #fff;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
-  border-left: 2px solid #444;
+  background: #121212; /* deep dark base */
+  color: #EAEAEA;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  border-left: 2px solid #35922f; /* green accent border */
   z-index: 2000;
 
   display: flex;
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
+  animation: slideIn 0.3s ease forwards;
 }
 
+/* Header section */
 .shelf-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(53, 146, 47, 0.4);
   margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.shelf-header h3 {
+  color: #35922f;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  justify-content: center;
+}
+
+/* Close button */
+.close-shelf-btn {
+  background: none;
+  border: 1px solid rgba(53, 146, 47, 0.5);
+  color: #EAEAEA;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-shelf-btn:hover {
+  background: #35922f;
+  color: #fff;
+  border-color: #35922f;
+}
+
+/* Scrollbar styling */
+.notifications-shelf::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notifications-shelf::-webkit-scrollbar-thumb {
+  background-color: rgba(53, 146, 47, 0.5);
+  border-radius: 4px;
+}
+
+.notifications-shelf::-webkit-scrollbar-thumb:hover {
+  background-color: #35922f;
 }

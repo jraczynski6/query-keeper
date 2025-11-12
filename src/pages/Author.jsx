@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import "./Author.css"
+
 export default function Author() {
 
     // Mock Author data

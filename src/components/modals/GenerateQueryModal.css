@@ -1,0 +1,126 @@
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.65); /* dark semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Box */
+/* Generate Query Modal accent (same as Projects) */
+.generate-query-modal-content {
+    background-color: #2a2a2a;          /* projects dark panel */
+    border: 2px solid #2AC0B9;          /* projects accent */
+    border-radius: 0.75rem;
+    padding: 2rem;
+    color: #f1f1f1;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #62C370; /* green highlight like project buttons */
+}
+
+/* Form */
+.generate-query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Fieldsets */
+.generate-query-form fieldset {
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+}
+
+/* Legends */
+.generate-query-form legend {
+    font-weight: 600;
+    color: #ffffff;
+    padding: 0 0.5rem;
+}
+
+/* Labels and inputs */
+.generate-query-form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+}
+
+.generate-query-form input,
+.generate-query-form textarea,
+.generate-query-form select {
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: #383b3f;
+    color: #f1f1f1;
+    font-size: 0.95rem;
+    resize: vertical;
+}
+
+.generate-query-form input:focus,
+.generate-query-form textarea:focus,
+.generate-query-form select:focus {
+    outline: none;
+    border-color: #4D8CF7; /* projects blue */
+    box-shadow: 0 0 5px rgba(77,140,247,0.5);
+}
+
+/* Form Actions */
+.generate-query-form button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.generate-query-form button[type="submit"] {
+    background-color: #4D8CF7; /* projects blue */
+    color: #fff;
+}
+
+.generate-query-form button[type="submit"]:hover {
+    background-color: #62C370; /* hover green like project buttons */
+}
+
+.generate-query-form button[type="button"] {
+    background-color: #3a3d42;
+    color: #f1f1f1;
+}
+
+.generate-query-form button[type="button"]:hover {
+    background-color: #4a4e54;
+}

@@ -3,6 +3,7 @@ import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
 import { useDashboard } from "../contexts/DashboardContext";
 import { Link } from "react-router-dom";
+import "./Projects.css";
 
 export default function Projects() {
 
@@ -96,30 +97,44 @@ John Smith`,
         <div className="projects-page">
 
             <main className="projects-content">
-                <h1>Projects</h1>
+                <h2>Projects</h2>
 
-                <button
-                    className="generate-query-btn"
-                    onClick={openGenerate}
-                >
-                    Generate Query
-                </button>
+                <div className="button-wrapper">
+                    <button
+                        className="generate-query-btn"
+                        onClick={openGenerate}
+                    >
+                        Generate Query
+                    </button>
+                </div>
 
-                {/* display project Cards */}
-                {projects.map(project => (
-                    <div key={project.id} className="project-card-wrapper">
-                        <ProjectCard
-                            project={project}
-                            agent={project.agent}
-                            isSelected={selectedProject?.id === project.id}
-                            onSelect={() => setSelectedProject(project)}
-                            onPin={() => handlePin(project)}
-                        />
-                        <Link to={`/projects/${project.id}`} className="go-to-project-btn">
+                {/* Project cards container */}
+                <div className="project-cards-container">
+                    {projects.map(project => (
+                        <div key={project.id} className="project-card-wrapper">
+                            <ProjectCard
+                                project={project}
+                                agent={project.agent}
+                                isSelected={selectedProject?.id === project.id}
+                                onSelect={() => setSelectedProject(project)}
+                                onPin={() => handlePin(project)}
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Bottom-centered View Project button */}
+                {selectedProject && (
+                    <div className="view-project-container">
+                        <Link
+                            to={`/projects/${selectedProject.id}`}
+                            className="view-project-btn"
+                        >
                             View Project
                         </Link>
                     </div>
-                ))}
+                )}
+
 
                 {/* Generate Query Modal */}
                 <GenerateQueryModal

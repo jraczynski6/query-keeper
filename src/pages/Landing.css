@@ -1,12 +1,13 @@
-/* Landing page container - hero style */
+/* Landing page container */
 .landing-page {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* align to top instead of center */
-  min-height: calc(100vh - 80px); /* subtract header height */
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
   background-color: var(--bg-color);
   font-family: "Inter", system-ui, sans-serif;
-  padding: 4rem 2rem; /* space at top */
+  padding: 4rem 2rem;
+
 }
 
 /* Landing content box */
@@ -20,7 +21,7 @@
   width: 85%;
   color: #EAEAEA;
   font-size: 1.2rem;
-  margin-top: 5vh; /* push it slightly down from top */
+  margin-top: 5vh;
 }
 
 /* Headings */
@@ -40,7 +41,7 @@
 }
 
 /* CTA button */
-.landing-content .cta-button {
+.register-btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
@@ -49,10 +50,66 @@
   background-color: #35922f;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.landing-content .cta-button:hover {
+.register-btn {
   background-color: #42b636;
   transform: translateY(-1px);
+}
+
+
+/* Media Queries */
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  .landing-page {
+    padding: 2rem 1rem;
+  }
+
+  .landing-content {
+    padding: 3rem 2rem;
+    width: 95%;
+    border-radius: 1rem;
+  }
+
+  .landing-content h2 {
+    font-size: 2rem;
+  }
+
+  .landing-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .register-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+/* Tablet Query */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .landing-page {
+    padding: 3rem 2rem;
+  }
+
+  .landing-content {
+    padding: 4rem 3rem;
+    width: 90%;
+  }
+
+  .landing-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .landing-content p {
+    font-size: 1.1rem;
+  }
+
+  .register-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
 }

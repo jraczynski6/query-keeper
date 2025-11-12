@@ -15,23 +15,12 @@ export default function ProjectCard({ project, onSelect, onPin, isSelected }) {
 
             {/* conditional render for agent */}
             {agent && (
+
                 <p className="project-agent">
                     agent: {agent.firstName} {agent.lastName}
                 </p>
             )}
-
-            {isSelected && (
-                <button
-                    className="pin-btn"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onPin();
-                    }}
-                >
-                    Pin to Dashboard
-                </button>
-            )}
-
+            <button className="pin-btn" onClick={onPin}>Pin</button>
         </div>
     );
 }

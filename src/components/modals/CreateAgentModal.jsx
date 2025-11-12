@@ -85,7 +85,7 @@ export default function CreateAgentModal({ onClose, onCreate }) {
 
                     {/* Form Actions */}
                     <div className="form-actions">
-                        <button type="button">Cancel</button>
+                        <button type="button" onClick={onClose}>Cancel</button>
                         <button type="submit">Create Agent</button>
                     </div>
 

@@ -7,7 +7,7 @@ import { useDashboard } from "../contexts/DashboardContext";
 import "./Agents.css";
 
 export default function Agents() {
-    
+
     //for pinItem
     const { pinItem } = useDashboard();
 
@@ -17,19 +17,7 @@ export default function Agents() {
         if (savedAgents) return JSON.parse(savedAgents);
 
         // Default agent 
-        const defaultAgent = {
-            id: crypto.randomUUID(),
-            firstName: "Jane",
-            lastName: "Doe",
-            agency: "Best Agent Agency",
-            email: "janedoe@email.com",
-            website: "janedoeagent.com",
-            twitter: "@janedoe",
-            instagram: "@janedoe_",
-            notes: "This agent prefers fantasy"
-        };
-
-        //  save default agent
+        const defaultAgent = createAgent();
         localStorage.setItem("agents", JSON.stringify([defaultAgent]));
         return [defaultAgent];
     });
@@ -60,69 +48,85 @@ export default function Agents() {
         });
     };
 
+    //check agency against agents
+    const sameAgencyAgents = selectedAgent ? agents.filter(a => a.agency === selectedAgent.agency && a.id !== selectedAgent.id) : [];
+
     return (
         <div className="agents-page">
             <main className="agents-content">
                 <div className="split-container">
 
-                    {/* Left: Agents List */}
+                    {/* Left: Agents List Panel */}
                     <section className="agents-list-panel">
                         <h2>Agents</h2>
-                        <button className="create-agent-btn" onClick={openModal}>Create New Agent</button>
+                        <button className="create-agent-btn" onClick={openModal}>
+                            Create New Agent
+                        </button>
 
-                        {/* map agents using id */}
-                        {agents.map((agent) => (
-                            <AgentCard
-                                key={agent.id}
-                                {...agent} //pass all properties to component
-                                onSelect={() => setSelectedAgent(agent)}
-                                onPin={() => handlePin(agent)}
-                            />
-                        ))}
+                        <div className="panel-content">
+                            {agents.map(agent => (
+                                <AgentCard
+                                    key={agent.id}
+                                    {...agent}
+                                    onSelect={() => setSelectedAgent(agent)}
+                                    onPin={() => handlePin(agent)}
+                                />
+                            ))}
+                        </div>
                     </section>
 
-                    {/* Right: Agent Preview */}
+                    {/* Right: Agent Preview Panel */}
                     <section className="agent-preview-panel">
-                        <h2>Agent preview</h2>
+                        <h2>Agent Preview</h2>
 
-                        {selectedAgent ? (
-                            <div className="agent-preview-card">
-                                <h3>{selectedAgent.firstName} {selectedAgent.lastName}</h3>
-                                <p className="agent-agency">{selectedAgent.agency}</p>
-                                <p className="agent-email">{selectedAgent.email}</p>
+                        <div className="panel-content">
+                            {selectedAgent ? (
+                                <div className="agent-preview-card">
+                                    <h3>{selectedAgent.firstName} {selectedAgent.lastName}</h3>
+                                    <p className="agent-agency">{selectedAgent.agency}</p>
+                                    <p className="agent-email">{selectedAgent.email}</p>
 
-                                <p className="agent-links">
-                                    <span>{selectedAgent.website}</span>
-                                    <span>{selectedAgent.twitter}</span>
-                                    <span>{selectedAgent.instagram}</span>
-                                </p>
+                                    <p className="agent-links">
+                                        <span>{selectedAgent.website}</span>
+                                        <span>{selectedAgent.twitter}</span>
+                                        <span>{selectedAgent.instagram}</span>
+                                    </p>
 
-                                <div className="agent-notes-preview">
-                                    <h4>Notes:</h4>
-                                    <p>{selectedAgent.notes}</p>
+                                    <div className="agent-notes-preview">
+                                        <h4>Notes:</h4>
+                                        <p>{selectedAgent.notes}</p>
+                                    </div>
+
+                                    {sameAgencyAgents.length > 0 && (
+                                        <div className="same-agency-agents">
+                                            <h4>Other agents in agency</h4>
+                                            <ul>
+                                                {sameAgencyAgents.map(a => (
+                                                    <li
+                                                        key={a.id}
+                                                        className="same-agency-item"
+                                                        onClick={() => setSelectedAgent(a)}
+                                                    >
+                                                        {a.firstName} {a.lastName}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    <Link
+                                        to={`/agents/${selectedAgent.id}`}
+                                        className="edit-agent-btn"
+                                    >
+                                        Go To Selected Agent
+                                    </Link>
                                 </div>
-
-                                <div className="same-agency-agents">
-                                    <h4>Other agents in agency</h4>
-                                    <ul>
-                                        {/* TODO: Map same agency agents here use strict equality */}
-                                    </ul>
+                            ) : (
+                                <div className="no-preview-placeholder">
+                                    <p>Select an agent card to view details</p>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="no-preview-placeholder">
-                                <p>Select an agent card to view Details</p>
-                            </div>
-                        )}
-                        {/* navigation hook: push route with state */}
-                        {selectedAgent && (
-                            <Link
-                                to={`/agents/${selectedAgent.id}`}
-                                className="edit-agent-btn"
-                            >
-                                Go To Selected Agent
-                            </Link>
-                        )}
+                            )}
+                        </div>
                     </section>
 
                 </div>
@@ -132,9 +136,9 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgentwithId = { ...agentData, id: crypto.randomUUID }; // generate id
-                        setAgents(prev => [...prev, newAgentwithId]); // update state with spread + newAgentWithId
-                        setSelectedAgent(newAgentwithId);
+                        const newAgent = createAgent(agentData);
+                        setAgents(prev => [...prev, newAgent]);
+                        setSelectedAgent(newAgent);
                     }}
                 />}
         </div>
@@ -142,7 +146,6 @@ export default function Agents() {
 }
 
 
-// TODO: Edit/Delete agent
 // TODO: Filter/Search agents
 // TODO: Other agents in the same agency
 // TODO: Form validation

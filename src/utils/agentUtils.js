@@ -1,9 +1,8 @@
-// TODO: use timestamp id
-let nextId = 1;
+
 
 export function createAgent(overrides = {}) { //override default
     return {
-        id: nextId++,
+        id: crypto.randomUUID(),
         firstName: "Jane",
         lastName: "Doe",
         agency: "Best Agent Agency",

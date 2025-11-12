@@ -26,7 +26,7 @@ export default function Landing({ setAuthenticated }) {
                 </p>
 
                 <div className="landing-actions">
-                    <button onClick={() => setRegisterOpen(true)}>Register</button>
+                    <button className="register-btn" onClick={() => setRegisterOpen(true)}>Register</button>
                 </div>
 
                 {/* Register Modal */}

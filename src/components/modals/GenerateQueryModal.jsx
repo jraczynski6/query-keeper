@@ -30,7 +30,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     const [wordCount, setWordCount] = useState(project?.wordCount || "");
     const [genre, setGenre] = useState(project?.genre || "");
     const [sampleSize, setSampleSize] = useState(project?.sampleSize?.toString() || "");
-    const [sampleText, setSampleText] = useState(project?.sampleText ||"");
+    const [sampleText, setSampleText] = useState(project?.sampleText || "");
 
     //track selected template
     const [selectedTemplateId, setSelectedTemplateId] = useState("");
@@ -106,7 +106,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
 
 
-    
+
     return (
         <div className="modal-overlay">
             <div className="generate-query-modal-content">
@@ -246,11 +246,13 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                                 onChange={(e) => setSampleText(e.target.value)}
                                 placeholder="Enter text for selected pages"
                                 rows={8}
-                                />
+                            />
                         </label>
                     </fieldset>
 
-                    <button type="submit">Generate</button>
+                    <button type="submit" disabled={!author || !selectedAgentId || !selectedTemplateId}>
+                        Generate
+                    </button>
                     <button type="button" onClick={onClose}>Cancel</button>
                 </form>
             </div>

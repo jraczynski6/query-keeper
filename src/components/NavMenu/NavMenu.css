@@ -26,7 +26,6 @@
 
 .nav-menu li+li {
     border-left: 1px solid #ccc;
-    /* vertical line between items */
 }
 
 .nav-menu a {
@@ -54,27 +53,66 @@
 }
 
 
-/* Semantic colors with high contrast */
+/* nav menu link colors */
 .nav-menu a.dashboard {
     color: #DDDDDD;
-    /* bright for contrast */
+
 }
 
 .nav-menu a.projects {
     color: #2AC0B9;
-    /* lighter blue for visibility */
+
 }
 
 .nav-menu a.agents {
     color: #A074FF;
-    /* lighter purple */
+
 }
 
 .nav-menu a.author {
     color: #FF5CA1;
-    /* lighter violet-red */
+
 }
 
 .nav-menu a.about {
     color: #c57418;
+}
+
+
+
+/* Mobile nav menu Queries */
+@media (max-width: 767px) {
+  .nav-menu {
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-menu li {
+    flex: none;
+    margin: 0.25rem 0;
+    border-left: none;
+  }
+
+   .nav-menu li+li {
+    border-left: none;
+  }
+
+  .nav-menu a {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-link-btn {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+  }
 }

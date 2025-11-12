@@ -16,8 +16,7 @@ export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="modal-close" onClick={onClose}>X</button>
+            <div className="modal-content"> 
                 <h2>Register</h2>
                 <form className="register-form" onSubmit={handleSubmit}>
                     <label>
@@ -36,6 +35,11 @@ export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
                     </label>
                     <button type="submit">Register</button>
                 </form>
+                <button
+                    type="button"
+                    className="cancel-button"
+                    onClick={onClose}
+                >Cancel</button>
             </div>
         </div>
     )

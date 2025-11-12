@@ -7,7 +7,7 @@ import { useDashboard } from "../contexts/DashboardContext";
 import "./Agents.css";
 
 export default function Agents() {
-    
+
     //for pinItem
     const { pinItem } = useDashboard();
 
@@ -18,6 +18,8 @@ export default function Agents() {
 
         // Default agent 
         const defaultAgent = createAgent();
+        localStorage.setItem("agents", JSON.stringify([defaultAgent]));
+        return [defaultAgent];
     });
 
 
@@ -45,6 +47,9 @@ export default function Agents() {
             position: { x: 50, y: 50 } // default position
         });
     };
+
+    //check agency against agents
+    const sameAgencyAgents = selectedAgent ? agents.filter(a => a.agency === selectedAgent.agency && a.id !== selectedAgent.id) : [];
 
     return (
         <div className="agents-page">
@@ -91,7 +96,15 @@ export default function Agents() {
                                 <div className="same-agency-agents">
                                     <h4>Other agents in agency</h4>
                                     <ul>
-                                        {/* TODO: Map same agency agents here use strict equality */}
+                                        {sameAgencyAgents.map(a => (
+                                            <li
+                                                key={a.id}
+                                                className="same-agency-item"
+                                                onClick={() => setSelectedAgent(a)}
+                                            >
+                                                {a.firstName} {a.lastName}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -118,7 +131,7 @@ export default function Agents() {
                 <CreateAgentModal
                     onClose={closeModal}
                     onCreate={(agentData) => {
-                        const newAgent = createAgent(agentData); 
+                        const newAgent = createAgent(agentData);
                         setAgents(prev => [...prev, newAgent]);
                         setSelectedAgent(newAgent);
                     }}
@@ -128,7 +141,6 @@ export default function Agents() {
 }
 
 
-// TODO: Edit/Delete agent
 // TODO: Filter/Search agents
 // TODO: Other agents in the same agency
 // TODO: Form validation

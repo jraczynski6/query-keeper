@@ -8,8 +8,23 @@ export default function SelectedAgent() {
     const navigate = useNavigate();
 
     const agents = JSON.parse(localStorage.getItem("agents")) || [];
-    const agent = agents.find(a => a.id.toString() === id);
+    const agent = agents.find(a => a.id && a.id.toString() === id);
 
+    const handleDelete = () => {
+        // get agents from local storage
+        const agents = JSON.parse(localStorage.getItem("agents")) || [];
+
+        // filter agent out
+        const updatedAgents = agents.filter(a => a.id !== agent.id);
+
+        //save to local storage
+        localStorage.setItem("agents", JSON.stringify(updatedAgents));
+
+        // navigate back to agent page
+        navigate("/agents");
+
+
+    }
 
     // fallback UI
     if (!agent) {
@@ -53,7 +68,7 @@ export default function SelectedAgent() {
                 <div className="agent-actions">
                     <button type="button" className="edit-btn">Edit Agent</button>
                     <button type="button" className="save-btn">Save</button>
-                    <button type="button" className="delete-btn">Delete Agent</button>
+                    <button type="button" className="delete-btn" onClick={handleDelete}>Delete Agent</button>
                 </div>
             </main>
 

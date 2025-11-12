@@ -78,3 +78,59 @@
 .notifications-shelf::-webkit-scrollbar-thumb:hover {
   background-color: #35922f;
 }
+
+/* Media Queries */
+
+/* Mobile */
+@media (max-width: 767px) {
+    .notifications-shelf-overlay {
+        justify-content: center; /* center shelf horizontally */
+        align-items: flex-start; /* optional: start from top */
+        padding-top: 20px;       /* spacing from top */
+    }
+
+    .notifications-shelf {
+        width: 90vw;           /* nearly full width */
+        height: auto;          /* grow naturally */
+        max-height: 80vh;      /* limit height to viewport */
+        border-left: none;     /* remove left border */
+        border-radius: 8px;    /* rounded corners */
+        animation: slideInMobile 0.3s ease forwards;
+    }
+
+    .shelf-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .shelf-header h3 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .close-shelf-btn {
+        width: auto;         /* shrink to fit content */
+        padding: 4px 8px;    /* smaller padding */
+        font-size: 0.85rem;  /* smaller text */
+        border-radius: 4px;  /* slightly smaller corners */
+        align-self: flex-end; /* keep it at the top-right corner */
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .notifications-shelf {
+        width: 40vw; /* slightly wider on tablet */
+        padding: 15px;
+    }
+
+    .shelf-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .close-shelf-btn {
+        padding: 3px 8px;
+        font-size: 0.9rem;
+    }
+}

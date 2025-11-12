@@ -16,7 +16,7 @@ export default function NavMenu({ isAuthenticated, onToggleShelf }) {
         { to: "/agents", label: "Agents", semantic: "agents" },
         { to: "/projects", label: "Projects", semantic: "projects" },
         { to: "/author", label: "Author", semantic: "author" },
-        { to: "/about", label: "About", semantic: "home" },
+        { to: "/about", label: "About", semantic: "about" },
     ];
 
     return (

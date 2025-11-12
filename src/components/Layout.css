@@ -32,66 +32,62 @@
     flex: 1;
 }
 
-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    background-color: var(--bg-color);
-    color: var(--color-text-secondary);
-}
-
-.footer-note p {
-    font-size: 0.875rem;
-    color: var(--color-text); /* main text brighter */
-}
-
+/* Footer container for app */
+/* Compact dark footer */
 .app-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
-    padding: 2rem;
-    background: white;
-    color: var(--color-text);
-    /* brighter main text */
-    gap: 1.5rem;
-    border-top: 1px solid #444;
+    padding: 1rem 1.5rem; /* reduced padding */
+    border-top: 1px solid #555;
+    background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
+    color: #EAEAEA;
+    gap: 1rem; /* smaller spacing between elements */
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
+    max-width: 100%; /* prevent overflow */
+    box-sizing: border-box;
 }
 
+/* Footer nav links */
 .footer-nav {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem; /* smaller spacing */
+    flex-wrap: wrap; /* wrap on small screens */
 }
 
 .footer-nav a {
     text-decoration: none;
-    color: #333;
+    color: #BBBBBB;
+    transition: color 0.2s ease;
 }
 
+.footer-nav a:hover {
+    color: #EAEAEA;
+}
+
+/* Footer note / copyright */
+.footer-note p {
+    font-size: 0.8rem; /* slightly smaller text */
+    color: #999999;
+    text-align: center;
+}
+
+/* Footer newsletter section */
 .footer-newsletter {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    width: 100%;
 }
 
-.layout-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: var(--bg-color);
-}
-
+/* Newsletter form styling */
 .footer-newsletter-form {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
+    max-width: 100%; /* prevent overflow */
 }

@@ -55,8 +55,8 @@
 
 
 /* Semantic colors with high contrast */
-.nav-menu a.home {
-    color: #FFFFFF;
+.nav-menu a.dashboard {
+    color: #DDDDDD;
     /* bright for contrast */
 }
 

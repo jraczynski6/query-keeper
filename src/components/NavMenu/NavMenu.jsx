@@ -12,7 +12,7 @@ export default function NavMenu({ isAuthenticated, onToggleShelf }) {
     }
 
     const navItems = [
-        { to: "/dashboard", label: "Dashboard", semantic: "home" },
+        { to: "/dashboard", label: "Dashboard", semantic: "dashboard" },
         { to: "/agents", label: "Agents", semantic: "agents" },
         { to: "/projects", label: "Projects", semantic: "projects" },
         { to: "/author", label: "Author", semantic: "author" },

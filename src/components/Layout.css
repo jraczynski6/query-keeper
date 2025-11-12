@@ -1,6 +1,5 @@
 .app-header {
     background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
-    /* slightly darker than --bg-color */
     border-bottom: 1px solid #555;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
@@ -32,20 +31,55 @@
     flex: 1;
 }
 
-/* Footer container for app */
-/* Compact dark footer */
+
+.sign-in-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem; 
+  border: 1px solid #BBBBBB;
+  border-radius: 8px;
+  background-color: #2AC0B9;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sign-in-btn:hover {
+  background-color: #34d0c8;
+  transform: translateY(-1px);
+}
+
+.sign-out-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #BBBBBB;
+  border-radius: 8px;
+  background-color: #FF5C5C;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sign-out-btn:hover {
+  background-color: #FF7878;
+  transform: translateY(-1px);
+}
+
+/* Footer */
+
 .app-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem 1.5rem; /* reduced padding */
+    padding: 1rem 1.5rem;
     border-top: 1px solid #555;
     background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
     color: #EAEAEA;
-    gap: 1rem; /* smaller spacing between elements */
+    gap: 1rem;
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
-    max-width: 100%; /* prevent overflow */
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -53,8 +87,8 @@
 .footer-nav {
     display: flex;
     justify-content: center;
-    gap: 1.5rem; /* smaller spacing */
-    flex-wrap: wrap; /* wrap on small screens */
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .footer-nav a {
@@ -69,7 +103,7 @@
 
 /* Footer note / copyright */
 .footer-note p {
-    font-size: 0.8rem; /* slightly smaller text */
+    font-size: 0.8rem;
     color: #999999;
     text-align: center;
 }
@@ -86,22 +120,22 @@
 /* Newsletter form styling */
 .footer-newsletter-form {
   display: flex;
-  flex-wrap: wrap;      /* allow wrapping on small screens */
+  flex-wrap: wrap;
   gap: 0.5rem;
   width: 100%;
-  max-width: 100%;      /* do not exceed parent width */
+  max-width: 100%;
   box-sizing: border-box;
 }
 
 .footer-newsletter-form input {
-  flex: 1 1 auto;       /* grow and shrink with container */
-  min-width: 0;         /* prevent overflow */
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 0.5rem;
   box-sizing: border-box;
 }
 
 .footer-newsletter-form button {
-  flex: none;           /* keep intrinsic width */
+  flex: none;
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
 }
@@ -129,7 +163,6 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Optional: if nav-menu should stack vertically */
   .nav-menu {
     flex-direction: column;
     gap: 0.5rem;
@@ -173,13 +206,13 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    max-width: 100%; /* ensure container does not overflow */
+    max-width: 100%;
     box-sizing: border-box;
   }
 
   .footer-newsletter-form input,
   .footer-newsletter-form button {
-    width: 100%; /* full width */
+    width: 100%;
   }
 
   .footer-newsletter-form input {

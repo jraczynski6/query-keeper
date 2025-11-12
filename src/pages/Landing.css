@@ -3,13 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* align to top instead of center */
   min-height: calc(100vh - 80px);
-  /* subtract header height */
   background-color: var(--bg-color);
   font-family: "Inter", system-ui, sans-serif;
   padding: 4rem 2rem;
-  /* space at top */
+
 }
 
 /* Landing content box */
@@ -24,7 +22,6 @@
   color: #EAEAEA;
   font-size: 1.2rem;
   margin-top: 5vh;
-  /* push it slightly down from top */
 }
 
 /* Headings */
@@ -44,7 +41,7 @@
 }
 
 /* CTA button */
-.landing-content .cta-button {
+.register-btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
@@ -53,10 +50,9 @@
   background-color: #35922f;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.landing-content .cta-button:hover {
+.register-btn {
   background-color: #42b636;
   transform: translateY(-1px);
 }
@@ -65,7 +61,6 @@
 /* Media Queries */
 
 /* Mobile */
-
 @media (max-width: 767px) {
 
   .landing-page {
@@ -87,7 +82,7 @@
     line-height: 1.5;
   }
 
-  .landing-content .cta-button {
+  .register-btn {
     width: 100%;
     text-align: center;
   }
@@ -114,7 +109,7 @@
     font-size: 1.1rem;
   }
 
-  .landing-content .cta-button {
+  .register-btn {
     padding: 0.6rem 1.5rem;
     font-size: 1rem;
   }

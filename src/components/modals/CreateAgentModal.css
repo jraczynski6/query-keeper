@@ -77,21 +77,33 @@
 
 .create-agent-form input,
 .create-agent-form textarea {
-    margin-top: 0.25rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* ensures padding + border don't overflow */
     padding: 0.5rem 0.75rem;
-    border-radius: 0.4rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.5rem;
+    border: 2px solid #6B4DBF; 
     background-color: #383b3f;
     color: #f1f1f1;
     font-size: 0.95rem;
     resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Focus Glow */
 .create-agent-form input:focus,
 .create-agent-form textarea:focus {
     outline: none;
-    border-color: #4d8cf7;
-    box-shadow: 0 0 5px rgba(77, 140, 247, 0.5);
+    border-color: #6B4DBF;
+    box-shadow: 0 0 6px rgba(107, 77, 191, 0.5);
+}
+
+/* Focus Glow */
+.create-agent-form input:focus,
+.create-agent-form textarea:focus {
+    outline: none;
+    border-color: #6B4DBF;
+    box-shadow: 0 0 6px rgba(107, 77, 191, 0.5);
 }
 
 /* Textarea */

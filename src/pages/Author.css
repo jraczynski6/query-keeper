@@ -14,6 +14,8 @@
     justify-content: center;
 }
 
+
+
 /* Split columns: form and preview */
 .author-form-panel,
 .author-preview {
@@ -33,6 +35,26 @@
     border-bottom: 2px solid #FF5CA1;
 }
 
+.author-form-panel {
+    background-color: #383838;
+    border: 2px solid #FF5CA1;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.author-form-panel h2 {
+    text-align: center;
+    color: #fff;
+    border-bottom: 2px solid #FF5CA1;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Input Groups */
 .author-form-panel form {
     display: flex;
     flex-direction: column;
@@ -42,15 +64,29 @@
 .author-form-panel label {
     display: flex;
     flex-direction: column;
-    font-size: 0.95rem;
-    color: #e0e0e0;
+    color: #ccc;
+    font-weight: 500;
+    gap: 0.25rem;
 }
 
-.author-form-panel input {
+/* Inputs + Textareas */
+.author-form-panel input,
+.author-form-panel textarea {
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+    border: 1px solid #FF5CA1;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font: inherit;
     width: 100%;
-    max-width: 300px;    
-    margin: 0.25rem auto 0; 
-    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.author-form-panel input:focus,
+.author-form-panel textarea:focus {
+    border-color: #ff7eb8;
+    box-shadow: 0 0 6px #ff5ca1;
+    outline: none;
 }
 
 .save-btn {
@@ -130,17 +166,38 @@
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
-    .author-content {
-        flex-direction: column;
-        align-items: center; 
-        gap: 1.5rem;
-        max-height: none;
-        padding: 1.5rem;
-    }
+  .author-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+  }
 
-    .author-form-panel,
-    .author-preview {
-        flex: 1 1 100%;
-        max-width: 500px;
-    }
+    .split-container {
+    flex-direction: column;
+    align-items: center;     
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .author-form-panel,
+  .author-preview {
+    flex: 1 1 100%;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* centers the content inside */
+  }
+
+  .preview-card {
+    width: 100%;
+    max-width: 450px;        /* keeps card from going full width */
+    margin: 0 auto;          /* centers the card block itself */
+  }
 }

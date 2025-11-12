@@ -32,3 +32,31 @@
 .notification-card button:hover {
   color: #35922f;
 }
+
+/* Media Queries */
+
+/* Mobile */
+@media (max-width: 767px) {
+    .notification-card {
+        padding: 10px 14px;   /* more compact */
+        margin-bottom: 8px;
+        border-left-width: 3px; /* thinner accent line */
+        border-radius: 8px;      /* slightly smaller radius */
+    }
+
+    .notification-card button {
+        font-size: 0.8rem;     /* smaller close button */
+    }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .notification-card {
+        padding: 12px 16px;  /* slightly smaller padding */
+        margin-bottom: 10px;
+    }
+
+    .notification-card button {
+        font-size: 0.85rem;  /* smaller close button */
+    }
+}

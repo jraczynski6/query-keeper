@@ -93,7 +93,7 @@
   transform: translateY(-1px);
 }
 
-/* Cancel button - full width, secondary color */
+/* Cancel button */
 .modal-content .cancel-button {
   width: 100%;   
   padding: 0.5rem 0;

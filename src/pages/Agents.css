@@ -21,7 +21,7 @@
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
-    flex-wrap: wrap; /* allow panels to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
 /* Panels: Scrollable Content */
@@ -64,9 +64,9 @@
 
 /* Agent Cards */
 .agent-card {
-    flex: 1 1 calc(33.333% - 1rem);  /* 3 cards per row, accounting for gap */
+    flex: 1 1 calc(33.333% - 1rem);
     max-width: calc(33.333% - 1rem);
-    min-width: 250px;                /* prevents cards from shrinking too small */
+    min-width: 250px;    
     height: auto;
     padding: 1rem;
     border-radius: 0.75rem;
@@ -213,14 +213,14 @@
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
  .split-container {
-    flex-direction: column; /* stack panels vertically */
+    flex-direction: column;
     gap: 1.5rem;
   }
 
   .agents-list-panel,
   .agent-preview-panel {
-    flex: 1 1 100%; /* full width */
-    height: auto;   /* let height adjust to content */
+    flex: 1 1 100%;
+    height: auto;  
   }
 
   .agents-list-panel .panel-content {
@@ -230,7 +230,7 @@
   }
 
   .agent-card {
-    flex: 1 1 100%; /* cards fill width */
+    flex: 1 1 100%;
     max-width: 100%;
   }
 

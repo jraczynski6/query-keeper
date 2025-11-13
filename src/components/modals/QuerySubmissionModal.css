@@ -16,7 +16,7 @@
 /* Modal Box */
 .query-submission-modal-content {
     background-color: #2a2a2a;
-    border: 2px solid #2AC0B9; /* project accent */
+    border: 2px solid #2AC0B9;
     border-radius: 0.75rem;
     padding: 2rem;
     color: #f1f1f1;
@@ -49,7 +49,7 @@
 
 /* Form Sections */
 .form-section {
-    border: 1px solid #2AC0B9; /* accent border */
+    border: 1px solid #2AC0B9;
     border-radius: 0.5rem;
     padding: 1rem 1.25rem;
     width: 100%;
@@ -57,7 +57,7 @@
 
 .form-section h3 {
     font-weight: 600;
-    color: #2AC0B9; /* accent heading */
+    color: #2AC0B9;
     margin-bottom: 0.75rem;
 }
 
@@ -72,7 +72,7 @@
 
 label {
     font-size: 0.95rem;
-    color: #2AC0B9; /* accent label */
+    color: #2AC0B9;
     margin-bottom: 0.25rem;
     text-align: center;
 }
@@ -84,7 +84,7 @@ select {
     max-width: 500px;
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
-    border: 1px solid #2AC0B9; /* accent border */
+    border: 1px solid #2AC0B9;
     background-color: #383b3f;
     color: #f1f1f1;
     font-size: 0.95rem;
@@ -97,7 +97,7 @@ input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: #4dd3c9; /* hover/focus accent highlight */
+    border-color: #4dd3c9;
     box-shadow: 0 0 6px rgba(42, 192, 185, 0.5);
 }
 
@@ -114,7 +114,7 @@ select:focus {
     background-color: #383b3f;
     padding: 0.75rem;
     border-radius: 0.5rem;
-    border: 1px solid #2AC0B9; /* accent */
+    border: 1px solid #2AC0B9;
     color: #f1f1f1;
     max-height: 150px;
     overflow-y: auto;
@@ -137,7 +137,7 @@ select:focus {
     border-radius: 0.5rem;
     cursor: pointer;
     font-weight: 500;
-    border: 1px solid #2AC0B9; /* accent border */
+    border: 1px solid #2AC0B9;
     transition: all 0.2s ease;
 }
 
@@ -152,7 +152,7 @@ select:focus {
 }
 
 .submit-btn {
-    background-color: #2AC0B9; /* accent button */
+    background-color: #2AC0B9;
     color: #fff;
 }
 

@@ -41,7 +41,7 @@
     box-sizing: border-box;
 }
 
-/* Bottom-centered View Project button */
+/*  View Project button */
 .view-project-container {
     display: flex;
     justify-content: center;

@@ -10,7 +10,7 @@
   transition: all 0.25s ease;
 }
 
-/* hover interaction for life and depth */
+/* hover interaction */
 .notification-card:hover {
   background: rgba(25, 25, 25, 0.95);
   border-color: #35922f;
@@ -18,7 +18,7 @@
   box-shadow: 0 4px 12px rgba(53, 146, 47, 0.25);
 }
 
-/* optional close or dismiss button */
+/* close or dismiss button */
 .notification-card button {
   background: none;
   border: none;

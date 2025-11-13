@@ -1,26 +1,34 @@
-
 import React, { useState } from "react";
+import "./EditableNoteCard.css";
 
-export default function EditableNoteCard({onUpdate, note}) {
-    //handle own edit state
+export default function EditableNoteCard({ note, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
-    const [text, setText] = useState(Note.content.text);
+    const [text, setText] = useState(note?.content?.text || "New note");
 
-    // save note
     const handleSave = () => {
+        // Update parent state
         onUpdate(note.id, text);
+        // Close edit mode
         setIsEditing(false);
+    };
+
+    const handleDelete = () => {
+        onDelete(note.id);
     };
 
     return (
         <div className="mini-card note-card">
             {isEditing ? (
                 <>
-                <textarea
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    <textarea
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        autoFocus
                     />
-                    <button className="save-btn" onClick={handleSave}>Save</button>
+                    <div className="note-card-buttons">
+                        <button className="save-btn" onClick={handleSave}>Save</button>
+                        <button className="delete-btn" onClick={handleDelete}>Delete</button>
+                    </div>
                 </>
             ) : (
                 <p onClick={() => setIsEditing(true)}>{text}</p>

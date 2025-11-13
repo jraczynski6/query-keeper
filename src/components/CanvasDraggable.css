@@ -13,3 +13,22 @@
     padding: 12px;
     border-radius: 10px;
 }
+
+/* CanvasDraggable.css */
+
+.drag-handle {
+  cursor: grab;
+  background-color: #444; 
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+
+.drag-handle:active {
+  cursor: grabbing;
+}

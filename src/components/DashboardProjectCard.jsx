@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProjectCard.css";
+import "./DashboardProjectCard.css";
 import { useDashboard } from "../contexts/DashboardContext";
 import { useNavigate } from "react-router-dom";
 

@@ -5,18 +5,17 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.65); /* dark semi-transparent overlay */
+    background-color: rgba(0,0,0,0.65);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-/* Modal Box */
-/* Generate Query Modal accent (same as Projects) */
+/* Generate Query Modal Content */
 .generate-query-modal-content {
-    background-color: #2a2a2a;          /* projects dark panel */
-    border: 2px solid #2AC0B9;          /* projects accent */
+    background-color: #2a2a2a;
+    border: 2px solid #2AC0B9;        
     border-radius: 0.75rem;
     padding: 2rem;
     color: #f1f1f1;
@@ -25,6 +24,9 @@
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 /* Close Button */
@@ -42,15 +44,14 @@
 }
 
 .modal-close:hover {
-    color: #62C370; /* green highlight like project buttons */
+    color: #2AC0B9;
 }
 
 /* Form */
 .generate-query-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 1rem;
 }
 
 /* Fieldsets */
@@ -63,15 +64,15 @@
 /* Legends */
 .generate-query-form legend {
     font-weight: 600;
-    color: #ffffff;
+    color: #f1f1f1;
     padding: 0 0.5rem;
 }
 
-/* Labels and inputs */
+/* Labels and Inputs */
 .generate-query-form label {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     font-size: 0.95rem;
     color: #e0e0e0;
 }
@@ -79,26 +80,44 @@
 .generate-query-form input,
 .generate-query-form textarea,
 .generate-query-form select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin-top: 0.25rem;
     padding: 0.5rem 0.75rem;
-    border-radius: 0.4rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.5rem;
+    border: 2px solid #2AC0B9;
     background-color: #383b3f;
     color: #f1f1f1;
     font-size: 0.95rem;
     resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Focus Glow */
 .generate-query-form input:focus,
 .generate-query-form textarea:focus,
 .generate-query-form select:focus {
     outline: none;
-    border-color: #4D8CF7; /* projects blue */
-    box-shadow: 0 0 5px rgba(77,140,247,0.5);
+    box-shadow: 0 0 6px rgba(42,192,185,0.5); 
+}
+
+/* Textarea */
+.generate-query-form textarea {
+    min-height: 80px;
+    max-height: 200px;
 }
 
 /* Form Actions */
-.generate-query-form button {
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.form-actions button {
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
     font-weight: 500;
@@ -107,20 +126,28 @@
     transition: all 0.2s ease;
 }
 
-.generate-query-form button[type="submit"] {
-    background-color: #4D8CF7; /* projects blue */
+.form-actions button[type="submit"] {
+    background-color: #4D8CF7;
     color: #fff;
 }
 
-.generate-query-form button[type="submit"]:hover {
-    background-color: #62C370; /* hover green like project buttons */
+.form-actions button[type="submit"]:hover {
+    background-color: #5AA2FF;
 }
 
-.generate-query-form button[type="button"] {
-    background-color: #3a3d42;
+.form-actions button[type="button"] {
+    background-color: #3A3D42;
     color: #f1f1f1;
 }
 
-.generate-query-form button[type="button"]:hover {
-    background-color: #4a4e54;
+.form-actions button[type="button"]:hover {
+    background-color: #4A4E54;
+}
+
+@media (max-width: 767px) {
+    .generate-query-modal-content {
+        padding: 1.5rem;
+        max-width: 90%;
+        max-height: 95vh;
+    }
 }

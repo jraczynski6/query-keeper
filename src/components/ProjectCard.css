@@ -1,12 +1,20 @@
 .project-card {
-    width: 250px;              
-    height: 250px;             
-    padding: 1rem;                /* inner spacing */
-    border-radius: 0.75rem;       /* rounded corners */
-    border: 1px solid #ccc;       /* subtle border */
-    background-color: #0c7fa6;
-    color: #000000;               /* text color */
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    min-width: 250px;
+    height: auto;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #0c7fa6;
+    background-color: #2a2a2a;
+    cursor: pointer;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.project-card:hover {
+    background-color: #3a3a3a;
 }

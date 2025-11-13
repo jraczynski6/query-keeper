@@ -1,4 +1,4 @@
-import './DashboardAgentCard.css';
+import './AgentCard.css';
 export default function AgentCard({
     firstName,
     lastName,

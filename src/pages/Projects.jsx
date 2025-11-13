@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
+import ProjectCard from "../components/ProjectCard";
 import { useDashboard } from "../contexts/DashboardContext";
 import { Link } from "react-router-dom";
 import "./Projects.css";

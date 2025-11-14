@@ -84,7 +84,7 @@ John Smith`,
             projectData: project,      // store the full project object
             link: `/projects/${project.id}`,
             state: { project },
-            position: { x: 50, y: 50 }
+            position: { x: 0.1, y: 0.1 }, // fraction
         });
     };
 

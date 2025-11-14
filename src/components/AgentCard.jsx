@@ -7,7 +7,7 @@ export default function AgentCard({
     onPin
 }) {
     return (
-        <div className="dashboard-agent-card" onClick={onSelect}>
+        <div className="agent-card" onClick={onSelect}>
             <h3>Agent {firstName}{lastName}</h3>
             <p className="agent-agency"> Agency: {agency}</p>
             <button className="pin-agent-btn" onClick={onPin}>Pin</button>

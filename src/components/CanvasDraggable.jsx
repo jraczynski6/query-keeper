@@ -19,7 +19,7 @@ export default function CanvasDraggable({ id, children, position, canvasSize }) 
   return (
     <div ref={setNodeRef} style={style}>
       <div {...listeners} {...attributes} className="drag-handle">
-        <span>::</span>
+        <span>:::::::</span>
       </div>
       <div>{children}</div>
     </div>

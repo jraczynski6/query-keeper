@@ -114,15 +114,7 @@ export default function Dashboard() {
                   {/* Project */}
                   {item.type === "project" && item.projectData ? (
                     <div className="mini-card project-card">
-                      <button
-                        className="delete-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          unpinItem({ id: item.id });
-                        }}
-                      >
-                        ✕
-                      </button>
+                      
 
                       <h4>{item.projectData.title ?? "Untitled Project"}</h4>
                       <p>Wordcount: {item.projectData.wordCount ?? "N/A"}</p>
@@ -144,12 +136,6 @@ export default function Dashboard() {
                           Go to Page
                         </button>
                       )}
-                    </div>
-                  ) : null}
-
-                  {/* Agent */}
-                  {item.type === "agent" && item.agentData ? (
-                    <div className="mini-card agent-card">
                       <button
                         className="delete-btn"
                         onClick={(e) => {
@@ -157,9 +143,14 @@ export default function Dashboard() {
                           unpinItem({ id: item.id });
                         }}
                       >
-                        ✕
+                        Delete
                       </button>
+                    </div>
+                  ) : null}
 
+                  {/* Agent */}
+                  {item.type === "agent" && item.agentData ? (
+                    <div className="mini-card agent-card">
                       <h4>
                         {item.agentData.firstName ?? "Unnamed"}{" "}
                         {item.agentData.lastName ?? "Agent"}
@@ -177,6 +168,15 @@ export default function Dashboard() {
                           Go to Page
                         </button>
                       )}
+                      <button
+                        className="delete-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          unpinItem({ id: item.id });
+                        }}
+                      >
+                        Delete
+                      </button>
                     </div>
                   ) : null}
                 </CanvasDraggable>

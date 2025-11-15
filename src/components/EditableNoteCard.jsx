@@ -31,7 +31,13 @@ export default function EditableNoteCard({ note, onUpdate, onDelete }) {
                     </div>
                 </>
             ) : (
-                <p onClick={() => setIsEditing(true)}>{text}</p>
+                <div
+                    className="note-content"
+                    onClick={() => setIsEditing(true)}
+                >
+                    {text}
+                </div>
+
             )}
         </div>
     );

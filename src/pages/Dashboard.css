@@ -46,20 +46,52 @@
   min-height: 120px;
 }
 
-.delete-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 10;
+.mini-card .card-action-btn,
+.project-card .card-action-btn,
+.agent-card .card-action-btn {
+  display: block;          /* put on its own line */
+  width: 100%;             /* stretch full card width */
+  text-align: center;      /* center the text */
+  box-sizing: border-box;  /* include padding in width */
 }
 
+/* Add spacing between stacked buttons */
+.mini-card .card-action-btn + .card-action-btn,
+.project-card .card-action-btn + .card-action-btn,
+.agent-card .card-action-btn + .card-action-btn {
+  margin-top: 8px;         /* space between buttons */
+}
+
+.mini-card .delete-btn,
+.project-card .delete-btn,
+.agent-card .delete-btn {
+  display: block;          /* put on its own line */
+  width: 100%;             /* stretch full card width */
+  text-align: center;      /* center text */
+  box-sizing: border-box;  /* include padding in width */
+  margin-top: 8px;         /* spacing below previous button */
+  padding: 6px 0;          /* vertical padding */
+  border-radius: 6px;
+  border: 1px solid #ff4d6d;
+  background: #ff4d6d;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Hover effect */
+.delete-btn:hover {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+/* Remove focus/outline */
+.delete-btn:focus,
+.delete-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 
 

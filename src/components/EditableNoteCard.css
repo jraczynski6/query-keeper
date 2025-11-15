@@ -2,15 +2,16 @@
   background-color: #2a2a2a;          
   border: 2px solid #FF5CA1;            
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 92, 161, 0.4); 
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   width: 250px;
   min-height: 180px;
+  max-height: 100%;        /* ensure card doesn’t overflow canvas */
   color: #fff;   
-  overflow: hidden;
+  overflow: hidden;        /* hide anything beyond card */
 }
 
 /* Textarea inside note card */
@@ -18,8 +19,8 @@
   width: 100%;
   flex-grow: 1;                         
   min-height: 60px;
-  max-height: 120px;
-  resize: none;
+  max-height: calc(100% - 70px); /* leave space for buttons and padding */
+  resize: vertical;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #FF5CA1;            
@@ -27,29 +28,59 @@
   color: #fff;
   font-size: 0.9rem;
   box-sizing: border-box;
-  overflow-y: auto;
+
+  white-space: pre-wrap;       /* wrap text, preserve line breaks */
+  word-wrap: break-word;       /* break long words */
+  overflow-y: auto;            /* vertical scroll if content exceeds max-height */
+  overflow-x: hidden;          /* prevent horizontal scroll */
+}
+.note-card .note-content {
+  white-space: pre-wrap; /* wrap lines and preserve line breaks */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Save/Delete buttons */
+
+/* Save/Delete buttons container stacked vertically */
+/* Save/Delete buttons container */
 .note-card-buttons {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* stacked vertically */
+  gap: 0.5rem;
+  align-items: stretch;
 }
 
+/* Save button styling */
 .save-btn {
   background-color: #FF5CA1;
   color: #fff;
   border: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0;      /* vertical padding */
   border-radius: 0.25rem;
   cursor: pointer;
+  width: 100%;            /* full width */
+  text-align: center;
+  transition: background 0.2s;
 }
 
+.save-btn:hover {
+  background-color: #e64a9e; /* darker pink on hover */
+}
+
+/* Delete button styling */
 .delete-btn {
   background-color: #ccc;
   color: #000;
   border: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0;      /* vertical padding */
   border-radius: 0.25rem;
   cursor: pointer;
+  width: 100%;            /* full width */
+  text-align: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #ff4d6d;
+  color: #fff;
 }

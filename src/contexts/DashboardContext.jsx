@@ -29,12 +29,28 @@ export function DashboardProvider({ children }) {
     //update position
     const updatePosition = (id, position) => {
         setPinnedItems((prev) =>
-        prev.map((i) => (i.id === id ? {...i, position} : i))
+            prev.map((i) => (i.id === id ? { ...i, position } : i))
+        );
+    };
+
+    const updateNoteContent = (id, text) => {
+        setPinnedItems((prev) =>
+            prev.map((item) =>
+                item.id === id
+                    ? { ...item, content: { ...item.content, text } } // merge updated text
+                    : item
+            )
         );
     };
 
     return (
-        <DashboardContext.Provider value={{ pinnedItems, pinItem, unpinItem, updatePosition }}>
+        <DashboardContext.Provider value={{
+            pinnedItems,
+            pinItem,
+            unpinItem,
+            updatePosition,
+            updateNoteContent
+        }}>
             {children}
         </DashboardContext.Provider>
     );

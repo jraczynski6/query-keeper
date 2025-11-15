@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ProjectCard from "../components/ProjectCard";
 import GenerateQueryModal from "../components/modals/GenerateQueryModal";
+import ProjectCard from "../components/ProjectCard";
 import { useDashboard } from "../contexts/DashboardContext";
 import { Link } from "react-router-dom";
 import "./Projects.css";
@@ -84,7 +84,7 @@ John Smith`,
             projectData: project,      // store the full project object
             link: `/projects/${project.id}`,
             state: { project },
-            position: { x: 50, y: 50 }
+            position: { x: 0.1, y: 0.1 }, // fraction
         });
     };
 

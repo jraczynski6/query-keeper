@@ -1,3 +1,4 @@
+/* Dashboard Page */
 .dashboard-page {
   background-color: #000;
   color: #EAEAEA;
@@ -6,21 +7,161 @@
   display: flex;
   flex-direction: column;
   font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
+/* Dashboard Content */
 .dashboard-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-
+/* Dashboard Canvas */
 .dashboard-canvas {
   position: relative;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 300px;
+  margin: 0 auto;
   flex: 1;
-  background-color: #121212; 
+  background-color: #121212;
   border: 2px solid #BBBBBB;
   border-radius: 12px;
   padding: 20px;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* Mini / Project / Agent Cards */
+
+.mini-card,
+.project-card,
+.agent-card {
+  width: 250px;
+  min-height: 120px;
+}
+
+.mini-card .card-action-btn,
+.project-card .card-action-btn,
+.agent-card .card-action-btn {
+  display: block;          /* put on its own line */
+  width: 100%;             /* stretch full card width */
+  text-align: center;      /* center the text */
+  box-sizing: border-box;  /* include padding in width */
+}
+
+/* Add spacing between stacked buttons */
+.mini-card .card-action-btn + .card-action-btn,
+.project-card .card-action-btn + .card-action-btn,
+.agent-card .card-action-btn + .card-action-btn {
+  margin-top: 8px;         /* space between buttons */
+}
+
+.mini-card .delete-btn,
+.project-card .delete-btn,
+.agent-card .delete-btn {
+  display: block;          /* put on its own line */
+  width: 100%;             /* stretch full card width */
+  text-align: center;      /* center text */
+  box-sizing: border-box;  /* include padding in width */
+  margin-top: 8px;         /* spacing below previous button */
+  padding: 6px 0;          /* vertical padding */
+  border-radius: 6px;
+  border: 1px solid #ff4d6d;
+  background: #ff4d6d;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Hover effect */
+.delete-btn:hover {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+/* Remove focus/outline */
+.delete-btn:focus,
+.delete-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+/* Mobile (max-width: 767px) */
+
+@media (max-width: 767px) {
+  .dashboard-canvas {
+    min-height: 250px;
+    padding: 10px;
+  }
+
+  .mini-card,
+  .note-card {
+    width: 160px;
+    min-height: 130px;
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .mini-card h4,
+  .note-card h4 {
+    font-size: 0.9rem;
+  }
+
+  .card-action-btn {
+    font-size: 0.75rem;
+    padding: 4px 5px;
+  }
+}
+/* Completely neutralize any inherited focus/outline on delete button */
+.mini-card .delete-btn,
+.mini-card .delete-btn:focus,
+.mini-card .delete-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important; 
+  color: #0a0101;           
+}
+
+/* If parent .mini-card has focus-within styles, override them only for delete button */
+.mini-card:focus-within .delete-btn {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+/* Tablet (768px - 1199px) */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .dashboard-canvas {
+    min-height: 350px;
+    padding: 15px;
+  }
+
+  .mini-card,
+  .note-card {
+    width: 190px;
+    min-height: 150px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .mini-card h4,
+  .note-card h4 {
+    font-size: 1rem;
+  }
+
+  .card-action-btn {
+    font-size: 0.85rem;
+    padding: 4px 6px;
+  }
 }

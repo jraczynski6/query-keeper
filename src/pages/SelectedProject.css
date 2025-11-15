@@ -1,13 +1,13 @@
 /* Page container */
 .selected-project-page {
-    background-color: var(--bg-color); /* dark app background */
+    background-color: var(--bg-color);
     min-height: 100vh;
     padding: 2rem;
     display: flex;
     justify-content: center;
 }
 
-/* Main content panel */
+/* Main panel */
 .selected-project-content {
     background-color: #2a2a2a;
     color: #f1f1f1;
@@ -15,143 +15,185 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     width: 100%;
-    max-width: 1400px;   /* increase width to give panels more room */
-    display: block;      /* flex handled inside tri-split-container */
+    max-width: 1400px;
     border: 2px solid #2AC0B9;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    box-sizing: border-box;
 }
 
+/* LAYOUT: tri-split container */
 .tri-split-container {
-    display: flex;          /* makes children sit horizontally */
-    flex-direction: row;    /* horizontal layout */
-    gap: 1.5rem;            /* space between panels */
-    flex-wrap: nowrap;      /* keep them side by side */
-}
-
-
-/* Panels */
-.project-actions-panel {
-    flex: 0 0 10%;          /* fixed ~20% width on left */
-    min-width: 100px;
-    background-color: #3a3a3a;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid #2AC0B9;
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.project-editor-panel {
-    flex: 1 1 60%;          /* flexible center column */
-    min-width: 700px;
-    background-color: #3a3a3a;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid #2AC0B9;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.project-info-panel {
-    flex: 0 0 25%;          /* fixed ~20% width on right */
-    min-width: 200px;
-    background-color: #3a3a3a;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 2px solid #2AC0B9;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* Buttons, selects, textareas */
-.project-editor-panel textarea,
-.sample-text-entry textarea {
+    flex-direction: row;
+    gap: 1.5rem;
     width: 100%;
-    min-height: 300px;
+    align-items: stretch;       /* make panels same height */
+    flex: 1;                    /* fill main panel vertically */
+}
+
+/* LEFT -- Actions panel */
+.project-actions-panel {
+    flex: 0 0 15%;
+    min-width: 140px;
+    background-color: #3a3a3a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #2AC0B9;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* CENTER -- Editor panel */
+.project-editor-panel {
+    flex: 1 1 auto;             /* grow to fill space */
+    min-width: 500px;
+    background-color: #3a3a3a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #2AC0B9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* center editor wrapper */
+    gap: 1rem;
+}
+
+/* Editor wrapper */
+.project-editor {
+    flex: 1;                     /* fill vertical space */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Editor textarea */
+.project-editor textarea {
+    flex: 1;                     /* fill wrapper vertically */
+    width: 100%;
+    min-height: 0;
+    max-height: 100%;
     resize: vertical;
+    padding: 1.5rem;
+    box-sizing: border-box;
     background-color: #24252a;
     color: #fff;
     border: 1px solid #2AC0B9;
     border-radius: 0.5rem;
-    padding: 1rem;  /* add this */
-    box-sizing: border-box;  /* ensures padding doesn’t break width */
 }
 
-
-.project-actions-panel button,
-.project-editor-panel textarea,
+/* RIGHT -- Project Info panel */
+.project-info-panel input,
 .project-info-panel select,
 .project-info-panel textarea {
+    width: 90%;                 /* leave a little padding inside panel */
+    max-width: 100%;            /* prevent overflowing container */
+    box-sizing: border-box;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid #2AC0B9;
-    padding: 0.5rem;
     background-color: #222;
     color: #fff;
     font-family: inherit;
-    transition: all 0.2s ease;
+    text-align: left;
+    resize: vertical;           /* allow resizing without bursting out */
 }
 
-.project-actions-panel button:hover,
-.project-editor-panel textarea:hover,
-.project-info-panel select:hover,
-.project-info-panel textarea:hover {
-    border-color: #4dd3c9;
-}
-
-.project-editor-panel textarea {
+/* Labels inside info panel */
+.project-info-panel label {
     width: 100%;
-    min-height: 1200px;       /* full-page feel */
-    max-height: 95vh;        /* don’t overflow viewport */
-    resize: vertical;        /* allow resizing if needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* center label + field horizontally */
+    gap: 0.25rem;
+}
+
+/* Paragraphs & links remain centered */
+.project-info-panel p,
+.project-info-panel a {
+    text-align: center;
+    word-break: break-word;     /* prevent overflow */
+}
+
+/* Sample text box */
+.sample-text-entry textarea {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+    padding: 1rem;
+    box-sizing: border-box;
     background-color: #24252a;
     color: #fff;
     border: 1px solid #2AC0B9;
     border-radius: 0.5rem;
-    padding: 2rem;           /* more breathing room inside */
-    box-sizing: border-box;
-    font-size: 1rem;
-    line-height: 1.7;        /* comfortable reading lines */
 }
 
-/* Action buttons */
+/* Sample size select */
+.sample-size-select select {
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background-color: #222;
+    color: #fff;
+    border-radius: 0.5rem;
+    border: 1px solid #2AC0B9;
+}
+
+/* Buttons */
 .project-actions-panel button {
     cursor: pointer;
-    background-color: #4D8CF7; /* project button color */
+    background-color: #4D8CF7;
     color: #fff;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #2AC0B9;
     font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .project-actions-panel button:hover {
     background-color: #5aa2ff;
 }
 
-/* Editor textarea */
-.project-editor-panel textarea {
-    width: 100%;
-    min-height: 300px;
-    resize: vertical;
-    background-color: #24252a;
+/* MEDIA QUERIES */
+
+/* MOBILE: stacked panels */
+@media (max-width: 767px) {
+    .tri-split-container {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;    /* full width panels */
+        gap: 1rem;
+    }
+
+    .project-actions-panel,
+    .project-editor-panel,
+    .project-info-panel {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0 !important;
+        flex: 1 1 auto;
+    }
+
+    .project-editor-panel textarea {
+        min-height: 400px;
+        max-height: none;
+    }
 }
 
-/* Sample size select */
-.sample-size-select select {
-    margin-left: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    background-color: #222;
-    color: #fff;
-    border-radius: 0.5rem;
-    border: 1px solid #2AC0B9;
-}
+/* TABLET: wrap editor & info below actions */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .tri-split-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-/* Sample text textarea */
-.sample-text-entry textarea {
-    width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #222;
-    color: #fff;
-    border: 1px solid #2AC0B9;
+    .project-editor-panel {
+        min-width: 100%;
+    }
+
+    .project-info-panel {
+        flex: 1 1 100%;
+        margin-top: 1rem;        /* move info below editor */
+    }
 }

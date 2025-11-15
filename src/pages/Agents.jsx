@@ -42,9 +42,9 @@ export default function Agents() {
         pinItem({
             id: `agent-${agent.id}`,
             type: "agent",
-            agentData: agent, // required by Dashboard
-            link: `/agents/${agent.id}`, // navigation link : Broken 
-            position: { x: 50, y: 50 } // default position
+            agentData: agent,
+            link: `/agents/${agent.id}`, 
+            position: { x: 0.1, y: 0.1 }, // keep as fraction for dashboard
         });
     };
 

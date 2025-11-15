@@ -14,6 +14,7 @@ export default function SelectedProject() {
     const [queryDraft, setQueryDraft] = useState("");
     const [selectedSize, setSelectedSize] = useState("");
     const [sampleText, setSampleText] = useState("");
+    const [isEditing, setIsEditing] = useState(false);
 
     // Submission modal state
     const [showModal, setShowModal] = useState(false);
@@ -45,6 +46,30 @@ export default function SelectedProject() {
         );
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
     };
+
+
+    // handleEdit
+    const handleEdit = () => {
+        setIsEditing(true);
+
+    };
+
+    // handleSave
+    const handleSave = () => {
+        saveProject();
+        setIsEditing(false);
+    };
+
+    // handle delete
+    const handleDelete = () => {
+        if (!project) return;
+
+        const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const updatedProjects = savedProjects.filter(p => p.id !== project.id);
+        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+
+        navigate("/projects");
+    }
 
     // load project when component mounts or params change
     useEffect(() => {
@@ -79,9 +104,9 @@ export default function SelectedProject() {
                     {/* Left: Actions */}
                     <section className="project-actions-panel">
                         <h2>Actions</h2>
-                        <button>Edit Query</button>
-                        <button onClick={saveProject}>Save</button>
-                        <button>Delete Project</button>
+                        <button onClick={handleEdit}>Edit Query</button>
+                        <button onClick={handleSave}>Save</button>
+                        <button onClick={handleDelete}>Delete Project</button>
                         <button onClick={openModal}>Submit Query</button>
                     </section>
 
@@ -94,6 +119,7 @@ export default function SelectedProject() {
                                 onChange={(e) => setQueryDraft(e.target.value)}
                                 rows={15}
                                 style={{ width: "100%" }}
+                                readOnly={!isEditing}
                             />
                         </div>
                     </section>
@@ -104,9 +130,52 @@ export default function SelectedProject() {
 
                         <div className="book-info">
                             <h3>Book Info</h3>
-                            <p>Title: {project.title}</p>
-                            <p>Genre: {project.genre}</p>
-                            <p>Word Count: {project.wordCount}</p>
+
+                            {/* conditional to display on edit */}
+                            {isEditing ? (
+                                <>
+                                    <label>
+                                        Title:
+                                        <input
+                                            type="text"
+                                            value={project.title}
+                                            onChange={(e) =>
+                                                setProject((prev) => ({ ...prev, title: e.target.vlue }))
+                                            }
+                                        />
+                                    </label>
+                                    <label>
+                                        Genre:
+                                        <input
+                                            type="text"
+                                            value={project.genre}
+                                            onChange={(e) =>
+                                                setProject((prev) => ({ ...prev, genre: e.target.value }))
+                                            }
+                                        />
+                                    </label>
+
+                                    <label>
+                                        Word Count:
+                                        <input
+                                            type="number"
+                                            value={project.wordCount}
+                                            onChange={(e) =>
+                                                setProject((prev) => ({
+                                                    ...prev,
+                                                    wordCount: parseInt(e.target.value) || 0,
+                                                }))
+                                            }
+                                        />
+                                    </label>
+                                </>
+                            ) : (
+                                <>
+                                    <p>Title: {project.title}</p>
+                                    <p>Genre: {project.genre}</p>
+                                    <p>Word Count: {project.wordCount}</p>
+                                </>
+                            )}
                         </div>
 
                         <div className="agent-info">
@@ -169,6 +238,7 @@ export default function SelectedProject() {
                                         value={sampleText}
                                         onChange={(e) => setSampleText(e.target.value)}
                                         rows={10}
+                                        readOnly={!isEditing}
                                     />
                                 </label>
                             ) : null}

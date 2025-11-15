@@ -8,8 +8,43 @@
 }
 
 .mini-card {
-    width: 180px;
-    min-height: 100px;
-    padding: 12px;
-    border-radius: 10px;
+  width: 250px;         /* fixed width */
+  min-height: 120px;    /* ensure visible */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #3a3d42;
+  color: #f1f1f1;
+  box-sizing: border-box;
+}
+
+.project-card, .agent-card {
+  width: 250px;
+  min-height: 150px;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+
+/* CanvasDraggable.css */
+
+.drag-handle {
+  cursor: grab;
+  background-color: #444; 
+  color: #f3f3f3;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+
+.drag-handle:active {
+  cursor: grabbing;
 }

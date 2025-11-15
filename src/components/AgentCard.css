@@ -1,12 +1,11 @@
 .agent-card {
-    width: 250px;               
-    height: 180px;                
-    padding: 1rem;                  /* inner spacing */
-    border-radius: 0.75rem;         /* rounded corners */
-    border: 1px solid #ccc;         /* subtle border */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #6B4DBF ;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background-color: #2a2a2a;
+  border: 2px solid #6B4DBF;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }

@@ -37,7 +37,9 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     // store generated query
     const [generatedQuery, setGeneratedQuery] = useState("");
 
-    // 
+    // errors state
+    const [errors, setErrors] = useState({});
+
     // must use hooks before function calls.
     const navigate = useNavigate();
 
@@ -55,6 +57,28 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         setAgents(storedAgents);
     }, []);
 
+    const validate = () => {
+        const newErrors = {};
+
+        if (!selectedAgentId) {
+            newErrors.agent = "Please Select an agent.";
+        }
+
+        if (!selectedTemplateId) {
+            newErrors.template = "Please select a query template";
+        }
+
+        if (!title.trim()) {
+            newErrors.title = "Title is required.";
+        }
+
+        if (!wordCount || Number(wordCount) <= 0) {
+            newErrors.wordCount = "Please enter a valid wordcount."
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
 
     // handleSubmit form submission
     const handleSubmit = (e) => {

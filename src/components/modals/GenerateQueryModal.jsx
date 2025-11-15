@@ -78,14 +78,15 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
-    }
+    };
 
     // handleSubmit form submission
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
         //fallback
-        if (!author || !selectedAgentId || !selectedTemplateId) return;
+        if (!validate()) return;
 
         //find selected agent
         const agent = agents.find(agent => agent.id === selectedAgentId);
@@ -173,6 +174,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                                 </option>
                             ))}
                         </select>
+                        {errors.agent && <p className="error-text">{errors.agent}</p>}
                     </label>
 
                     {/* Query Template */}
@@ -190,6 +192,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                                 </option>
                             ))}
                         </select>
+                        {errors.template && <p className="error-text">{errors.template}</p>}
                     </label>
 
                     {/* Book Info Section */}
@@ -205,6 +208,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
                             />
+                            {errors.title && <p className="error-text">{errors.title}</p>}
                         </label>
 
                         <label>
@@ -216,6 +220,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                                 onChange={(e) => setWordCount(e.target.value)}
                                 required
                             />
+                            {errors.wordCount && <p className="error-text">{errors.wordCount}</p>}
                         </label>
 
                         <label>
@@ -274,7 +279,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                         </label>
                     </fieldset>
 
-                    <button type="submit" disabled={!author || !selectedAgentId || !selectedTemplateId}>
+                    <button type="submit" >
                         Generate
                     </button>
                     <button type="button" onClick={onClose}>Cancel</button>
@@ -285,3 +290,6 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 }
 // Query generation TODOs
 // TODO: Add more query templates. min 5
+// Clear errors as user types
+//auto-scroll to first error
+//select first field to begin typing.

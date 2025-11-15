@@ -175,12 +175,7 @@
 }
 
 .delete-btn {
-  background-color: #bf4d6b;
-  color: #fff;
-}
-
-.delete-btn:hover {
-  background-color: #d35f7b;
+  color: #591818;
 }
 
 /* Mobile (≤767px) */

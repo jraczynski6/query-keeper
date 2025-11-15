@@ -1,12 +1,15 @@
 import { useDraggable } from "@dnd-kit/core";
 
-export default function CanvasDraggable({ id, children, position, canvasSize }) {
+export default function CanvasDraggable({ id, children, position, canvasSize, onDelete }) {
+
+  //standard dnd-kit draggable setup
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
-  // Make sure position is within canvas bounds
+  // position correction - Make sure position is within canvas bounds
   const x = Math.min(Math.max(position.x, 0), canvasSize.width);
   const y = Math.min(Math.max(position.y, 0), canvasSize.height);
 
+  // combine stored x/y with ongoing drag
   const style = {
     position: "absolute",
     transform: transform

@@ -32,17 +32,36 @@
   border: 2px solid #BBBBBB;
   border-radius: 12px;
   padding: 20px;
-  overflow: hidden; 
-  box-sizing: border-box; 
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 
 /* Mini / Project / Agent Cards */
 
-.mini-card, .project-card, .agent-card {
+.mini-card,
+.project-card,
+.agent-card {
   width: 250px;
   min-height: 120px;
 }
+
+.delete-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+
 
 
 /* Mobile (max-width: 767px) */
@@ -70,6 +89,21 @@
     font-size: 0.75rem;
     padding: 4px 5px;
   }
+}
+/* Completely neutralize any inherited focus/outline on delete button */
+.mini-card .delete-btn,
+.mini-card .delete-btn:focus,
+.mini-card .delete-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important; 
+  color: #0a0101;           
+}
+
+/* If parent .mini-card has focus-within styles, override them only for delete button */
+.mini-card:focus-within .delete-btn {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 

@@ -100,6 +100,7 @@ export default function Dashboard() {
                   id={item.id}
                   position={{ x: absX, y: absY }}
                   canvasSize={canvasSize}
+                  onDelete={(id) => unpinItem({ id })}
                 >
                   {/* Note */}
                   {item.type === "note" ? (
@@ -113,6 +114,16 @@ export default function Dashboard() {
                   {/* Project */}
                   {item.type === "project" && item.projectData ? (
                     <div className="mini-card project-card">
+                      <button
+                        className="delete-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          unpinItem({ id: item.id });
+                        }}
+                      >
+                        ✕
+                      </button>
+
                       <h4>{item.projectData.title ?? "Untitled Project"}</h4>
                       <p>Wordcount: {item.projectData.wordCount ?? "N/A"}</p>
                       <p>Genre: {item.projectData.genre ?? "N/A"}</p>
@@ -139,6 +150,16 @@ export default function Dashboard() {
                   {/* Agent */}
                   {item.type === "agent" && item.agentData ? (
                     <div className="mini-card agent-card">
+                      <button
+                        className="delete-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          unpinItem({ id: item.id });
+                        }}
+                      >
+                        ✕
+                      </button>
+
                       <h4>
                         {item.agentData.firstName ?? "Unnamed"}{" "}
                         {item.agentData.lastName ?? "Agent"}

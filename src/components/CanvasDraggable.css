@@ -27,17 +27,53 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* Minimal Delete Button — no background, clean X */
+.delete-btn {
+  position: absolute;       /* sit relative to card */
+  top: 12px;                /* adjust to line up with content */
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;             /* remove any border */
+  outline: none;            /* remove default focus outline */
+  box-shadow: none;         /* remove any inherited box-shadow */
+  background: none;         /* no background */
+  color: #ff5ca1;           /* pink X text, matches your accent */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  border-radius: 50%;       /* optional, keeps it round if desired */
+  z-index: 10;
+}
+
+/* Remove any inherited focus styling */
+.delete-btn:focus,
+.delete-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Optional hover effect to give a visual cue */
+.delete-btn:hover {
+  color: #ff2a7a;           /* slightly darker pink on hover */
+}
+
+
 /* CanvasDraggable.css */
 
 .drag-handle {
   cursor: grab;
   background-color: #444; 
-  color: #fff;
+  color: #f3f3f3;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-weight: bold;
   display: inline-block;
   margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
   text-align: center;
 }
 

@@ -7,7 +7,7 @@ export default function NavMenu({ isAuthenticated, onToggleShelf }) {
         if (isAuthenticated) {
             onToggleShelf();
         } else {
-            // TODO: add alert to sign in.
+        
         }
     }
 

@@ -325,9 +325,7 @@ export default function SelectedProject() {
     )
 }
 
-// TODO: edit query draft
-// TODO: save/delete button
+
+
 // TODO: clickable author/agent
-// TODO: form validation
-// TODO: Add page preview for sample text
 // TODO: make copy buttons work

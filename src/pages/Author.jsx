@@ -17,6 +17,7 @@ export default function Author() {
         };
     });
 
+    const [previewText, setPreviewText] = useState("");
     const [errors, setErrors] = useState({});
 
     const validateAuthor = () => {
@@ -52,10 +53,18 @@ export default function Author() {
         localStorage.setItem("author", JSON.stringify(author));
     }, [author]);
 
+    //submit
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateAuthor()) return;
 
+        //save to local storage
+        localStorage.setItem("author", JSON.stringify(author));
+
+        //preview text.
+         const template = `Dear Editor, my name is ${author.firstName} ${author.lastName}.`;
+
+        setPreviewText(template);
         // TODO: Add toast for author info saved
     };
 
@@ -141,7 +150,7 @@ export default function Author() {
 
                             <div className="sample-project">
                                 <h4>Project Title</h4>
-                                <p>Sample submission card that populates using the author info.</p>
+                                <p>{previewText || "Save author info to generate preview"}</p>
                             </div>
                         </div>
                     </section>

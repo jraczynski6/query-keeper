@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
+import queryTemplates from "../utils/queryTemplates";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./SelectedProject.css";
 
@@ -22,7 +23,11 @@ export default function SelectedProject() {
     const closeModal = () => setShowModal(false);
 
     // Generate modal state 
-    // TODO: Regenerate Query
+
+    const [selectedTemplateId, setSelectedTemplateId] = useState(
+        project?.templateId || queryTemplates[0]?.id
+    );
+
     const [showGenerate, setShowGenerate] = useState(false);
     const openGenerate = () => setShowGenerate(true);
     const closeGenerate = () => setShowGenerate(false);
@@ -96,6 +101,25 @@ export default function SelectedProject() {
         setIsEditing(false);
     };
 
+    //handle Regeneration
+    const handleRegenerateQuery = () => {
+        if (!project) return;
+
+        // ensure it finds a number
+        const template = queryTemplates.find(t => t.id === Number(selectedTemplateId));
+        if (!template) return;
+
+        const newQuery = template.template({
+            agent: project.agent || { firstName: "", lastName: "" },
+            author: project.author || { firstName: "", lastName: "", email: "", website: "" },
+            title: project.title || "",
+            wordCount: project.wordCount || 0,
+            genre: project.genre || ""
+        });
+
+        setQueryDraft(newQuery);
+    }
+
     // handle delete
     const handleDelete = () => {
         if (!project) return;
@@ -150,6 +174,23 @@ export default function SelectedProject() {
                     <section className="project-editor-panel">
                         <h2>Editable Document</h2>
                         <div className="project-editor">
+                            <label htmlFor="queryTemplate">Select Query Template:</label>
+                            <select
+                                id="queryTemplate"
+                                value={selectedTemplateId}
+                                onChange={(e) => setSelectedTemplateId(e.target.value)}
+                            >
+                                {/* map templates */}
+                                {queryTemplates.map((template) => (
+                                    <option key={template.id} value={template.id}>
+                                        {template.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <button type="button" onClick={handleRegenerateQuery}>
+                                Regenerate Query
+                            </button>
+
                             <textarea
                                 value={queryDraft}
                                 onChange={(e) => setQueryDraft(e.target.value)}

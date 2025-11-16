@@ -187,7 +187,7 @@ export default function SelectedProject() {
                                     </option>
                                 ))}
                             </select>
-                            <button type="button" onClick={handleRegenerateQuery}>
+                            <button type="button" className="regenerate-btn" onClick={handleRegenerateQuery}>
                                 Regenerate Query
                             </button>
 

@@ -27,6 +27,9 @@ export default function SelectedProject() {
     const openGenerate = () => setShowGenerate(true);
     const closeGenerate = () => setShowGenerate(false);
 
+    // errors state
+    const [errors, setErrors] = useState({});
+
     //save project 
     const saveProject = () => {
         if (!project) return; // fallback
@@ -54,8 +57,41 @@ export default function SelectedProject() {
 
     };
 
+    const validate = () => {
+        if (!project) return false;
+
+        const newErrors = {};
+
+        if (!project.title.trim()) {
+            newErrors.title = "Title is required.";
+        }
+
+        if (!project.genre || !project.genre.trim()) {
+            newErrors.genre = "Genre is required.";
+        }
+
+        if (!project.wordCount || Number(project.wordCount) <= 0) {
+            newErrors.wordCount = "Please enter a valid wordcount.";
+        }
+
+        //optional validation
+        if (selectedSize && !sampleText.trim()) {
+            newErrors.sampleText = `Please enter sample text for ${selectedSize} pages.`;
+        }
+
+        if (queryDraft.trim() && queryDraft.trim().length < 50) {
+            newErrors.queryDraft = "Query draft must be at least 50 characters if provided.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     // handleSave
     const handleSave = () => {
+        //fallback
+        if (!validate()) return;
+
         saveProject();
         setIsEditing(false);
     };
@@ -121,6 +157,7 @@ export default function SelectedProject() {
                                 style={{ width: "100%" }}
                                 readOnly={!isEditing}
                             />
+                            {errors.queryDraft && <p className="error">{errors.queryDraft}</p>}
                         </div>
                     </section>
 
@@ -128,46 +165,47 @@ export default function SelectedProject() {
                     <section className="project-info-panel">
                         <h2>Project Info</h2>
 
+                        {/* Book Info */}
                         <div className="book-info">
                             <h3>Book Info</h3>
 
-                            {/* conditional to display on edit */}
                             {isEditing ? (
                                 <>
-                                    <label>
-                                        Title:
-                                        <input
-                                            type="text"
-                                            value={project.title}
-                                            onChange={(e) =>
-                                                setProject((prev) => ({ ...prev, title: e.target.vlue }))
-                                            }
-                                        />
-                                    </label>
-                                    <label>
-                                        Genre:
-                                        <input
-                                            type="text"
-                                            value={project.genre}
-                                            onChange={(e) =>
-                                                setProject((prev) => ({ ...prev, genre: e.target.value }))
-                                            }
-                                        />
-                                    </label>
+                                    <label htmlFor="title">Title:</label>
+                                    <input
+                                        id="title"
+                                        type="text"
+                                        value={project.title}
+                                        onChange={(e) =>
+                                            setProject((prev) => ({ ...prev, title: e.target.value }))
+                                        }
+                                    />
+                                    {errors.title && <p className="error">{errors.title}</p>}
 
-                                    <label>
-                                        Word Count:
-                                        <input
-                                            type="number"
-                                            value={project.wordCount}
-                                            onChange={(e) =>
-                                                setProject((prev) => ({
-                                                    ...prev,
-                                                    wordCount: parseInt(e.target.value) || 0,
-                                                }))
-                                            }
-                                        />
-                                    </label>
+                                    <label htmlFor="genre">Genre:</label>
+                                    <input
+                                        id="genre"
+                                        type="text"
+                                        value={project.genre}
+                                        onChange={(e) =>
+                                            setProject((prev) => ({ ...prev, genre: e.target.value }))
+                                        }
+                                    />
+                                    {errors.genre && <p className="error">{errors.genre}</p>}
+
+                                    <label htmlFor="wordCount">Word Count:</label>
+                                    <input
+                                        id="wordCount"
+                                        type="number"
+                                        value={project.wordCount}
+                                        onChange={(e) =>
+                                            setProject((prev) => ({
+                                                ...prev,
+                                                wordCount: parseInt(e.target.value) || 0,
+                                            }))
+                                        }
+                                    />
+                                    {errors.wordCount && <p className="error">{errors.wordCount}</p>}
                                 </>
                             ) : (
                                 <>
@@ -178,72 +216,61 @@ export default function SelectedProject() {
                             )}
                         </div>
 
-                        <div className="agent-info">
-                            <h2>Agent Info</h2>
-                            <p>
-                                <Link to={`/agents/${project.agent.id}`}>
-                                    {project.agent.firstName} {project.agent.lastName}
-                                </Link>
-                            </p>
-                            <p>{project.agent.agency}</p>
-                        </div>
-
+                        {/* Sample Size */}
                         <fieldset>
                             <legend>Sample Size</legend>
                             <div className="sample-size-select">
-                                <label>
-                                    Select sample size:
-                                    <select
-                                        value={selectedSize}
-                                        onChange={(e) => {
-                                            const newSize = e.target.value;
-                                            setSelectedSize(newSize);
+                                <label htmlFor="sampleSize">Select sample size:</label>
+                                <select
+                                    id="sampleSize"
+                                    value={selectedSize}
+                                    onChange={(e) => {
+                                        const newSize = e.target.value;
+                                        setSelectedSize(newSize);
 
-                                            // Load saved text
-                                            if (parseInt(newSize, 10) === project.sampleSize) {
-                                                setSampleText(project.sampleText || "");
-                                            } else {
-                                                setSampleText("");
-                                            }
-                                        }}
-                                    >
-                                        <option value="">Select...</option>
-                                        <option value="3">3 Pages</option>
-                                        <option value="5">5 Pages</option>
-                                        <option value="10">10 Pages</option>
-                                        <option value="30">30 Pages</option>
-                                        <option value="50">50 Pages</option>
-                                    </select>
-                                </label>
+                                        // Load saved text
+                                        if (parseInt(newSize, 10) === project.sampleSize) {
+                                            setSampleText(project.sampleText || "");
+                                        } else {
+                                            setSampleText("");
+                                        }
+                                    }}
+                                >
+                                    <option value="">Select...</option>
+                                    <option value="3">3 Pages</option>
+                                    <option value="5">5 Pages</option>
+                                    <option value="10">10 Pages</option>
+                                    <option value="30">30 Pages</option>
+                                    <option value="50">50 Pages</option>
+                                </select>
                             </div>
+                            {errors.sampleText && <p className="error">{errors.sampleText}</p>}
 
-                            {/* nested ternary is essential for not breaking */}
                             {selectedSize && parseInt(selectedSize) === project.sampleSize ? (
                                 <div className="sample-text-entry">
-                                    <label>
-                                        Text for {selectedSize} pages:
-                                        <textarea
-                                            placeholder="Text for selected pages"
-                                            value={sampleText}
-                                            onChange={(e) => setSampleText(e.target.value)}
-                                            rows={10}
-                                        />
-                                    </label>
+                                    <label htmlFor="sampleText">Text for {selectedSize} pages:</label>
+                                    <textarea
+                                        id="sampleText"
+                                        placeholder="Text for selected pages"
+                                        value={sampleText}
+                                        onChange={(e) => setSampleText(e.target.value)}
+                                        rows={10}
+                                    />
                                 </div>
                             ) : selectedSize ? (
-                                <label>
-                                    Text for {selectedSize} pages:
+                                <>
+                                    <label htmlFor="sampleText">Text for {selectedSize} pages:</label>
                                     <textarea
+                                        id="sampleText"
                                         placeholder="Enter text for selected pages"
                                         value={sampleText}
                                         onChange={(e) => setSampleText(e.target.value)}
                                         rows={10}
                                         readOnly={!isEditing}
                                     />
-                                </label>
+                                </>
                             ) : null}
                         </fieldset>
-
                     </section>
                 </div>
             </main>

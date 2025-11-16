@@ -147,102 +147,89 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
 
                 <form className="generate-query-form" onSubmit={handleSubmit}>
                     {/* Author selection */}
-                    <label>
+                    <label htmlFor="author">
                         Author:
-                        <input
-                            type="text"
-                            // cannot place object directly in JSX Value
-                            value={
-                                author
-                                    ? `${author.firstName || ""} ${author.lastName || ""}`
-                                    : "No author found"
-                            } readOnly />
-
                     </label>
+                    <input
+                        id="author"
+                        type="text"
+                        value={author ? `${author.firstName || ""} ${author.lastName || ""}` : "No author found"}
+                        readOnly
+                    />
 
                     {/* Agent Selection */}
-                    <label>
-                        Agent:
-                        <select
-                            value={selectedAgentId}
-                            onChange={(e) => setSelectedAgentId(e.target.value)}
-                        >
-                            <option value="">Select an agent</option>
-                            {agents.map((agent) => (
-                                <option key={agent.id} value={agent.id}>
-                                    {agent.firstName} {agent.lastName}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.agent && <p className="error-text">{errors.agent}</p>}
-                    </label>
+                    <label htmlFor="agent">Agent:</label>
+                    <select
+                        id="agent"
+                        value={selectedAgentId}
+                        onChange={(e) => setSelectedAgentId(e.target.value)}
+                    >
+                        <option value="">Select an agent</option>
+                        {agents.map((agent) => (
+                            <option key={agent.id} value={agent.id}>
+                                {agent.firstName} {agent.lastName}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.agent && <p className="error-text">{errors.agent}</p>}
 
                     {/* Query Template */}
-                    <label>
-                        Query Template:
-                        <select
-                            value={selectedTemplateId}
-                            onChange={handleTemplateChange}
-                            required
-                        >
-                            <option value="">Select a template</option>
-                            {queryTemplates.map((template) => (
-                                <option key={template.id} value={template.id}>
-                                    {template.name}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.template && <p className="error-text">{errors.template}</p>}
-                    </label>
+                    <label htmlFor="template">Query Template:</label>
+                    <select
+                        id="template"
+                        value={selectedTemplateId}
+                        onChange={handleTemplateChange}
+                    >
+                        <option value="">Select a template</option>
+                        {queryTemplates.map((template) => (
+                            <option key={template.id} value={template.id}>
+                                {template.name}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.template && <p className="error-text">{errors.template}</p>}
 
                     {/* Book Info Section */}
                     <fieldset>
-                        <legend>Books Info</legend>
+                        <legend>Book Info</legend>
 
-                        <label>
-                            Title:
-                            <input
-                                type="text"
-                                placeholder="Enter book title"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                required
-                            />
-                            {errors.title && <p className="error-text">{errors.title}</p>}
-                        </label>
+                        <label htmlFor="title">Title:</label>
+                        <input
+                            id="title"
+                            type="text"
+                            placeholder="Enter book title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        {errors.title && <p className="error-text">{errors.title}</p>}
 
-                        <label>
-                            Word Count:
-                            <input
-                                type="number"
-                                placeholder="Enter word count"
-                                value={wordCount}
-                                onChange={(e) => setWordCount(e.target.value)}
-                                required
-                            />
-                            {errors.wordCount && <p className="error-text">{errors.wordCount}</p>}
-                        </label>
+                        <label htmlFor="wordCount">Word Count:</label>
+                        <input
+                            id="wordCount"
+                            type="number"
+                            placeholder="Enter word count"
+                            value={wordCount}
+                            onChange={(e) => setWordCount(e.target.value)}
+                        />
+                        {errors.wordCount && <p className="error-text">{errors.wordCount}</p>}
 
-                        <label>
-                            Genre:
-                            <select
-                                value={genre}
-                                onChange={(e) => setGenre(e.target.value)}
-                            >
-                                <option value={"nonfiction"}>Nonfiction</option>
-                                <option value={"fantasy"}>Fantasy</option>
-                                <option value={"Sci-fi"}>Sci-fi</option>
-                                <option value={"mystery"}>Mystery</option>
-                                <option value={"horror"}>Horror</option>
-                                <option value={"dystopian"}>Dystopian</option>
-                                <option value={"nonfiction"}>Nonfiction</option>
-                                <option value={"literaryfiction"}>Literary Fiction</option>
-                                <option value={"thriller"}>Thriller</option>
-                                <option value={"other"}>Other</option>
-                            </select>
-                        </label>
+                        <label htmlFor="genre">Genre:</label>
+                        <select
+                            id="genre"
+                            value={genre}
+                            onChange={(e) => setGenre(e.target.value)}
+                        >
+                            <option value="nonfiction">Nonfiction</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="Sci-fi">Sci-fi</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="horror">Horror</option>
+                            <option value="dystopian">Dystopian</option>
+                            <option value="literaryfiction">Literary Fiction</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="other">Other</option>
+                        </select>
 
-                        {/* TODO: Add handleGenreChange logic and custom genre input */}
                         <label id="customGenreLabel" style={{ display: "none" }}>
                             Enter Genre:
                             <input type="text" id="customGenre" placeholder="Enter genre" />
@@ -253,35 +240,31 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                     <fieldset>
                         <legend>Sample Size</legend>
 
-                        <label>
-                            Sample size - Pages:
-                            <select
-                                value={sampleSize}
-                                onChange={(e) => setSampleSize(e.target.value)}
-                            >
-                                <option value={""}>Select...</option>
-                                <option value={"3"}>3 Pages</option>
-                                <option value={"5"}>5 Pages</option>
-                                <option value={"10"}>10 Pages</option>
-                                <option value={"30"}>30 Pages</option>
-                                <option value={"50"}>50 Pages</option>
-                            </select>
-                        </label>
+                        <label htmlFor="sampleSize">Sample size - Pages:</label>
+                        <select
+                            id="sampleSize"
+                            value={sampleSize}
+                            onChange={(e) => setSampleSize(e.target.value)}
+                        >
+                            <option value="">Select...</option>
+                            <option value="3">3 Pages</option>
+                            <option value="5">5 Pages</option>
+                            <option value="10">10 Pages</option>
+                            <option value="30">30 Pages</option>
+                            <option value="50">50 Pages</option>
+                        </select>
 
-                        <label>
-                            Enter text for selected page size:
-                            <textarea
-                                value={sampleText}
-                                onChange={(e) => setSampleText(e.target.value)}
-                                placeholder="Enter text for selected pages"
-                                rows={8}
-                            />
-                        </label>
+                        <label htmlFor="sampleText">Enter text for selected page size:</label>
+                        <textarea
+                            id="sampleText"
+                            value={sampleText}
+                            onChange={(e) => setSampleText(e.target.value)}
+                            placeholder="Enter text for selected pages"
+                            rows={8}
+                        />
                     </fieldset>
 
-                    <button type="submit" >
-                        Generate
-                    </button>
+                    <button type="submit">Generate</button>
                     <button type="button" onClick={onClose}>Cancel</button>
                 </form>
             </div>

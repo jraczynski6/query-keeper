@@ -1,29 +1,59 @@
 import "./CreateAgentModal.css";
+import { useState } from "react";
 
 export default function CreateAgentModal({ onClose, onCreate }) {
-
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newAgent = {
-            firstName: e.target["agent-firstname"].value,
-            lastName: e.target["agent-lastname"].value,
-            agency: e.target["agent-agency"].value,
-            email: e.target["agent-email"].value,
-            website: e.target["agent-website"].value,
-            twitter: e.target["agent-twitter"].value,
-            instagram: e.target["agent-instagram"].value,
-            notes: e.target["agent-notes"].value,
+            firstName: e.target["agent-firstname"].value.trim(),
+            lastName: e.target["agent-lastname"].value.trim(),
+            agency: e.target["agent-agency"].value.trim(),
+            email: e.target["agent-email"].value.trim(),
+            website: e.target["agent-website"].value.trim(),
+            twitter: e.target["agent-twitter"].value.trim(),
+            instagram: e.target["agent-instagram"].value.trim(),
+            notes: e.target["agent-notes"].value.trim(),
         };
 
-        onCreate(newAgent); // pass the actual object
+        //validation on submit
+        const newErrors = {};
+
+        if (!newAgent.firstName) newErrors.firstName = "First name is required.";
+        if (!newAgent.lastName) newErrors.lastName = "Last name is required.";
+        if (!newAgent.agency) newErrors.agency = "Agency is required.";
+
+        if (newAgent.email && (!newAgent.email.includes("@") || !newAgent.email.includes("."))) {
+            newErrors.email = "Please enter a valid email address.";
+        }
+
+        if (newAgent.website && !(newAgent.website.startsWith("http://") || newAgent.website.startsWith("https://"))) {
+            newErrors.website = "Website must start with http:// or https://";
+        }
+
+        if (newAgent.twitter && !newAgent.twitter.startsWith("@")) {
+            newErrors.twitter = "Twitter handle must start with @";
+        }
+
+        if (newAgent.instagram && !newAgent.instagram.startsWith("@")) {
+            newErrors.instagram = "Instagram handle must start with @";
+        }
+
+        setErrors(newErrors);
+
+        // Stop submission if there are errors
+        if (Object.keys(newErrors).length > 0) return;
+
+        // No errors → proceed
+        onCreate(newAgent);
         onClose();
     };
 
 
 
-    
+
     return (
         <div className="modal-overlay">
             <div className="create-agent-modal-content">
@@ -36,45 +66,38 @@ export default function CreateAgentModal({ onClose, onCreate }) {
                     <fieldset>
                         <legend>Agent Info</legend>
 
-                        <label htmlFor="agent-firstname">
-                            First Name:
-                            <input id="agent-firstname" type="text" required />
-                        </label>
+                        <label htmlFor="agent-firstname">First Name:</label>
+                        <input id="agent-firstname" type="text" />
+                        {errors.firstName && <p className="error-text">{errors.firstName}</p>}
 
-                        <label htmlFor="agent-lastname">
-                            Last Name:
-                            <input id="agent-lastname" type="text" required />
-                        </label>
+                        <label htmlFor="agent-lastname">Last Name:</label>
+                        <input id="agent-lastname" type="text" />
+                        {errors.lastName && <p className="error-text">{errors.lastName}</p>}
 
-                        <label htmlFor="agent-agency">
-                            Agency:
-                            <input id="agent-agency" type="text" required />
-                        </label>
+                        <label htmlFor="agent-agency">Agency:</label>
+                        <input id="agent-agency" type="text" />
+                        {errors.agency && <p className="error-text">{errors.agency}</p>}
 
-                        <label htmlFor="agent-email">
-                            Email:
-                            <input id="agent-email" type="email" />
-                        </label>
+                        <label htmlFor="agent-email">Email:</label>
+                        <input id="agent-email" type="email" />
+                        {errors.email && <p className="error-text">{errors.email}</p>}
                     </fieldset>
 
                     {/* Agent Links */}
                     <fieldset>
                         <legend>Agent Links</legend>
 
-                        <label htmlFor="agent-website">
-                            Website:
-                            <input id="agent-website" type="text" />
-                        </label>
+                        <label htmlFor="agent-website">Website:</label>
+                        <input id="agent-website" type="text" />
+                        {errors.website && <p className="error-text">{errors.website}</p>}
 
-                        <label htmlFor="agent-twitter">
-                            Twitter Handle:
-                            <input id="agent-twitter" type="text" />
-                        </label>
+                        <label htmlFor="agent-twitter">Twitter Handle:</label>
+                        <input id="agent-twitter" type="text" />
+                        {errors.twitter && <p className="error-text">{errors.twitter}</p>}
 
-                        <label htmlFor="agent-instagram">
-                            Instagram Handle:
-                            <input id="agent-instagram" type="text" />
-                        </label>
+                        <label htmlFor="agent-instagram">Instagram Handle:</label>
+                        <input id="agent-instagram" type="text" />
+                        {errors.instagram && <p className="error-text">{errors.instagram}</p>}
                     </fieldset>
 
                     {/* Agent Notes */}
@@ -92,5 +115,5 @@ export default function CreateAgentModal({ onClose, onCreate }) {
                 </form>
             </div>
         </div>
-    )
+    );
 }

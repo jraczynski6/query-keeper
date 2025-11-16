@@ -42,8 +42,4 @@ export default function NotificationShelf({ onClose }) {
         </div>
     )
 }
-
-// TODO: notification card component
-// TODO: update shelf to use card
 // TODO: logic for add notifications.
-// TODO: Basic card styling.

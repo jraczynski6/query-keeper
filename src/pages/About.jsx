@@ -2,7 +2,6 @@ import "./About.css";
 
 export default function About() {
     return (
-        // TODO: Add home button to about page
         <div className="about-page">
             <main className="about-content">
                 <h2>About Query Keeper</h2>

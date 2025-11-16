@@ -147,8 +147,6 @@ export default function Agents() {
 
 
 // TODO: Filter/Search agents
-// TODO: Other agents in the same agency
-// TODO: Form validation
 // TODO: Default avatars or profile pictures
 // TODO: Sort agents list
 // TODO: Copy agent info

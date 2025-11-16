@@ -38,5 +38,3 @@ export default function Header({ isAuthenticated, onSignInClick, setAuthenticate
         </header>
     );
 }
-
-// TODO: Set up dynamic path name

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import "./SelectedAgent.css";
 
 export default function SelectedAgent() {
@@ -26,14 +26,48 @@ export default function SelectedAgent() {
     // State for form data, initialized after agent exists
     const [formData, setFormData] = React.useState({ ...agent });
 
+    // errors
+    const [errors, setErrors] = useState({});
+
     // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const validateAgent = () => {
+        const newErrors = {};
+
+        if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
+        if (!formData.lastName.trim()) newErrors.lastName = "Last name is required.";
+        if (!formData.agency.trim()) newErrors.agency = "Agency is required.";
+
+        if (formData.email && (!formData.email.includes("@") || !formData.email.includes("."))) {
+            newErrors.email = "Please enter a valid email address.";
+        }
+
+        if (formData.website && !(formData.website.startsWith("http://") || formData.website.startsWith("https://"))) {
+            newErrors.website = "Website must start with http:// or https://";
+        }
+
+        if (formData.twitter && !formData.twitter.startsWith("@")) {
+            newErrors.twitter = "Twitter handle must start with @";
+        }
+
+        if (formData.instagram && !formData.instagram.startsWith("@")) {
+            newErrors.instagram = "Instagram handle must start with @";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
+
+
+
     // Save agent changes
     const handleSave = () => {
+        if (!validateAgent()) return;
+
         const agents = JSON.parse(localStorage.getItem("agents")) || [];
         const updatedAgents = agents.map(a => a.id === agent.id ? { ...a, ...formData } : a);
         localStorage.setItem("agents", JSON.stringify(updatedAgents));
@@ -60,12 +94,15 @@ export default function SelectedAgent() {
                         <div className="form-group">
                             <label htmlFor="firstName">Firstname</label>
                             {isEditing ? (
-                                <input
-                                    id="firstName"
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleChange}
-                                />
+                                <>
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.firstName && <p className="error-text">{errors.firstName}</p>}
+                                </>
                             ) : (
                                 <p>{agent.firstName}</p>
                             )}
@@ -74,12 +111,15 @@ export default function SelectedAgent() {
                         <div className="form-group">
                             <label htmlFor="lastName">Lastname</label>
                             {isEditing ? (
-                                <input
-                                    id="lastName"
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                />
+                                <>
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        value={formData.lastName}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.lastName && <p className="error-text">{errors.lastName}</p>}
+                                </>
                             ) : (
                                 <p>{agent.lastName}</p>
                             )}
@@ -88,12 +128,15 @@ export default function SelectedAgent() {
                         <div className="form-group">
                             <label htmlFor="agency">Agency</label>
                             {isEditing ? (
-                                <input
-                                    id="agency"
-                                    name="agency"
-                                    value={formData.agency}
-                                    onChange={handleChange}
-                                />
+                                <>
+                                    <input
+                                        id="agency"
+                                        name="agency"
+                                        value={formData.agency}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.agency && <p className="error-text">{errors.agency}</p>}
+                                </>
                             ) : (
                                 <p>{agent.agency}</p>
                             )}
@@ -102,12 +145,15 @@ export default function SelectedAgent() {
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             {isEditing ? (
-                                <input
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
+                                <>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.email && <p className="error-text">{errors.email}</p>}
+                                </>
                             ) : (
                                 <p>{agent.email}</p>
                             )}
@@ -120,17 +166,38 @@ export default function SelectedAgent() {
 
                         <div className="form-group">
                             <label htmlFor="website">Website</label>
-                            {isEditing ? <input id="website" name="website" value={formData.website} onChange={handleChange} /> : <p>{agent.website}</p>}
+                            {isEditing ? (
+                                <>
+                                    <input id="website" name="website" value={formData.website} onChange={handleChange} />
+                                    {errors.website && <p className="error-text">{errors.website}</p>}
+                                </>
+                            ) : (
+                                <p>{agent.website}</p>
+                            )}
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="twitter">Twitter</label>
-                            {isEditing ? <input id="twitter" name="twitter" value={formData.twitter} onChange={handleChange} /> : <p>{agent.twitter}</p>}
+                            {isEditing ? (
+                                <>
+                                    <input id="twitter" name="twitter" value={formData.twitter} onChange={handleChange} />
+                                    {errors.twitter && <p className="error-text">{errors.twitter}</p>}
+                                </>
+                            ) : (
+                                <p>{agent.twitter}</p>
+                            )}
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="instagram">Instagram</label>
-                            {isEditing ? <input id="instagram" name="instagram" value={formData.instagram} onChange={handleChange} /> : <p>{agent.instagram}</p>}
+                            {isEditing ? (
+                                <>
+                                    <input id="instagram" name="instagram" value={formData.instagram} onChange={handleChange} />
+                                    {errors.instagram && <p className="error-text">{errors.instagram}</p>}
+                                </>
+                            ) : (
+                                <p>{agent.instagram}</p>
+                            )}
                         </div>
                     </section>
 
@@ -157,7 +224,6 @@ export default function SelectedAgent() {
                     </div>
                 </div>
             </main>
-
         </div>
-    )
+    );
 }

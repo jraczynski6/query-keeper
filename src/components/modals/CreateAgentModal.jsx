@@ -1,7 +1,8 @@
 import "./CreateAgentModal.css";
+import { useState } from "react";
 
 export default function CreateAgentModal({ onClose, onCreate }) {
-
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,10 +43,11 @@ export default function CreateAgentModal({ onClose, onCreate }) {
 
         setErrors(newErrors);
 
-        // Stop if error
+        // Stop submission if there are errors
         if (Object.keys(newErrors).length > 0) return;
 
-        onCreate(newAgent); // pass the actual object
+        // No errors → proceed
+        onCreate(newAgent);
         onClose();
     };
 

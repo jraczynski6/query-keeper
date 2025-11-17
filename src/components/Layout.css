@@ -17,6 +17,11 @@
     align-items: center;
 }
 
+.app-name-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .center {
     flex: 1;
     justify-content: center;

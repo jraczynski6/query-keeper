@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 export default function Header({ isAuthenticated, onSignInClick, setAuthenticated }) {
     const location = useLocation();
@@ -21,7 +21,9 @@ export default function Header({ isAuthenticated, onSignInClick, setAuthenticate
         <header className="app-header">
 
             <div className="left">
-                <h1 className="app-name">Query Keeper</h1>
+                <Link to="/" className="app-name-link">
+                    <h1 className="app-name">Query Keeper</h1>
+                </Link>
             </div>
 
             <div className="center">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNotifications } from "../../contexts/NotificationsContext";
-//add toast.css
+import "./Toast.css";
 
 
 export default function Toast([id, message]) {

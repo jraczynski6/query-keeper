@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignInModal.css";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function SignInModal({ isOpen, onClose, onSignInSuccess }) {
     const navigate = useNavigate();
+    const { addToast } = useNotifications();
 
     if (!isOpen) return null;
 
@@ -12,6 +14,7 @@ export default function SignInModal({ isOpen, onClose, onSignInSuccess }) {
         onSignInSuccess();
         onClose();
         navigate("/dashboard")
+        addToast("Sign in successful!");
     };
 
     return (

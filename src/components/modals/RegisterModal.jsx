@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterModal.css";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
     const navigate = useNavigate();
+    const { addToast } = useNotifications();
 
     if (!isOpen) return null;
 
@@ -12,6 +14,7 @@ export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
         onClose();
         OnRegistersuccess();
         navigate("/dashboard")
+        addToast("Account created!");
     };
 
     return (

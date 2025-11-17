@@ -23,9 +23,9 @@ export default function Layout({ children, isAuthenticated, setAuthenticated }) 
             addToast("2 week Reminder to follow up with agent Jane Doe");
             addNotification({
                 title: "Follow up with Jane Doe",
-                message: "Check in with the agent today."
+                message: "Check in with Jane Doe today."
             });
-        }, 5000); // three minute timer, adjust for demo
+        }, 60000); // one minute timer, adjust for demo
 
         return () => clearTimeout(timer);
     }, []);

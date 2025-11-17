@@ -15,8 +15,13 @@ export function NotificationsProvider({ children }) {
             message,
             timestamp: new Date().toLocaleString(),
         };
-    }
 
+        setNotifications((prev) => [...prev, newNotification]);
+    };
+
+    const removeNotification = (id) => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+    };
 
 
     // Toasts

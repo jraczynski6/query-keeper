@@ -12,7 +12,7 @@ export default function ToastList() {
     return (
         <div className="toast-container">
             {toasts.map(t => (
-                <toast key={t.id} id={t.id} message={t.message} />
+                <Toast key={t.id} id={t.id} message={t.message} />
             ))}
         </div>
     );

@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import "./Author.css";
+import { useNotifications } from "../contexts/NotificationsContext";
+
+
+
+
 
 export default function Author() {
+    
+    const { addToast } = useNotifications();
+
+
     // Mock Author data
     const [author, setAuthor] = useState(() => {
         const saved = localStorage.getItem("author");
@@ -65,7 +74,8 @@ export default function Author() {
          const template = `Dear Editor, my name is ${author.firstName} ${author.lastName}.`;
 
         setPreviewText(template);
-        // TODO: Add toast for author info saved
+        
+        addToast("Author info saved!")
     };
 
     return (

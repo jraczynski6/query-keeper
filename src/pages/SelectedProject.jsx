@@ -3,12 +3,14 @@ import QuerySubmissionModal from "../components/modals/QuerySubmissionModal";
 import queryTemplates from "../utils/queryTemplates";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./SelectedProject.css";
+import { useNotifications } from "../contexts/NotificationsContext";
 
 
 export default function SelectedProject() {
 
     const navigate = useNavigate();
     const { projectId } = useParams(); //project id from route
+    const { addToast } = useNotifications();
 
     //Project State
     const [project, setProject] = useState(null);
@@ -53,6 +55,8 @@ export default function SelectedProject() {
             p.id === updatedProject.id ? updatedProject : p
         );
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
+
+        addToast("Project info saved!");
     };
 
 

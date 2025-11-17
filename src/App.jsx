@@ -4,7 +4,8 @@ import './App.css';
 import ProtectedRoute from './components/ProtectedRoute';
 import { DashboardProvider } from './contexts/DashboardContext';
 import "./index.css";
-
+import { NotificationsProvider } from './contexts/NotificationsContext';
+import ToastList from './components/toast/ToastList';
 
 
 // Pages
@@ -24,112 +25,115 @@ function App() {
 
   return (
     <>
-      <DashboardProvider>
-        <Router>
-          <Routes>
-            {/* Public Route */}
-            <Route
-              path='/' element={
-                <Layout
-                  isAuthenticated={isAuthenticated}
-                  setAuthenticated={setAuthenticated}
-                >
-                  <Landing />
-                </Layout>
-              }
-            />
-            <Route
-              path='/about' element={
-                <Layout
-                  isAuthenticated={isAuthenticated}
-                  setAuthenticated={setAuthenticated}
-                >
-                  <About />
-                </Layout>
-              }
-            />
-
-            {/* Protected Route */}
-            <Route
-              path='/dashboard' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
+      <NotificationsProvider>
+        <DashboardProvider>
+          <Router>
+            <Routes>
+              {/* Public Route */}
+              <Route
+                path='/' element={
                   <Layout
                     isAuthenticated={isAuthenticated}
                     setAuthenticated={setAuthenticated}
                   >
-                    <Dashboard isAuthenticated={isAuthenticated} />
+                    <Landing />
                   </Layout>
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path='/agents' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                }
+              />
+              <Route
+                path='/about' element={
                   <Layout
                     isAuthenticated={isAuthenticated}
                     setAuthenticated={setAuthenticated}
                   >
-                    <Agents />
+                    <About />
                   </Layout>
-                </ProtectedRoute>
-              }
-            />
+                }
+              />
 
-            <Route
-              path='/agents/:id' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Layout
-                    isAuthenticated={isAuthenticated}
-                    setAuthenticated={setAuthenticated}
-                  >
-                    <SelectedAgent />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
+              {/* Protected Route */}
+              <Route
+                path='/dashboard' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <Dashboard isAuthenticated={isAuthenticated} />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path='/projects' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Layout
-                    isAuthenticated={isAuthenticated}
-                    setAuthenticated={setAuthenticated}
-                  >
-                    <Projects />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path='/agents' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <Agents />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path='/projects/:projectId' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Layout
-                    isAuthenticated={isAuthenticated}
-                    setAuthenticated={setAuthenticated}
-                  >
-                    <SelectedProject />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path='/agents/:id' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <SelectedAgent />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path='/author' element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Layout
-                    isAuthenticated={isAuthenticated}
-                    setAuthenticated={setAuthenticated}
-                  >
-                    <Author />
-                  </Layout>
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Router>
-      </DashboardProvider>
+              <Route
+                path='/projects' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <Projects />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path='/projects/:projectId' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <SelectedProject />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path='/author' element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Layout
+                      isAuthenticated={isAuthenticated}
+                      setAuthenticated={setAuthenticated}
+                    >
+                      <Author />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </Router>
+        </DashboardProvider>
+        <ToastList />
+      </NotificationsProvider>
     </>
   )
 }

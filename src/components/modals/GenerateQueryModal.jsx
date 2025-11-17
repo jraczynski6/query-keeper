@@ -3,6 +3,7 @@ import queryTemplates from "../../utils/queryTemplates";
 import { generateQuery } from "../../utils/queryGenerationUtils";
 import { useNavigate } from "react-router-dom";
 import "./GenerateQueryModal.css";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 
 
@@ -13,6 +14,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     //fallback
     if (!isOpen) return null;
 
+    const { addToast } = useNotifications();
 
     // State Hooks
 
@@ -124,6 +126,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         if (typeof onProjectCreated === "function") {
             onProjectCreated(newProject);
         }
+
+        addToast("New project created!");
 
         onClose();
     };

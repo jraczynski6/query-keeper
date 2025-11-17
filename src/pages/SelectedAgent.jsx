@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./SelectedAgent.css";
+import { useNotifications } from "../contexts/NotificationsContext";
 
 export default function SelectedAgent() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const {addToast} = useNotifications();
 
     // Get agents from localStorage
     const agents = JSON.parse(localStorage.getItem("agents")) || [];
@@ -71,6 +73,9 @@ export default function SelectedAgent() {
         const agents = JSON.parse(localStorage.getItem("agents")) || [];
         const updatedAgents = agents.map(a => a.id === agent.id ? { ...a, ...formData } : a);
         localStorage.setItem("agents", JSON.stringify(updatedAgents));
+
+        addToast("Agent info saved!")
+
         setIsEditing(false);
     };
 

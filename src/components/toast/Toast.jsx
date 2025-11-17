@@ -3,7 +3,7 @@ import { useNotifications } from "../../contexts/NotificationsContext";
 import "./Toast.css";
 
 
-export default function Toast([id, message]) {
+export default function Toast({id, message}) {
 
     // destructure useNotifications
     const {removeToast, addNotification } = useNotifications();

@@ -7,12 +7,32 @@ export function NotificationsProvider({ children }) {
 
 
     // Shelf Notifications
-    const [notifications, setNotifications] = useState([]);
+    const [notifications, setNotifications] = useState([
+        {
+            id: crypto.randomUUID(),
+            title: "Welcome to the app",
+            message: "Thanks for signing up!",
+            timestamp: new Date().toLocaleString(),
+        },
+        {
+            id: crypto.randomUUID(),
+            title: "Notifications Tab",
+            message: "This is where reminders will appear.",
+            timestamp: new Date().toLocaleString(),
+        },
+        {
+            id: crypto.randomUUID(),
+            title: "Follow Up Reminder",
+            message: "Click a popup notification to stamp it and save to shelf.",
+            timestamp: new Date().toLocaleString(),
+        },
+    ]);
 
     //add notification
-    const addNotification = (message) => {
+    const addNotification = ({ title, message }) => {
         const newNotification = {
             id: crypto.randomUUID(),
+            title,
             message,
             timestamp: new Date().toLocaleString(),
         };

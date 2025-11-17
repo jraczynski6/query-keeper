@@ -7,9 +7,9 @@ export default function NotificationShelf({ onClose }) {
     //state to hold notifications
     //sample notifications
     const [notifications, setNotifications] = useState([
-        { id: 1, message: "Welcome to the app." },
-        { id: 2, message: "This is the notifications tab." },
-        { id: 3, message: "Here, you get to check reminders about followup emails and more." }
+        { id: 1, message: "Welcome to the app.", timestamp: new Date().toLocaleString() },
+        { id: 2, message: "This is the notifications tab.", timestamp: new Date().toLocaleString() },
+        { id: 3, message: "Here, you get to check reminders about followup emails and more.", timestamp: new Date().toLocaleString() }
     ]);
 
     // remove notification from array by id

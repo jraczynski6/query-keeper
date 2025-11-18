@@ -2,11 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./SelectedAgent.css";
 import { useNotifications } from "../contexts/NotificationsContext";
+import CopyButton from "../components/CopyButton";
 
 export default function SelectedAgent() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const {addToast} = useNotifications();
+    const { addToast } = useNotifications();
 
     // Get agents from localStorage
     const agents = JSON.parse(localStorage.getItem("agents")) || [];
@@ -109,7 +110,10 @@ export default function SelectedAgent() {
                                     {errors.firstName && <p className="error-text">{errors.firstName}</p>}
                                 </>
                             ) : (
-                                <p>{agent.firstName}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.firstName}</p>
+                                    <CopyButton textToCopy={agent.firstName} />
+                                </div>
                             )}
                         </div>
 
@@ -126,7 +130,10 @@ export default function SelectedAgent() {
                                     {errors.lastName && <p className="error-text">{errors.lastName}</p>}
                                 </>
                             ) : (
-                                <p>{agent.lastName}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.lastName}</p>
+                                    <CopyButton textToCopy={agent.lastName} />
+                                </div>
                             )}
                         </div>
 
@@ -143,7 +150,10 @@ export default function SelectedAgent() {
                                     {errors.agency && <p className="error-text">{errors.agency}</p>}
                                 </>
                             ) : (
-                                <p>{agent.agency}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.agency}</p>
+                                    <CopyButton textToCopy={agent.agency} />
+                                </div>
                             )}
                         </div>
 
@@ -160,7 +170,10 @@ export default function SelectedAgent() {
                                     {errors.email && <p className="error-text">{errors.email}</p>}
                                 </>
                             ) : (
-                                <p>{agent.email}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.email}</p>
+                                    <CopyButton textToCopy={agent.email} />
+                                </div>
                             )}
                         </div>
                     </section>
@@ -177,7 +190,10 @@ export default function SelectedAgent() {
                                     {errors.website && <p className="error-text">{errors.website}</p>}
                                 </>
                             ) : (
-                                <p>{agent.website}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.website}</p>
+                                    <CopyButton textToCopy={agent.website} />
+                                </div>
                             )}
                         </div>
 
@@ -189,7 +205,10 @@ export default function SelectedAgent() {
                                     {errors.twitter && <p className="error-text">{errors.twitter}</p>}
                                 </>
                             ) : (
-                                <p>{agent.twitter}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.twitter}</p>
+                                    <CopyButton textToCopy={agent.twitter} />
+                                </div>
                             )}
                         </div>
 
@@ -201,7 +220,10 @@ export default function SelectedAgent() {
                                     {errors.instagram && <p className="error-text">{errors.instagram}</p>}
                                 </>
                             ) : (
-                                <p>{agent.instagram}</p>
+                                <div className="input-with-copy">
+                                    <p>{agent.instagram}</p>
+                                    <CopyButton textToCopy={agent.instagram} />
+                                </div>
                             )}
                         </div>
                     </section>

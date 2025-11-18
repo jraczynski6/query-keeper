@@ -128,7 +128,6 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             </div>
                         </div>
 
-                        {/* TODO: Add logic to link to notifcations */}
                         <div className="form-group">
                             <label htmlFor="expectedReply">Expected Reply By</label>
                             <input id="expectedReply" type="date" />
@@ -194,4 +193,4 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
     )
 }
 
-// TODO: Add handleCopy logic and update buttons.
+// TODO: Add handleCopy logic

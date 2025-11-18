@@ -332,4 +332,3 @@ export default function SelectedProject() {
 
 
 // TODO: clickable author/agent
-// TODO: make copy buttons work

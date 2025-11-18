@@ -194,5 +194,3 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
         </div >
     )
 }
-
-// TODO: Add handleCopy logic

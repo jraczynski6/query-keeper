@@ -200,5 +200,3 @@ export default function Dashboard() {
     </div>
   );
 }
-// TODO: Clear dashboard
-// TODO: Save dashboard cards to localstorage - btn

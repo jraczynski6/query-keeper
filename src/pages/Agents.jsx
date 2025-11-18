@@ -148,4 +148,3 @@ export default function Agents() {
 
 // TODO: Filter/Search agents
 // TODO: Sort agents list
-// TODO: Copy agent info

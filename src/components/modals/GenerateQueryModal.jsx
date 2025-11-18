@@ -59,6 +59,28 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         setAgents(storedAgents);
     }, []);
 
+    //live validation
+    useEffect(() => {
+        if (Object.keys(errors).length === 0) return;
+
+        const updatedErrors = { ...errors };
+
+
+        // Clear agent error
+        if (selectedAgentId && updatedErrors.agent) delete updatedErrors.agent;
+
+        // Clear template error
+        if (selectedTemplateId && updatedErrors.template) delete updatedErrors.template;
+
+        // Clear title error
+        if (title.trim() && updatedErrors.title) delete updatedErrors.title;
+
+        // Clear wordCount error
+        if (wordCount && Number(wordCount) > 0 && updatedErrors.wordCount) delete updatedErrors.wordCount;
+
+        setErrors(updatedErrors);
+    }, [selectedAgentId, selectedTemplateId, title, wordCount]);
+
     const validate = () => {
         const newErrors = {};
 

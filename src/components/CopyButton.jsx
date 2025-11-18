@@ -20,5 +20,3 @@ export default function CopyButton({textToCopy}) {
         </button>
     );
 }
-
-//TODO: add toast for copy

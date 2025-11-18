@@ -81,6 +81,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         setErrors(updatedErrors);
     }, [selectedAgentId, selectedTemplateId, title, wordCount]);
 
+    //validate on submit
     const validate = () => {
         const newErrors = {};
 
@@ -297,8 +298,4 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         </div>
     )
 }
-// Query generation ALL FORMS
 // TODO: Add more query templates.
-// TODO: Clear errors as user types
-// TODO: auto-scroll to first error
-// TODO: select first field to begin typing.

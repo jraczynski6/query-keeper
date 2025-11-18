@@ -5,7 +5,7 @@ export default function CopyButton({textToCopy}) {
     const { addToast } = useNotifications();
 
     // navigator.clipboard.writeText API returns a Promise
-    const handleCopy = () => {
+    const handleCopy = async () => {
         try {
             navigator.clipboard.writeText(textToCopy);
             addToast("Copied to clipboard!");

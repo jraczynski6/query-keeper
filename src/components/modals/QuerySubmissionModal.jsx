@@ -1,5 +1,6 @@
 import React from "react";
 import "./QuerySubmissionModal.css";
+import CopyButton from "../CopyButton";
 
 export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmit }) {
 
@@ -55,7 +56,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="fname">First Name</label>
                             <div className="input-with-copy">
                                 <input id="fname" type="text" value={author.firstName} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.firstName} />
                             </div>
                         </div>
 
@@ -63,7 +64,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="lname">Last Name</label>
                             <div className="input-with-copy">
                                 <input id="lname" type="text" value={author.lastName} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.lastName} />
                             </div>
                         </div>
 
@@ -71,7 +72,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="email">Email</label>
                             <div className="input-with-copy">
                                 <input id="email" type="email" value={author.email} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.email} />
                             </div>
                         </div>
 
@@ -79,7 +80,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="website">Website</label>
                             <div className="input-with-copy">
                                 <input id="website" type="text" value={author.website} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.website} />
                             </div>
                         </div>
 
@@ -87,7 +88,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="twitter">Twitter</label>
                             <div className="input-with-copy">
                                 <input id="twitter" type="text" value={author.twitter} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.twitter} />
                             </div>
                         </div>
 
@@ -95,7 +96,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="instagram">Instagram</label>
                             <div className="input-with-copy">
                                 <input id="instagram" type="text" value={author.instagram} readOnly/>
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={author.instagram} />
                             </div>
                         </div>
                     </section>
@@ -108,7 +109,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="title">Title</label>
                             <div className="input-with-copy">
                                 <input id="title" type="text" value={project.title || ""} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={project.title} />
                             </div>
                         </div>
 
@@ -116,7 +117,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="words">Word Count</label>
                             <div className="input-with-copy">
                                 <input id="words" type="text" value={project.wordCount || ""} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={project.wordCount?.toString() || ""} />
                             </div>
                         </div>
 
@@ -124,7 +125,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label htmlFor="genre">Genre</label>
                             <div className="input-with-copy">
                                 <input id="genre" type="text" value={project.genre || ""} readOnly />
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={project.genre} />
                             </div>
                         </div>
 
@@ -137,6 +138,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label>Query Draft</label>
                             <div className="final-query">
                                 <p>{project?.query || "Final query will go here."}</p>
+                                 <CopyButton textToCopy={project?.query || ""} />
                             </div>
                         </div>
 
@@ -176,7 +178,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                                     onChange={(e) => setSampleText(e.target.value)}
                                     rows={8}
                                 ></textarea>
-                                <button type="button" className="copy-btn">Copy</button>
+                                <CopyButton textToCopy={sampleText} />
                             </div>
                         </div>
                     </section>

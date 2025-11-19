@@ -9,9 +9,9 @@
   gap: 0.75rem;
   width: 250px;
   min-height: 180px;
-  max-height: 100%;        /* ensure card doesn’t overflow canvas */
+  max-height: 100%;        
   color: #fff;   
-  overflow: hidden;        /* hide anything beyond card */
+  overflow: hidden;    
 }
 
 /* Textarea inside note card */
@@ -19,7 +19,7 @@
   width: 100%;
   flex-grow: 1;                         
   min-height: 60px;
-  max-height: calc(100% - 70px); /* leave space for buttons and padding */
+  max-height: calc(100% - 70px);
   resize: vertical;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -29,13 +29,13 @@
   font-size: 0.9rem;
   box-sizing: border-box;
 
-  white-space: pre-wrap;       /* wrap text, preserve line breaks */
-  word-wrap: break-word;       /* break long words */
-  overflow-y: auto;            /* vertical scroll if content exceeds max-height */
-  overflow-x: hidden;          /* prevent horizontal scroll */
+  white-space: pre-wrap;      
+  word-wrap: break-word;     
+  overflow-y: auto;           
+  overflow-x: hidden;  
 }
 .note-card .note-content {
-  white-space: pre-wrap; /* wrap lines and preserve line breaks */
+  white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -45,7 +45,7 @@
 /* Save/Delete buttons container */
 .note-card-buttons {
   display: flex;
-  flex-direction: column; /* stacked vertically */
+  flex-direction: column;
   gap: 0.5rem;
   align-items: stretch;
 }
@@ -55,16 +55,16 @@
   background-color: #FF5CA1;
   color: #fff;
   border: none;
-  padding: 0.5rem 0;      /* vertical padding */
+  padding: 0.5rem 0;
   border-radius: 0.25rem;
   cursor: pointer;
-  width: 100%;            /* full width */
+  width: 100%;   
   text-align: center;
   transition: background 0.2s;
 }
 
 .save-btn:hover {
-  background-color: #e64a9e; /* darker pink on hover */
+  background-color: #e64a9e;
 }
 
 /* Delete button styling */
@@ -72,10 +72,10 @@
   background-color: #ccc;
   color: #000;
   border: none;
-  padding: 0.5rem 0;      /* vertical padding */
+  padding: 0.5rem 0;   
   border-radius: 0.25rem;
   cursor: pointer;
-  width: 100%;            /* full width */
+  width: 100%;
   text-align: center;
   transition: background 0.2s, color 0.2s;
 }
@@ -83,4 +83,55 @@
 .delete-btn:hover {
   background-color: #ff4d6d;
   color: #fff;
+}
+
+/* Mobile (max-width: 767px) */
+@media (max-width: 767px) {
+  .note-card {
+    width: 140px;        
+    min-height: 120px;      /* reduce height */
+    padding: 6px;
+    gap: 4px;               /* smaller gap */
+    font-size: 0.75rem;
+  }
+
+  .note-card textarea {
+    min-height: 40px;                  
+    max-height: calc(100% - 50px);        
+    font-size: 0.7rem;                  
+    padding: 0.25rem;
+  }
+
+  .note-card-buttons {
+    gap: 2px;                          
+  }
+
+  .save-btn,
+  .delete-btn {
+    font-size: 0.65rem;                 
+    padding: 2px 0;              
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .note-card {
+    width: 190px;     
+    min-height: 150px;
+    padding: 10px;
+    gap: 6px;
+    font-size: 0.85rem;
+  }
+
+  .note-card textarea {
+    min-height: 50px;
+    max-height: calc(100% - 60px);
+    font-size: 0.8rem;
+  }
+
+  .save-btn,
+  .delete-btn {
+    font-size: 0.75rem;
+    padding: 3px 0;
+  }
 }

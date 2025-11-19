@@ -125,7 +125,7 @@ export default function Dashboard() {
 
                   {/* Project */}
                   {item.type === "project" && item.projectData ? (
-                    <div className="mini-card project-card">
+                    <div className="dashboard-project-card">
 
 
                       <h4>{item.projectData.title ?? "Untitled Project"}</h4>
@@ -162,7 +162,7 @@ export default function Dashboard() {
 
                   {/* Agent */}
                   {item.type === "agent" && item.agentData ? (
-                    <div className="mini-card agent-card">
+                    <div className="dashboard-agent-card">
                       <h4>
                         {item.agentData.firstName ?? "Unnamed"}{" "}
                         {item.agentData.lastName ?? "Agent"}

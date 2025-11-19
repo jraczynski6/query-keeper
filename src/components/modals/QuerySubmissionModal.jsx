@@ -31,7 +31,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
 
         // locally store updated project
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-        const updatedProjects = savedProjects.map(p => 
+        const updatedProjects = savedProjects.map(p =>
             p.id === updatedProject.id ? updatedProject : p
         );
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
@@ -95,7 +95,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                         <div className="form-group">
                             <label htmlFor="instagram">Instagram</label>
                             <div className="input-with-copy">
-                                <input id="instagram" type="text" value={author.instagram} readOnly/>
+                                <input id="instagram" type="text" value={author.instagram} readOnly />
                                 <CopyButton textToCopy={author.instagram} />
                             </div>
                         </div>
@@ -138,7 +138,7 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                             <label>Query Draft</label>
                             <div className="final-query">
                                 <p>{project?.query || "Final query will go here."}</p>
-                                 <CopyButton textToCopy={project?.query || ""} />
+                                <CopyButton textToCopy={project?.query || ""} />
                             </div>
                         </div>
 
@@ -146,19 +146,19 @@ export default function QuerySubmissionModal({ isOpen, onClose, project, onSubmi
                         <div className="form-group">
                             <label htmlFor="sampleSize">Sample Size</label>
                             <select
-                             value={selectedSize}
-                             onChange={(e) => {
-                                const newSize = e.target.value;
-                                setSelectedSize(newSize);
-                                
-                                // 10 is necessary to parse normal number
-                                if (parseInt(newSize, 10) === project?.sampleSize) {
-                                    setSampleText(project?.sampleText || "");
-                                } else {
-                                    setSampleText("");
-                                }
-                             }}
-                             >
+                                value={selectedSize}
+                                onChange={(e) => {
+                                    const newSize = e.target.value;
+                                    setSelectedSize(newSize);
+
+                                    // 10 is necessary to parse normal number
+                                    if (parseInt(newSize, 10) === project?.sampleSize) {
+                                        setSampleText(project?.sampleText || "");
+                                    } else {
+                                        setSampleText("");
+                                    }
+                                }}
+                            >
                                 <option value={""}>Select sample size</option>
                                 <option value={"3"}>3 Pages</option>
                                 <option value={"5"}>5 Pages</option>

@@ -111,6 +111,23 @@ select {
     max-width: 500px;
 }
 
+.final-query {
+  display: flex;           /* make <p> and button sit side by side */
+  align-items: flex-start; /* align to top */
+  gap: 0.5rem;             /* space between text and button */
+}
+
+.final-query p {
+  flex: 1;                 /* take remaining width */
+  margin: 0;               /* remove default margin */
+  word-break: break-word;  /* wrap long text */
+}
+
+.final-query button {
+  flex: 0 0 auto;          /* keep button natural size */
+  height: fit-content;     /* button height matches content */
+}
+
 /* Form Actions */
 .form-actions {
     display: flex;

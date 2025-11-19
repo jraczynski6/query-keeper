@@ -1,23 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import NotificationCard from "./NotificationCard";
 import "./NotificationShelf.css";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function NotificationShelf({ onClose }) {
-
-    //state to hold notifications
-    //sample notifications
-    const [notifications, setNotifications] = useState([
-        { id: 1, message: "Welcome to the app." },
-        { id: 2, message: "This is the notifications tab." },
-        { id: 3, message: "Here, you get to check reminders about followup emails and more." }
-    ]);
-
-    // remove notification from array by id
-    const removeNotification = (id) => {
-        setNotifications(notifications.filter(n => n.id !== id));
-    };
-
-
+    const { notifications, removeNotification } = useNotifications();
 
     return (
         <div className="notifications-shelf-overlay">
@@ -29,7 +16,11 @@ export default function NotificationShelf({ onClose }) {
                     <button className="close-shelf-btn" onClick={onClose}>X</button>
                 </div>
 
-                <div className="shelf-content">
+                 <div className="shelf-content">
+                    {notifications.length === 0 && (
+                        <p className="empty-text">No notifications yet.</p>
+                    )}
+
                     {notifications.map(n => (
                         <NotificationCard
                             key={n.id}
@@ -40,6 +31,5 @@ export default function NotificationShelf({ onClose }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
-// TODO: logic for add notifications.

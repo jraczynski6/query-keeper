@@ -1,8 +1,8 @@
 /* custom css variables */
 :root {
-    --bg-color: #1f1f1f;               /* darker but not black */
-    --color-text: #EAEAEA;             /* main text, bright */
-    --color-text-secondary: #CCCCCC;   /* secondary text, lighter than before */
+    --bg-color: #1f1f1f;
+    --color-text: #EAEAEA;             /* main text  */
+    --color-text-secondary: #CCCCCC;   /* secondary text */
 
     --color-notification-btn: #FF4C4C;
     --color-critical: #FF5555;

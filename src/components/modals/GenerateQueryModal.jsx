@@ -3,6 +3,7 @@ import queryTemplates from "../../utils/queryTemplates";
 import { generateQuery } from "../../utils/queryGenerationUtils";
 import { useNavigate } from "react-router-dom";
 import "./GenerateQueryModal.css";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 
 
@@ -13,6 +14,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     //fallback
     if (!isOpen) return null;
 
+    const { addToast } = useNotifications();
 
     // State Hooks
 
@@ -57,6 +59,29 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         setAgents(storedAgents);
     }, []);
 
+    //live validation
+    useEffect(() => {
+        if (Object.keys(errors).length === 0) return;
+
+        const updatedErrors = { ...errors };
+
+
+        // Clear agent error
+        if (selectedAgentId && updatedErrors.agent) delete updatedErrors.agent;
+
+        // Clear template error
+        if (selectedTemplateId && updatedErrors.template) delete updatedErrors.template;
+
+        // Clear title error
+        if (title.trim() && updatedErrors.title) delete updatedErrors.title;
+
+        // Clear wordCount error
+        if (wordCount && Number(wordCount) > 0 && updatedErrors.wordCount) delete updatedErrors.wordCount;
+
+        setErrors(updatedErrors);
+    }, [selectedAgentId, selectedTemplateId, title, wordCount]);
+
+    //validate on submit
     const validate = () => {
         const newErrors = {};
 
@@ -124,6 +149,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         if (typeof onProjectCreated === "function") {
             onProjectCreated(newProject);
         }
+
+        addToast("New project created!");
 
         onClose();
     };
@@ -271,8 +298,4 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         </div>
     )
 }
-// Query generation ALL FORMS
 // TODO: Add more query templates.
-// TODO: Clear errors as user types
-// TODO: auto-scroll to first error
-// TODO: select first field to begin typing.

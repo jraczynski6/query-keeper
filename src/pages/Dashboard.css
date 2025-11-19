@@ -11,7 +11,6 @@
   overflow-x: hidden;
 }
 
-/* Dashboard Content */
 .dashboard-content {
   flex: 1;
   display: flex;
@@ -20,11 +19,11 @@
   overflow: hidden;
 }
 
-/* Dashboard Canvas */
 .dashboard-canvas {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;    
+  padding: 30px;
   min-height: 300px;
   margin: 0 auto;
   flex: 1;
@@ -36,132 +35,163 @@
   box-sizing: border-box;
 }
 
-
-/* Mini / Project / Agent Cards */
-
-.mini-card,
-.project-card,
-.agent-card {
+/* Dashboard Cards: Projects & Agents */
+.dashboard-project-card {
   width: 250px;
   min-height: 120px;
-}
-
-.mini-card .card-action-btn,
-.project-card .card-action-btn,
-.agent-card .card-action-btn {
-  display: block;          /* put on its own line */
-  width: 100%;             /* stretch full card width */
-  text-align: center;      /* center the text */
-  box-sizing: border-box;  /* include padding in width */
-}
-
-/* Add spacing between stacked buttons */
-.mini-card .card-action-btn + .card-action-btn,
-.project-card .card-action-btn + .card-action-btn,
-.agent-card .card-action-btn + .card-action-btn {
-  margin-top: 8px;         /* space between buttons */
-}
-
-.mini-card .delete-btn,
-.project-card .delete-btn,
-.agent-card .delete-btn {
-  display: block;          /* put on its own line */
-  width: 100%;             /* stretch full card width */
-  text-align: center;      /* center text */
-  box-sizing: border-box;  /* include padding in width */
-  margin-top: 8px;         /* spacing below previous button */
-  padding: 6px 0;          /* vertical padding */
-  border-radius: 6px;
-  border: 1px solid #ff4d6d;
-  background: #ff4d6d;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  background-color: #2a2a2a;
+  border: 2px solid #0c7fa6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 10px rgba(107,77,191,0.4);
   color: #fff;
+}
+
+.dashboard-agent-card {
+  width: 250px;
+  min-height: 120px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  border-radius: 0.75rem;
+  background-color: #2a2a2a;
+  border: 2px solid #FF5CA1; /* Agent accent color */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 10px rgba(255,92,161,0.4);
+  color: #fff;
+}
+
+/* Tighten spacing inside dashboard cards */
+.dashboard-project-card h4,
+.dashboard-agent-card h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+}
+
+.dashboard-project-card p,
+.dashboard-agent-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+/* Action buttons inside dashboard cards */
+.dashboard-project-card .card-action-btn,
+.dashboard-project-card .delete-btn,
+.dashboard-agent-card .card-action-btn,
+.dashboard-agent-card .delete-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 8px;
+  padding: 6px 0;
+  border-radius: 6px;
   font-size: 0.85rem;
   cursor: pointer;
   transition: background 0.2s;
 }
 
-/* Hover effect */
-.delete-btn:hover {
+.dashboard-project-card .delete-btn,
+.dashboard-agent-card .delete-btn {
+  border: 1px solid #ff4d6d;
   background: #ff4d6d;
   color: #fff;
 }
 
-/* Remove focus/outline */
-.delete-btn:focus,
-.delete-btn:focus-visible {
+.dashboard-project-card .delete-btn:hover,
+.dashboard-agent-card .delete-btn:hover {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+.dashboard-project-card .delete-btn:focus,
+.dashboard-project-card .delete-btn:focus-visible,
+.dashboard-agent-card .delete-btn:focus,
+.dashboard-agent-card .delete-btn:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
-
-
-
-/* Mobile (max-width: 767px) */
-
+/* Mobile */
 @media (max-width: 767px) {
   .dashboard-canvas {
-    min-height: 250px;
-    padding: 10px;
-  }
-
-  .mini-card,
-  .note-card {
-    width: 160px;
-    min-height: 130px;
+    min-height: 200px;
     padding: 8px;
-    font-size: 0.8rem;
   }
 
-  .mini-card h4,
-  .note-card h4 {
-    font-size: 0.9rem;
+  .dashboard-project-card,
+  .dashboard-agent-card {
+    width: 120px;
+    min-height: auto;
+    padding: 4px;
+    gap: 2px;
+    font-size: 0.7rem;
   }
 
-  .card-action-btn {
+  .dashboard-project-card h4,
+  .dashboard-agent-card h4 {
     font-size: 0.75rem;
-    padding: 4px 5px;
+    margin: 0;
+    line-height: 1;
+  }
+
+    .dashboard-project-card p,
+  .dashboard-agent-card p {
+    display: none; /* show only title */
+  }
+  
+  .dashboard-project-card h4,
+  .dashboard-agent-card h4 {
+    white-space: nowrap;   /* keep title in one line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dashboard-project-card .card-action-btn,
+  .dashboard-project-card .delete-btn,
+  .dashboard-agent-card .card-action-btn,
+  .dashboard-agent-card .delete-btn {
+    font-size: 0.65rem;
+    padding: 2px 3px;
   }
 }
-/* Completely neutralize any inherited focus/outline on delete button */
-.mini-card .delete-btn,
-.mini-card .delete-btn:focus,
-.mini-card .delete-btn:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important; 
-  color: #0a0101;           
-}
 
-/* If parent .mini-card has focus-within styles, override them only for delete button */
-.mini-card:focus-within .delete-btn {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-
-/* Tablet (768px - 1199px) */
-
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
   .dashboard-canvas {
     min-height: 350px;
     padding: 15px;
   }
 
-  .mini-card,
-  .note-card {
+  .dashboard-project-card,
+  .dashboard-agent-card {
     width: 190px;
     min-height: 150px;
     padding: 10px;
     font-size: 0.9rem;
   }
 
-  .mini-card h4,
-  .note-card h4 {
+  .dashboard-project-card h4,
+  .dashboard-agent-card h4 {
     font-size: 1rem;
   }
 
-  .card-action-btn {
+  .dashboard-project-card .card-action-btn,
+  .dashboard-project-card .delete-btn,
+  .dashboard-agent-card .card-action-btn,
+  .dashboard-agent-card .delete-btn {
     font-size: 0.85rem;
     padding: 4px 6px;
   }
+}
+
+/* Drag cursor */
+.element {
+  cursor: grab;
 }

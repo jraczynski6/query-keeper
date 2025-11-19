@@ -93,7 +93,7 @@
   transform: translateY(-1px);
 }
 
-/* Cancel button - full width, secondary color */
+/* Cancel button */
 .modal-content .cancel-button {
   width: 100%;   
   padding: 0.5rem 0;
@@ -129,7 +129,7 @@
   color: #42b636;
 }
 
-/* Tablet: 768-1199px */
+/* Tablet */
 @media (max-width: 1199px) and (min-width: 768px) {
   .modal-content {
     width: 350px;
@@ -141,7 +141,7 @@
   }
 }
 
-/* Mobile: <768px */
+/* Mobile */
 @media (max-width: 767px) {
   .modal-content {
     width: 95vw;

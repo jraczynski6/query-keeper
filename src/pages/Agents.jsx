@@ -8,6 +8,11 @@ import "./Agents.css";
 
 export default function Agents() {
 
+    //state
+
+    // searchquery
+    const [searchQuery, setSearchQuery] = useState("");
+
     //for pinItem
     const { pinItem } = useDashboard();
 
@@ -43,13 +48,18 @@ export default function Agents() {
             id: `agent-${agent.id}`,
             type: "agent",
             agentData: agent,
-            link: `/agents/${agent.id}`, 
+            link: `/agents/${agent.id}`,
             position: { x: 0.1, y: 0.1 }, // keep as fraction for dashboard
         });
     };
 
     //check agency against agents
     const sameAgencyAgents = selectedAgent ? agents.filter(a => a.agency === selectedAgent.agency && a.id !== selectedAgent.id) : [];
+
+    //filter agents based on query
+    const filteredAgents = agents.filter(agent =>
+        `${agent.firstName} ${agent.lastName}`.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="agents-page">
@@ -63,8 +73,16 @@ export default function Agents() {
                             Create New Agent
                         </button>
 
+                        <input
+                            type="text"
+                            placeholder="Search agents by name."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="agents-search-input"
+                        />
+
                         <div className="panel-content">
-                            {agents.map(agent => (
+                            {filteredAgents.map(agent => (
                                 <AgentCard
                                     key={agent.id}
                                     {...agent}
@@ -144,9 +162,3 @@ export default function Agents() {
         </div>
     )
 }
-
-
-// TODO: Filter/Search agents
-// TODO: Default avatars or profile pictures
-// TODO: Sort agents list
-// TODO: Copy agent info

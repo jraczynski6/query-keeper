@@ -9,12 +9,15 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
   const isAuthenticated = true;
+
+  //destructure
   const {
     pinnedItems,
     updatePosition,
     pinItem,
     unpinItem,
     updateNoteContent,
+    clearDashboard,
   } = useDashboard({ isAuthenticated });
 
   const canvasRef = useRef(null);
@@ -78,6 +81,15 @@ export default function Dashboard() {
         {/* floating button outside canvas (always clickable) */}
         <div className="floating-buttons">
           <button onClick={handleAddNote}>Add Note</button>
+          <button
+            onClick={() => {
+              if (window.confirm("Are you sure you want to delete dashboard")) {
+                clearDashboard();
+              }
+            }}
+          >
+            Clear Dashboard
+          </button>
         </div>
 
         <DndContext onDragEnd={handleDragEnd}>
@@ -113,8 +125,8 @@ export default function Dashboard() {
 
                   {/* Project */}
                   {item.type === "project" && item.projectData ? (
-                    <div className="mini-card project-card">
-                      
+                    <div className="dashboard-project-card">
+
 
                       <h4>{item.projectData.title ?? "Untitled Project"}</h4>
                       <p>Wordcount: {item.projectData.wordCount ?? "N/A"}</p>
@@ -150,7 +162,7 @@ export default function Dashboard() {
 
                   {/* Agent */}
                   {item.type === "agent" && item.agentData ? (
-                    <div className="mini-card agent-card">
+                    <div className="dashboard-agent-card">
                       <h4>
                         {item.agentData.firstName ?? "Unnamed"}{" "}
                         {item.agentData.lastName ?? "Agent"}
@@ -188,5 +200,3 @@ export default function Dashboard() {
     </div>
   );
 }
-// TODO: Clear dashboard
-// TODO: Save dashboard cards to localstorage - btn

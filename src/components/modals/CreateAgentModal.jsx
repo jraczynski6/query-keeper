@@ -1,9 +1,15 @@
 import "./CreateAgentModal.css";
 import { useState } from "react";
+import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function CreateAgentModal({ onClose, onCreate }) {
+    //error state
     const [errors, setErrors] = useState({});
 
+    //destructure
+    const { addToast } = useNotifications();
+
+    //handle submit
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -18,8 +24,9 @@ export default function CreateAgentModal({ onClose, onCreate }) {
             notes: e.target["agent-notes"].value.trim(),
         };
 
-        //validation on submit
+        //validation
         const newErrors = {};
+
 
         if (!newAgent.firstName) newErrors.firstName = "First name is required.";
         if (!newAgent.lastName) newErrors.lastName = "Last name is required.";
@@ -48,6 +55,9 @@ export default function CreateAgentModal({ onClose, onCreate }) {
 
         // No errors → proceed
         onCreate(newAgent);
+
+        addToast("New agent created!");
+
         onClose();
     };
 

@@ -59,7 +59,7 @@
 /* Media Queries */
 
 
-/* Mobile Queries */
+/* Mobile */
 
 @media (max-width: 767px) {
     .about-page {
@@ -87,7 +87,7 @@
     }
 }
 
-/* Tablet Queries */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
     .about-page {
         padding: 1.5rem;

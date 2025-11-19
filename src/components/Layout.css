@@ -17,9 +17,23 @@
     align-items: center;
 }
 
+.app-logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app-logo {
+    height: 200px;
+    width: auto;
+}
+
 .center {
     flex: 1;
     justify-content: center;
+}
+
+.center h2 {
+  font-size: 3rem;
 }
 
 .nav-menu {
@@ -110,7 +124,6 @@
 
 
 /* Footer newsletter section */
-/* Newsletter form styling */
 .footer-newsletter-form {
   display: flex;
   flex-wrap: wrap;

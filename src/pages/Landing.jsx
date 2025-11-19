@@ -1,18 +1,21 @@
 import { useState } from "react";
 import RegisterModal from "../components/modals/RegisterModal";
 import "./Landing.css";
-
+import { useNotifications } from "../contexts/NotificationsContext";
 export default function Landing({ setAuthenticated }) {
 
     // modal open
     const [IsRegisterOpen, setRegisterOpen] = useState(false);
-
+    const { addToast } = useNotifications();
 
     return (
         <div className="landing-page">
 
             <main className="landing-content">
                 <h2>Welcome to Query Keeper</h2>
+                
+                {/* REMOVE AFTER TEST */}
+                <button onClick={() => addToast("Hello!")}>Trigger</button>;
                 <p>
                     Your personal hub for managing projects, agents, and notifications.
                     Stay organized, track progress, and collaborate efficiently — all in one place.

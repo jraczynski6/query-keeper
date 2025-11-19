@@ -17,7 +17,7 @@
     overflow-y: auto;
 }
 
-/* Split columns: form and preview */
+/* Split columns */
 .author-form-panel,
 .author-preview {
     flex: 1 1 400px;

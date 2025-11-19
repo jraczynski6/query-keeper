@@ -17,14 +17,23 @@
     align-items: center;
 }
 
-.app-name-link {
+.app-logo-link {
     text-decoration: none;
     color: inherit;
+}
+
+.app-logo {
+    height: 200px;       /* adjust as needed */
+    width: auto;
 }
 
 .center {
     flex: 1;
     justify-content: center;
+}
+
+.center h2 {
+  font-size: 3rem;   /* tweak size */
 }
 
 .nav-menu {

@@ -4,18 +4,37 @@ export default function About() {
     return (
         <div className="about-page">
             <main className="about-content">
-                <h2>About Query Keeper</h2>
+                
+                <h3>About Query Keeper</h3>
                 <p>Welcome to Query Keeper.</p>
-                <p>Founded in the late 19th century, our organization has been committed to providing innovative solutions and exceptional service to our community for well over a century. From our modest beginnings, we have grown into a trusted institution that values integrity, collaboration, and continuous improvement. Our mission is to create meaningful experiences that positively impact the lives of our clients, partners, and employees alike.
 
-                    Throughout our history, we have embraced change and innovation, adapting to new technologies, evolving markets, and shifting societal needs. Our dedicated team works tirelessly to combine traditional expertise with modern methodologies, ensuring that we remain at the forefront of our industry while honoring the principles that have guided us from the start.
+                <p>
+                    Query Keeper is a React.js application developed in 2025 as part of a software development course project. 
+                    The goal of the project was to demonstrate practical front-end programming skills by designing a functional, 
+                    interactive, and user-friendly web application. The project was completed over the course of one month.
+                </p>
 
-                    We believe in a people-first approach, fostering a culture where creativity, diversity, and inclusion thrive. By listening carefully to the needs of our stakeholders and engaging with the community, we strive to deliver solutions that are both practical and forward-thinking. Our commitment to sustainability, ethical practices, and social responsibility guides every decision we make, ensuring that we contribute positively to the world around us.
+                <p>
+                    Throughout development, Query Keeper incorporated core software engineering concepts including component-based 
+                    architecture, state management, reusable UI patterns, and modern React practices. I am incredibly proud to 
+                    present this project to the world.
+                </p>
 
-                    Over the years, we have established strong relationships with partners across a range of sectors, collaborating to bring projects to life that drive progress and inspire change. From small-scale initiatives to large, complex undertakings, we approach every challenge with the same dedication, professionalism, and passion that have defined our organization for more than a century.
+                <h3>Our Mission</h3>
+                <p>
+                    The purpose of Query Keeper is to make it easier for users to create, organize, and manage agent queries 
+                    in a clean, intuitive interface.
+                </p>
 
-                    As we look to the future, we remain focused on growth, innovation, and excellence. We are excited to continue building on our rich legacy, exploring new opportunities, and delivering value to all who engage with us. Our journey is ongoing, and we invite you to be part of it, sharing in our commitment to quality, progress, and meaningful impact.</p>
+                <h3>Contact</h3>
+                <p>
+                    For questions or feedback, you can reach the Query Keeper team at 
+                    <strong> support@querykeeper.dev</strong> or by phone at 
+                    <strong> (555) 123-9084</strong>. Visit us anytime at 
+                    <strong> www.querykeeper.dev</strong>.
+                </p>
+
             </main>
         </div>
-    )
+    );
 }

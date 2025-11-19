@@ -328,7 +328,3 @@ export default function SelectedProject() {
         </div>
     )
 }
-
-
-
-// TODO: clickable author/agent

@@ -21,8 +21,12 @@ export default function Header({ isAuthenticated, onSignInClick, setAuthenticate
         <header className="app-header">
 
             <div className="left">
-                <Link to="/" className="app-name-link">
-                    <h1 className="app-name">Query Keeper</h1>
+                 <Link to="/" className="app-logo-link">
+                    <img 
+                        src="../public/qk.png" 
+                        alt="Query Keeper Logo" 
+                        className="app-logo"
+                    />
                 </Link>
             </div>
 

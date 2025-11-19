@@ -162,7 +162,3 @@ export default function Agents() {
         </div>
     )
 }
-
-
-// TODO: Filter/Search agents
-// TODO: Sort agents list

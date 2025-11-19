@@ -22,8 +22,8 @@
 .dashboard-canvas {
   position: relative;
   width: 100%;
-  max-width: 1600px;    /* increase max width */
-  padding: 30px;        /* optional: more padding */
+  max-width: 1600px;    
+  padding: 30px;
   min-height: 300px;
   margin: 0 auto;
   flex: 1;
@@ -46,7 +46,7 @@
   box-sizing: border-box;
   border-radius: 0.75rem;
   background-color: #2a2a2a;
-  border: 2px solid #0c7fa6; /* Project accent color */
+  border: 2px solid #0c7fa6;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 10px rgba(107,77,191,0.4);
   color: #fff;
 }
@@ -69,13 +69,13 @@
 /* Tighten spacing inside dashboard cards */
 .dashboard-project-card h4,
 .dashboard-agent-card h4 {
-  margin: 0 0 0.25rem 0;  /* small margin below heading */
+  margin: 0 0 0.25rem 0;
   font-size: 1rem;
 }
 
 .dashboard-project-card p,
 .dashboard-agent-card p {
-  margin: 0;  /* remove default margin for paragraphs */
+  margin: 0;
   font-size: 0.875rem;
   line-height: 1.2;
 }
@@ -118,7 +118,7 @@
   box-shadow: none !important;
 }
 
-/* Mobile (max-width: 767px) */
+/* Mobile */
 @media (max-width: 767px) {
   .dashboard-canvas {
     min-height: 200px;
@@ -162,7 +162,7 @@
   }
 }
 
-/* Tablet (768px - 1199px) */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
   .dashboard-canvas {
     min-height: 350px;

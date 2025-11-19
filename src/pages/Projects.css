@@ -15,7 +15,7 @@
   border: 2px solid #2AC0B9;
 }
 
-/* Heading with stretched bottom border */
+/* Heading */
 .projects-content h2 {
   position: relative;
   display: block;
@@ -28,25 +28,25 @@
 .projects-content h2::after {
   content: '';
   position: absolute;
-  left: 5%;                  /* start 5% from container edge */
-  right: 5%;                 /* end 5% from container edge */
-  bottom: -0.5rem;           /* spacing below heading */
+  left: 5%;
+  right: 5%;               
+  bottom: -0.5rem;        
   height: 2px;
   background-color: #2AC0B9;
   border-radius: 1px;
 }
 
-/* Project cards container: centered, responsive grid */
+/* Project cards container */
 .project-cards-container {
   display: flex;
-  flex-wrap: wrap;           /* wrap to next line */
-  justify-content: center;   /* center cards horizontally */
-  gap: 1.5rem;               /* spacing between cards */
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 1.5rem;
   width: 100%;
 }
 
 .project-card-wrapper {
-  flex: 0 1 300px;           /* cards try to be 300px, can shrink */
+  flex: 0 1 300px;
   display: flex;
 }
 
@@ -87,7 +87,6 @@
   background-color: #4A4E54;
 }
 
-/* Bottom-centered view project button */
 .view-project-container {
   display: flex;
   justify-content: center;
@@ -108,7 +107,7 @@
   transition: all 0.2s ease;
 }
 
-/* MOBILE: stack cards vertically */
+/* mobile */
 @media (max-width: 767px) {
   .project-cards-container {
     flex-direction: column;

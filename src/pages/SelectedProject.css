@@ -33,8 +33,8 @@
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: 600;
-  padding-bottom: 0.25rem;          /* space between text and border */
-  border-bottom: 3px solid #2AC0B9; /* project blue accent */
+  padding-bottom: 0.25rem;
+  border-bottom: 3px solid #2AC0B9;
 }
 /* LEFT PANEL */
 .panel-actions {
@@ -59,13 +59,13 @@
 
 .editor-textarea-wrapper {
   display: flex;
-  justify-content: center; /* centers horizontally */
+  justify-content: center;
   width: 100%;
 }
 
 .editor-textarea-wrapper textarea {
   width: 100%;
-  max-width: 800px; /* or whatever max width you prefer */
+  max-width: 800px;
   min-height: 300px;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -97,7 +97,7 @@
 }
 
 .panel-info label {
-  display: block; /* normal block label so selects/inputs don't stretch */
+  display: block;
   margin-bottom: 0.5rem;
 }
 
@@ -108,7 +108,7 @@
 /* Inputs */
 .panel-info input {
   width: 100%;
-  height: 2rem; /* standard height */
+  height: 2rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #2AC0B9;
@@ -120,7 +120,7 @@
 
 /* Selects */
 .panel-info select {
-  width: auto; /* natural width, don't stretch */
+  width: auto;
   height: 2rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.9rem;
@@ -128,13 +128,13 @@
   border: 1px solid #2AC0B9;
   background-color: #222;
   color: #fff;
-  align-self: flex-start; /* prevent stretching */
+  align-self: flex-start;
 }
 
 /* Textareas */
 .panel-info textarea {
   width: 100%;
-  min-height: 200px; /* bigger for sample text */
+  min-height: 200px;
   padding: 0.75rem;
   border-radius: 0.5rem;
   border: 1px solid #2AC0B9;
@@ -188,7 +188,7 @@
   font-size: 0.875rem;
 }
 
-/* Responsive: stack panels vertically on smaller screens */
+/* mobile/tablet */
 @media (max-width: 1199px) {
   .selected-project-content,
   .panel-main-body {

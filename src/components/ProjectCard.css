@@ -5,8 +5,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(107, 77, 191, 0.4);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;       /* reduce spacing between children */
-  padding: 0.75rem;   /* smaller padding */
+  gap: 0.5rem;      
+  padding: 0.75rem;
   width: 250px;
   min-height: 120px;
   box-sizing: border-box;

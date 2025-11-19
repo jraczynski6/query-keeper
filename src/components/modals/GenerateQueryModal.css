@@ -5,7 +5,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.65); /* dark semi-transparent overlay */
+    background-color: rgba(0,0,0,0.65);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,10 +13,9 @@
 }
 
 /* Modal Box */
-/* Generate Query Modal accent (same as Projects) */
 .generate-query-modal-content {
-    background-color: #2a2a2a;          /* projects dark panel */
-    border: 2px solid #2AC0B9;          /* projects accent */
+    background-color: #2a2a2a;
+    border: 2px solid #2AC0B9;
     border-radius: 0.75rem;
     padding: 2rem;
     color: #f1f1f1;
@@ -42,7 +41,7 @@
 }
 
 .modal-close:hover {
-    color: #62C370; /* green highlight like project buttons */
+    color: #62C370;
 }
 
 /* Form */
@@ -93,7 +92,7 @@
 .generate-query-form textarea:focus,
 .generate-query-form select:focus {
     outline: none;
-    border-color: #4D8CF7; /* projects blue */
+    border-color: #4D8CF7;
     box-shadow: 0 0 5px rgba(77,140,247,0.5);
 }
 
@@ -108,12 +107,12 @@
 }
 
 .generate-query-form button[type="submit"] {
-    background-color: #4D8CF7; /* projects blue */
+    background-color: #4D8CF7;
     color: #fff;
 }
 
 .generate-query-form button[type="submit"]:hover {
-    background-color: #62C370; /* hover green like project buttons */
+    background-color: #62C370;
 }
 
 .generate-query-form button[type="button"] {

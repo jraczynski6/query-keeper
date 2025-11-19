@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.825); /* dark overlay */
+  background: rgba(0, 0, 0, 0.825);
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
@@ -18,10 +18,10 @@
   right: 0;
   width: 30vw;
   height: 100vh;
-  background: #121212; /* deep dark base */
+  background: #121212;
   color: #EAEAEA;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
-  border-left: 2px solid #35922f; /* green accent border */
+  border-left: 2px solid #35922f;
   z-index: 2000;
 
   display: flex;

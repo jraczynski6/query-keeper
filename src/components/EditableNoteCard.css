@@ -40,8 +40,6 @@
   overflow-wrap: break-word;
 }
 
-
-/* Save/Delete buttons container stacked vertically */
 /* Save/Delete buttons container */
 .note-card-buttons {
   display: flex;
@@ -67,7 +65,7 @@
   background-color: #e64a9e;
 }
 
-/* Delete button styling */
+/* Delete button */
 .delete-btn {
   background-color: #ccc;
   color: #000;
@@ -85,13 +83,13 @@
   color: #fff;
 }
 
-/* Mobile (max-width: 767px) */
+/* Mobile */
 @media (max-width: 767px) {
   .note-card {
     width: 140px;        
-    min-height: 120px;      /* reduce height */
+    min-height: 120px;  
     padding: 6px;
-    gap: 4px;               /* smaller gap */
+    gap: 4px; 
     font-size: 0.75rem;
   }
 
@@ -113,7 +111,7 @@
   }
 }
 
-/* Tablet (768px - 1199px) */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
   .note-card {
     width: 190px;     

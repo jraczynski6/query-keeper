@@ -10,6 +10,7 @@ export default function SelectedProject() {
     const { projectId } = useParams();
     const { addToast } = useNotifications();
 
+    //state
     const [project, setProject] = useState(null);
     const [queryDraft, setQueryDraft] = useState("");
     const [selectedTemplateId, setSelectedTemplateId] = useState(queryTemplates[0]?.id);
@@ -104,7 +105,7 @@ export default function SelectedProject() {
     return (
         <div className="selected-project-page">
             <main className="selected-project-content">
-                {/* LEFT PANEL */}
+                {/* left */}
                 <aside className="panel panel-actions">
                     <h2>Actions</h2>
                     <button onClick={handleEdit}>Edit Query</button>
@@ -113,9 +114,9 @@ export default function SelectedProject() {
                     <button onClick={openModal}>Submit Query</button>
                 </aside>
 
-                {/* CENTER + RIGHT WRAPPER */}
+                {/* center wrapper */}
                 <div className="panel-main-body">
-                    {/* CENTER PANEL */}
+                    {/* Ccenter */}
                     <section className="panel panel-editor">
                         <h2>Editable Document</h2>
                         <div className="editor-controls">
@@ -147,7 +148,7 @@ export default function SelectedProject() {
                         </div>
                     </section>
 
-                    {/* RIGHT PANEL */}
+                    {/* right */}
                     <aside className="panel panel-info">
                         <h2>Project Info</h2>
 

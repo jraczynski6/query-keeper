@@ -23,7 +23,7 @@
 }
 
 .app-logo {
-    height: 200px;       /* adjust as needed */
+    height: 200px;
     width: auto;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .center h2 {
-  font-size: 3rem;   /* tweak size */
+  font-size: 3rem;
 }
 
 .nav-menu {
@@ -124,7 +124,6 @@
 
 
 /* Footer newsletter section */
-/* Newsletter form styling */
 .footer-newsletter-form {
   display: flex;
   flex-wrap: wrap;

@@ -8,8 +8,8 @@
 }
 
 .mini-card {
-  width: 250px;         /* fixed width */
-  min-height: 120px;    /* ensure visible */
+  width: 250px;
+  min-height: 120px;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: #3a3d42;

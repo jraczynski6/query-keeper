@@ -32,6 +32,11 @@ export default function Layout({ children, isAuthenticated, setAuthenticated, pa
         return () => clearTimeout(timer);
     }, []);
 
+
+    useEffect(() => {
+        setTitle(pageTitle);
+    }, [pageTitle]);
+
     return (
         <div className="layout-container">
             <Header

@@ -7,44 +7,33 @@
     cursor: grabbing;
 }
 
-.mini-card {
-  width: 250px;
-  min-height: 120px;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: #3a3d42;
-  color: #f1f1f1;
-  box-sizing: border-box;
-}
-
-.project-card, .agent-card {
-  width: 250px;
-  min-height: 150px;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  background-color: #2a2a2a;
-  color: #f1f1f1;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-
-/* CanvasDraggable.css */
-
 .drag-handle {
-  cursor: grab;
-  background-color: #444; 
-  color: #f3f3f3;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 0.5rem;
+  width: 24px;                 /* slightly larger */
+  height: 24px;
+  
+  background-color: rgba(255, 255, 255, 0.2); /* subtle contrast */
+  border-radius: 4px;          /* slightly rounded edges */
+  
   display: flex;
-  justify-content: space-between;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: transform 0.1s, box-shadow 0.1s;
+
+  /* Gap between card and handle */
+  margin-bottom: 6px;
 }
 
+.drag-handle:hover {
+  transform: scale(1.2);       /* slight hover pop */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
 
 .drag-handle:active {
   cursor: grabbing;
+  transform: scale(1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }

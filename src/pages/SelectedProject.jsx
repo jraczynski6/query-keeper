@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useNotifications } from "../contexts/NotificationsContext";
 import "./SelectedProject.css";
 
-export default function SelectedProject() {
+export default function SelectedProject({setTitle}) {
     const navigate = useNavigate();
     const { projectId } = useParams();
     const { addToast } = useNotifications();
@@ -35,6 +35,17 @@ export default function SelectedProject() {
             setSelectedTemplateId(loadedProject.templateId || queryTemplates[0]?.id);
         }
     }, [projectId]);
+
+
+    //dynamic page title
+    useEffect(() => {
+        console.log("SelectedProject effect running:", project);
+        if (project) {
+            setTitle(project.title);
+        } else {
+            setTitle("Project");
+        }
+    }, [project])
 
     if (!project) {
         return (

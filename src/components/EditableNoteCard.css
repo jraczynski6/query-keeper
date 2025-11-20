@@ -67,20 +67,29 @@
 
 /* Delete button */
 .delete-btn {
-  background-color: #ccc;
-  color: #000;
-  border: none;
-  padding: 0.5rem 0;   
-  border-radius: 0.25rem;
-  cursor: pointer;
+  display: block;
   width: 100%;
   text-align: center;
+  margin-top: 8px;
+  padding: 6px 0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid #ff4d6d;
+  background-color: #ff4d6d; /* Pink background */
+  color: #ff4d6d; /* Same pink for text if you want, or use white: #fff */
   transition: background 0.2s, color 0.2s;
 }
 
 .delete-btn:hover {
-  background-color: #ff4d6d;
-  color: #fff;
+  background-color: #ff4d6d; /* Keep pink on hover */
+  color: #fff; /* Optional: white text on hover */
+}
+
+.delete-btn:focus,
+.delete-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Mobile */

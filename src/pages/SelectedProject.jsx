@@ -121,8 +121,8 @@ export default function SelectedProject({setTitle}) {
                     <h2>Actions</h2>
                     <button onClick={handleEdit}>Edit Query</button>
                     <button onClick={handleSave}>Save</button>
-                    <button onClick={handleDelete}>Delete Project</button>
                     <button onClick={openModal}>Submit Query</button>
+                    <button onClick={handleDelete} className="delete-btn">Delete Project</button>
                 </aside>
 
                 {/* center wrapper */}

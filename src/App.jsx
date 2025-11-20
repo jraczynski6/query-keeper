@@ -35,6 +35,7 @@ function App() {
                   <Layout
                     isAuthenticated={isAuthenticated}
                     setAuthenticated={setAuthenticated}
+                    pageTitle="Home"
                   >
                     <Landing />
                   </Layout>
@@ -45,6 +46,7 @@ function App() {
                   <Layout
                     isAuthenticated={isAuthenticated}
                     setAuthenticated={setAuthenticated}
+                    pageTitle="About"
                   >
                     <About />
                   </Layout>
@@ -58,6 +60,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Dashboard"
                     >
                       <Dashboard isAuthenticated={isAuthenticated} />
                     </Layout>
@@ -71,6 +74,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Agents"
                     >
                       <Agents />
                     </Layout>
@@ -84,6 +88,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Agent"
                     >
                       <SelectedAgent />
                     </Layout>
@@ -97,6 +102,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Projects"
                     >
                       <Projects />
                     </Layout>
@@ -110,6 +116,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Project"
                     >
                       <SelectedProject />
                     </Layout>
@@ -123,6 +130,7 @@ function App() {
                     <Layout
                       isAuthenticated={isAuthenticated}
                       setAuthenticated={setAuthenticated}
+                      pageTitle="Author"
                     >
                       <Author />
                     </Layout>

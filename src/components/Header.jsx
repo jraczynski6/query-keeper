@@ -1,22 +1,12 @@
 import { useLocation, Link } from "react-router-dom";
 
-export default function Header({ isAuthenticated, onSignInClick, setAuthenticated }) {
+export default function Header({ isAuthenticated, onSignInClick, setAuthenticated, pageTitle }) {
     const location = useLocation();
-
-    //convert path to page title
-    const pageTitle = location.pathname === "/"
-        ? "Home"
-        : location.pathname
-            .replace("/", "") //remove slash
-            .replace(/-/g, " ") //replace hyphens
-            .replace(/\b\w/g, c => c.toUpperCase()); //capitalize letters. 
-        
-
+    
     const onSignOutClick = () => {
         setAuthenticated(false);
     };
 
-    
     return (
         <header className="app-header">
 

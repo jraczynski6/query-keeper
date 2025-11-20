@@ -14,6 +14,8 @@ export default function Layout({ children, isAuthenticated, setAuthenticated, pa
     const [isSignInOpen, setSignInOpen] = useState(false);
     const [isShelfOpen, setShelfOpen] = useState(false);
 
+    // dynamic page title state
+    const [title, setTitle] = useState(pageTitle);
 
     // demo notifications
     const { addToast, addNotification } = useNotifications();
@@ -36,6 +38,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated, pa
                 isAuthenticated={isAuthenticated} // conditionally render based on auth state
                 onSignInClick={() => setSignInOpen(true)}
                 setAuthenticated={setAuthenticated}
+                pageTitle={title}
             />
             <NavMenu
                 isAuthenticated={isAuthenticated}
@@ -46,7 +49,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated, pa
 
             <main className="main-content">
                 {React.Children.map(children, (child) => //child are specific pages 
-                    React.cloneElement(child, { setAuthenticated }) //clone setAuthenticated into every child
+                    React.cloneElement(child, { setAuthenticated, setTitle }) //clone setAuthenticated/setTitle into every child
                 )}
             </main>
             <Footer />

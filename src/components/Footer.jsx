@@ -3,7 +3,6 @@ import { useNotifications } from "../contexts/NotificationsContext";
 
 export default function Footer() {
     const { addToast } = useNotifications();
-    const emailRef = useRef(null);
 
     const handleSubscribe = (e) => {
         e.preventDefault();

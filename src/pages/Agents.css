@@ -22,7 +22,7 @@
   width: 100%;
   box-sizing: border-box;
   flex-wrap: nowrap;
-}
+} 
 
 /* Panels: Scrollable Content */
 .agents-list-panel,
@@ -102,27 +102,6 @@
     box-shadow: 0 0 0 3px rgba(140, 94, 255, 0.2);
 }
 
-
-/* Agent Cards in List */
-.agent-card {
-  background-color: #2a2a2a;
-  border: 2px solid #6B4DBF;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
-  
-  width: 100%;      
-  max-width: 320px; 
-  box-sizing: border-box;
-
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.agent-card:hover {
-  background-color: #3a3a3a;
-}
-
 /* Agent Preview Card */
 .agent-preview-card {
   background-color: #2a2a2a;
@@ -164,6 +143,13 @@
 .create-agent-button:hover {
   background-color: #42b636;
   transform: translateY(-1px);
+}
+
+.agent-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers children horizontally */
+  gap: 0.5rem;         /* spacing between elements */
 }
 
 .edit-agent-btn {
@@ -243,12 +229,6 @@
     gap: 0.75rem;
   }
 
-  .agent-card {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
   .create-agent-btn,
   .edit-agent-btn,
   .create-agent-button {
@@ -298,11 +278,5 @@
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-  }
-
-  .agent-card {
-    width: 100%;
-    max-width: 350px;
-    box-sizing: border-box;
   }
 }

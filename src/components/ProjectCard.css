@@ -1,13 +1,37 @@
 .project-card {
   background-color: #2a2a2a;
-  border: 2px solid #0c7fa6;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(107, 77, 191, 0.4);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;      
-  padding: 0.75rem;
-  width: 250px;
-  min-height: 120px;
+  border: 2px solid #0c7fa6; /* Project accent color */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+
+  width: 100%;
+  max-width: 300px; /* matches wrapper logic from projects.css */
   box-sizing: border-box;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover Effect */
+.project-card:hover {
+  background-color: #333f4b; /* slightly lighter for hover */
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .project-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .project-card {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+  }
 }

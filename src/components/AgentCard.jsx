@@ -8,7 +8,7 @@ export default function AgentCard({
 }) {
     return (
         <div className="agent-card" onClick={onSelect}>
-            <h3>Agent {firstName}{lastName}</h3>
+            <h3>Agent {firstName} {lastName}</h3>
             <p className="agent-agency"> Agency: {agency}</p>
             <button className="pin-agent-btn" onClick={onPin}>Pin</button>
         </div>

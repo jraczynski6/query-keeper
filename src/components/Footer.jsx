@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
+import { useNotifications } from "../contexts/NotificationsContext";
 
 export default function Footer() {
+    const { addToast } = useNotifications();
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        addToast("Subscribed");
+    }
+
     const clearAllLocalStorage = () => {
         localStorage.clear();
         alert("local storage cleared!");
@@ -13,6 +21,7 @@ export default function Footer() {
             <div className="footer-note">
                 <p>Joseph Raczynski. Copyright text</p>
 
+{/* TODO: REMOVE on submit */}
                 <button
                     onClick={clearAllLocalStorage}
                     style={{
@@ -42,7 +51,7 @@ export default function Footer() {
             </nav>
             <div className="footer-newsletter">
                 <p>Subscribe to our newsletter for updates.</p>
-                <form className="footer-newsletter-form">
+                <form className="footer-newsletter-form" onSubmit={handleSubscribe}>
                     <input
                         type="email"
                         name="email"

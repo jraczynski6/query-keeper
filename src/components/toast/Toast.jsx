@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNotifications } from "../../contexts/NotificationsContext";
 import "./Toast.css";
 
 
-export default function Toast({id, message}) {
+export default function Toast({ id, message }) {
 
     // destructure useNotifications
-    const {removeToast, addNotification } = useNotifications();
+    const { removeToast, addNotification } = useNotifications();
 
+    const [isHiding, setIsHiding] = useState(false);
 
-    //save to shelf
-    const handleClick = () => {
-        addNotification(message);
-        removeToast(id);
-    };
+    // Trigger auto-hide
+    useEffect(() => {
+        const timeout = setTimeout(() => setIsHiding(true), 3500);
+        return () => clearTimeout(timeout);
+    }, []);
+
+    // Remove toast after hide animation
+    useEffect(() => {
+        if (isHiding) {
+            const timer = setTimeout(() => removeToast(id), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [isHiding, id, removeToast]);
 
     return (
-        <div className="toast" onClick={handleClick}>
+        <div className={`toast ${isHiding ? "hide" : ""}`}>
             {message}
         </div>
     );

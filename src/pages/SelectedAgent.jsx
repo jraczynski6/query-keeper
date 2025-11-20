@@ -4,7 +4,7 @@ import "./SelectedAgent.css";
 import { useNotifications } from "../contexts/NotificationsContext";
 import CopyButton from "../components/CopyButton";
 
-export default function SelectedAgent() {
+export default function SelectedAgent({setTitle}) {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToast } = useNotifications();
@@ -12,6 +12,11 @@ export default function SelectedAgent() {
     // Get agents from localStorage
     const agents = JSON.parse(localStorage.getItem("agents")) || [];
     const agent = agents.find(a => a.id && a.id.toString() === id);
+
+    //set header title dynamically
+    React.useEffect(() => {
+        if (agent) setTitle(`${agent.firstName} ${agent.lastName}`);
+    }, [agent, setTitle]);
 
     // Fallback if agent not found
     if (!agent) {

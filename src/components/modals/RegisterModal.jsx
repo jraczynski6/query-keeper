@@ -4,6 +4,7 @@ import "./RegisterModal.css";
 import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function RegisterModal({ isOpen, onClose, OnRegistersuccess }) {
+    
     //hooks
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

@@ -4,6 +4,7 @@ import "./SignInModal.css";
 import { useNotifications } from "../../contexts/NotificationsContext";
 
 export default function SignInModal({ isOpen, onClose, onSignInSuccess }) {
+    
     // hooks
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

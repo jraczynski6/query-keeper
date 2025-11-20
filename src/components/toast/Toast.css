@@ -18,10 +18,33 @@
     min-width: 200px;
     max-width: 300px;
     font-size: 14px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    animation: toastIn 0.5s ease forwards;
 }
 
-.toast:hover {
-    transform: translateX(-5px);
-    opacity: 0.9;
+.toast.hide {
+  animation: toastOut 0.5s ease forwards; /* 'forwards' keeps the final state */
+}
+
+/* Slide in */
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide out */
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }

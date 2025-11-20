@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useNotifications } from "../contexts/NotificationsContext";
 import "./SelectedProject.css";
 
-export default function SelectedProject() {
+export default function SelectedProject({setTitle}) {
     const navigate = useNavigate();
     const { projectId } = useParams();
     const { addToast } = useNotifications();
@@ -35,6 +35,17 @@ export default function SelectedProject() {
             setSelectedTemplateId(loadedProject.templateId || queryTemplates[0]?.id);
         }
     }, [projectId]);
+
+
+    //dynamic page title
+    useEffect(() => {
+        console.log("SelectedProject effect running:", project);
+        if (project) {
+            setTitle(project.title);
+        } else {
+            setTitle("Project");
+        }
+    }, [project])
 
     if (!project) {
         return (
@@ -110,8 +121,8 @@ export default function SelectedProject() {
                     <h2>Actions</h2>
                     <button onClick={handleEdit}>Edit Query</button>
                     <button onClick={handleSave}>Save</button>
-                    <button onClick={handleDelete}>Delete Project</button>
                     <button onClick={openModal}>Submit Query</button>
+                    <button onClick={handleDelete} className="delete-btn">Delete Project</button>
                 </aside>
 
                 {/* center wrapper */}

@@ -82,6 +82,7 @@ export default function Dashboard() {
         <div className="floating-buttons">
           <button onClick={handleAddNote}>Add Note</button>
           <button
+            className="clear-dashboard-btn"
             onClick={() => {
               if (window.confirm("Are you sure you want to delete dashboard")) {
                 clearDashboard();

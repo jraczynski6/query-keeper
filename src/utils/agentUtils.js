@@ -1,5 +1,3 @@
-
-
 export function createAgent(overrides = {}) { //override default
     return {
         id: crypto.randomUUID(),

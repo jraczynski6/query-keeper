@@ -6,7 +6,3 @@ export function createNoteCard(initialText = "New Note") {
         content: { text: initialText },
     };
 }
-
-
-// TODO: cycle colors for notes.
-// TODO: Add color selector for border

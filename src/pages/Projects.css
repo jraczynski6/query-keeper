@@ -78,6 +78,35 @@
   background-color: #5aa2ff;
 }
 
+.generate-query-btn {
+  display: inline-block;
+  align-self: center;
+  padding: 0.65rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.generate-query-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #2AC0B9;
+  background-color: #35922f;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.generate-query-btn:hover {
+  background-color: #42b636;
+  transform: translateY(-1px);
+}
+
 .go-to-project-btn {
   background-color: #3A3D42;
   color: #fff;

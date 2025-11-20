@@ -5,10 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./GenerateQueryModal.css";
 import { useNotifications } from "../../contexts/NotificationsContext";
 
-
-
-
-
 export default function GenerateQueryModal({ isOpen, onClose, project, onProjectCreated }) {
 
     //fallback
@@ -23,8 +19,7 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
     // track agents
     const [agents, setAgents] = useState([]);
 
-    // track selected agent and author
-    const [selectedAuthorId, setSelectedAuthorId] = useState("");
+    // track selected agent
     const [selectedAgentId, setSelectedAgentId] = useState("");
 
     // state to track book info
@@ -254,13 +249,8 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
                             <option value="dystopian">Dystopian</option>
                             <option value="literaryfiction">Literary Fiction</option>
                             <option value="thriller">Thriller</option>
-                            <option value="other">Other</option>
                         </select>
 
-                        <label id="customGenreLabel" style={{ display: "none" }}>
-                            Enter Genre:
-                            <input type="text" id="customGenre" placeholder="Enter genre" />
-                        </label>
                     </fieldset>
 
                     {/* Sample Size Section */}
@@ -298,4 +288,3 @@ export default function GenerateQueryModal({ isOpen, onClose, project, onProject
         </div>
     )
 }
-// TODO: Add more query templates.

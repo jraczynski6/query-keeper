@@ -8,7 +8,7 @@ import SignInModal from "./modals/SignInModal";
 import NotificationShelf from "./NotificationShelf/NotificationShelf";
 import { useNotifications } from "../contexts/NotificationsContext";
 
-export default function Layout({ children, isAuthenticated, setAuthenticated }) {
+export default function Layout({ children, isAuthenticated, setAuthenticated, pageTitle}) {
 
     //signin modal state
     const [isSignInOpen, setSignInOpen] = useState(false);

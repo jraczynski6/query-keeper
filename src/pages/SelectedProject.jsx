@@ -26,8 +26,17 @@ export default function SelectedProject({ setTitle }) {
     // Load project
     useEffect(() => {
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const savedAgents = JSON.parse(localStorage.getItem("agents")) || [];
         const loadedProject = savedProjects.find((p) => p.id.toString() === projectId);
         if (loadedProject) {
+
+            if (loadedProject.agent?.id) {
+                const freshAgent = savedAgents.find(a => a.id === loadedProject.agent.id);
+                if (freshAgent) {
+                    loadedProject.agent = {...freshAgent};
+                }
+            }
+
             setProject(loadedProject);
             setQueryDraft(loadedProject.query || "");
             setSelectedSize(loadedProject.sampleSize?.toString() || "");

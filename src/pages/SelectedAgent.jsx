@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./SelectedAgent.css";
 import { useNotifications } from "../contexts/NotificationsContext";
 import CopyButton from "../components/CopyButton";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
 export default function SelectedAgent({setTitle}) {
     const { id } = useParams();

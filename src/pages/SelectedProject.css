@@ -89,6 +89,8 @@
   resize: vertical;
 }
 
+
+/* Right panel */
 .panel-info {
   flex: 0 0 300px;
   display: flex;
@@ -103,6 +105,54 @@
 
 .panel-info p {
   margin: 0.25rem 0;
+}
+
+.agent-info {
+  background-color: #3a3a3a;       
+  border: 2px solid #2AC0B9;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Headings */
+.agent-info h3,
+.agent-info h4 {
+  text-align: center;
+  color: #fff;
+  margin: 0;
+}
+
+.agent-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 2px solid #2AC0B9;
+  padding-bottom: 0.25rem;
+}
+
+/* Notes heading */
+.agent-info h4 {
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+
+
+/* Notes paragraph */
+.agent-info p {
+  margin: 0;
+  padding: 0.25rem 0;
+  color: #EAEAEA;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 /* Inputs */

@@ -6,6 +6,7 @@ import { createNoteCard } from "../utils/createNoteCard";
 import { useDashboard } from "../contexts/DashboardContext";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
 export default function Dashboard() {
   const isAuthenticated = true;
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const canvasRef = useRef(null);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const navigate = useNavigate();
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   //  do not change 
   // define card dimensions here so they are available in render and handlers
@@ -75,6 +77,16 @@ export default function Dashboard() {
     pinItem(newNote);
   };
 
+  const confirmClearDashboard = () => {
+    clearDashboard();
+    setShowClearConfirm(false);
+  };
+
+  const cancelClearDashboard = () => {
+    setShowClearConfirm(false);
+  };
+
+
   return (
     <div className="dashboard-page">
       <main className="dashboard-content">
@@ -83,11 +95,7 @@ export default function Dashboard() {
           <button onClick={handleAddNote}>Add Note</button>
           <button
             className="clear-dashboard-btn"
-            onClick={() => {
-              if (window.confirm("Are you sure you want to delete dashboard")) {
-                clearDashboard();
-              }
-            }}
+            onClick={() => setShowClearConfirm(true)}
           >
             Clear Dashboard
           </button>
@@ -197,6 +205,14 @@ export default function Dashboard() {
             })}
           </div>
         </DndContext>
+
+        <ConfirmModal
+          isOpen={showClearConfirm}
+          title="Clear Dashboard?"
+          message="Are you sure you want to clear the dashboard? This will delete all pinned items."
+          onConfirm={confirmClearDashboard}
+          onCancel={cancelClearDashboard}
+        />
       </main>
     </div>
   );

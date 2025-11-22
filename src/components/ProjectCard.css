@@ -1,12 +1,12 @@
 .project-card {
   background-color: #2a2a2a;
-  border: 2px solid #2AC0B9; /* Project accent color */
+  border: 2px solid #2AC0B9;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   margin-bottom: 0.75rem;
 
   width: 100%;
-  max-width: 300px; /* matches wrapper logic from projects.css */
+  max-width: 300px;
   box-sizing: border-box;
 
   cursor: pointer;
@@ -15,7 +15,28 @@
 
 /* Hover Effect */
 .project-card:hover {
-  background-color: #333f4b; /* slightly lighter for hover */
+  background-color: #333f4b;
+}
+
+.project-pin-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.project-pin-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.project-pin-btn:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
 }
 
 /* Mobile */

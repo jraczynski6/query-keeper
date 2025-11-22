@@ -18,6 +18,27 @@
   background-color: #3a3a3a;
 }
 
+.pin-agent-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.pin-agent-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.pin-agent-btn:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   .agent-card {

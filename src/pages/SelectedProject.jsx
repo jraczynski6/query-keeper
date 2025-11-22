@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useNotifications } from "../contexts/NotificationsContext";
 import "./SelectedProject.css";
 
-export default function SelectedProject({setTitle}) {
+export default function SelectedProject({ setTitle }) {
     const navigate = useNavigate();
     const { projectId } = useParams();
     const { addToast } = useNotifications();
@@ -234,6 +234,19 @@ export default function SelectedProject({setTitle}) {
                                 />
                             )}
                         </fieldset>
+
+                        <div className="agent-info">
+                            <h3>Agent</h3>
+                            <p>Name: {project.agent.firstName} {project.agent.lastName}</p>
+
+                            <h4>Notes</h4>
+                            <p>
+                                {project.agent.notes?.trim()
+                                    ? project.agent.notes
+                                    : "No Notes available"}
+                            </p>
+                        </div>
+
                     </aside>
                 </div>
             </main>

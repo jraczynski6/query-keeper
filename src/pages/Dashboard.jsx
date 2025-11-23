@@ -21,14 +21,20 @@ export default function Dashboard() {
     clearDashboard,
   } = useDashboard({ isAuthenticated });
 
+
   const canvasRef = useRef(null);
+
+  // ref used to measure the rendered card width
+  const cardMeasureRef = useRef(null);
+
+  // define card width fallback
+  const [cardWidth, setCardWidth] = useState(240);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const navigate = useNavigate();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
-  //  do not change 
-  // define card dimensions here so they are available in render and handlers
-  const CARD_WIDTH = 240;
+
+  // define card height for handlers
   const CARD_HEIGHT = 180;
 
   // canvas size tracking
@@ -46,6 +52,39 @@ export default function Dashboard() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  // Measure card width with ResizeObserver
+  useEffect(() => {
+    if (!cardMeasureRef.current) return;
+
+    const el = cardMeasureRef.current;
+    const update = () => {
+      const w = el?.offsetWidth;
+      if (w && w !== cardWidth) setCardWidth(w);
+    };
+
+    // measure
+    update();
+
+    //update card width if element resizes
+    let ro;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => {
+        update();
+      });
+      ro.observe(el);
+    } else {
+      window.addEventListener("resize", update)
+    }
+
+    return () => {
+      if (ro) ro.disconnect();
+      else window.removeEventListener("resize", update);
+    };
+  }, [cardMeasureRef.current]);
+
+
+
+
   // drag end handler
   const handleDragEnd = (event) => {
     const { id } = event.active;
@@ -61,7 +100,7 @@ export default function Dashboard() {
     let newY = item.position.y * height + deltaY;
 
     // clamp so card stays fully inside canvas
-    newX = Math.max(0, Math.min(newX, width - CARD_WIDTH));
+    newX = Math.max(0, Math.min(newX, width - cardWidth));
     newY = Math.max(0, Math.min(newY, height - CARD_HEIGHT));
 
     // convert back to fraction and save
@@ -103,6 +142,7 @@ export default function Dashboard() {
 
         <DndContext onDragEnd={handleDragEnd}>
           <div className="dashboard-canvas" ref={canvasRef}>
+
             {/* render pinned items convert fraction -> pixel */}
             {pinnedItems.map((item) => {
               const { width, height } = canvasSize;
@@ -112,7 +152,7 @@ export default function Dashboard() {
               let absY = (item.position?.y ?? 0) * height;
 
               // clamp within canvas bounds (respect card size)
-              absX = Math.max(0, Math.min(absX, width - CARD_WIDTH));
+              absX = Math.max(0, Math.min(absX, width - cardWidth));
               absY = Math.max(0, Math.min(absY, height - CARD_HEIGHT));
 
               return (
@@ -121,85 +161,92 @@ export default function Dashboard() {
                   id={item.id}
                   position={{ x: absX, y: absY }}
                   canvasSize={canvasSize}
+                  onSize={(id, size) => setCardWidth(size.width)}
                   onDelete={(id) => unpinItem({ id })}
                 >
                   {/* Note */}
-                  {item.type === "note" ? (
-                    <EditableNoteCard
-                      note={item}
-                      onUpdate={updateNoteContent}
-                      onDelete={() => unpinItem({ id: item.id })}
-                    />
-                  ) : null}
+                  {
+                    item.type === "note" ? (
+                      <EditableNoteCard
+                        note={item}
+                        onUpdate={updateNoteContent}
+                        onDelete={() => unpinItem({ id: item.id })}
+                      />
+                    ) : null
+                  }
 
                   {/* Project */}
-                  {item.type === "project" && item.projectData ? (
-                    <div className="dashboard-project-card">
+                  {
+                    item.type === "project" && item.projectData ? (
+                      <div className="dashboard-project-card">
 
 
-                      <h4>{item.projectData.title ?? "Untitled Project"}</h4>
-                      <p>Wordcount: {item.projectData.wordCount ?? "N/A"}</p>
-                      <p>Genre: {item.projectData.genre ?? "N/A"}</p>
-                      {item.projectData.agent && (
-                        <p>
-                          Agent: {item.projectData.agent.firstName ?? "Unknown"}{" "}
-                          {item.projectData.agent.lastName ?? ""}
-                        </p>
-                      )}
-                      {item.projectData.id && (
+                        <h4>{item.projectData.title ?? "Untitled Project"}</h4>
+                        <p>Wordcount: {item.projectData.wordCount ?? "N/A"}</p>
+                        <p>Genre: {item.projectData.genre ?? "N/A"}</p>
+                        {item.projectData.agent && (
+                          <p>
+                            Agent: {item.projectData.agent.firstName ?? "Unknown"}{" "}
+                            {item.projectData.agent.lastName ?? ""}
+                          </p>
+                        )}
+                        {item.projectData.id && (
+                          <button
+                            className="card-action-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/projects/${item.projectData.id}`);
+                            }}
+                          >
+                            Go to Page
+                          </button>
+                        )}
                         <button
-                          className="card-action-btn"
+                          className="delete-btn"
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigate(`/projects/${item.projectData.id}`);
+                            unpinItem({ id: item.id });
                           }}
                         >
-                          Go to Page
+                          Delete
                         </button>
-                      )}
-                      <button
-                        className="delete-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          unpinItem({ id: item.id });
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ) : null}
+                      </div>
+                    ) : null
+                  }
 
                   {/* Agent */}
-                  {item.type === "agent" && item.agentData ? (
-                    <div className="dashboard-agent-card">
-                      <h4>
-                        {item.agentData.firstName ?? "Unnamed"}{" "}
-                        {item.agentData.lastName ?? "Agent"}
-                      </h4>
-                      <p>Agency: {item.agentData.agency ?? "Unknown"}</p>
-                      <p>Email: {item.agentData.email ?? "N/A"}</p>
-                      {item.agentData.id && (
+                  {
+                    item.type === "agent" && item.agentData ? (
+                      <div className="dashboard-agent-card">
+                        <h4>
+                          {item.agentData.firstName ?? "Unnamed"}{" "}
+                          {item.agentData.lastName ?? "Agent"}
+                        </h4>
+                        <p>Agency: {item.agentData.agency ?? "Unknown"}</p>
+                        <p>Email: {item.agentData.email ?? "N/A"}</p>
+                        {item.agentData.id && (
+                          <button
+                            className="card-action-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/agents/${item.agentData.id}`);
+                            }}
+                          >
+                            Go to Page
+                          </button>
+                        )}
                         <button
-                          className="card-action-btn"
+                          className="delete-btn"
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigate(`/agents/${item.agentData.id}`);
+                            unpinItem({ id: item.id });
                           }}
                         >
-                          Go to Page
+                          Delete
                         </button>
-                      )}
-                      <button
-                        className="delete-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          unpinItem({ id: item.id });
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ) : null}
+                      </div>
+                    ) : null
+                  }
                 </CanvasDraggable>
               );
             })}
@@ -214,6 +261,6 @@ export default function Dashboard() {
           onCancel={cancelClearDashboard}
         />
       </main>
-    </div>
+    </div >
   );
 }

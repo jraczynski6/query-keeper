@@ -2,7 +2,7 @@ import { useDraggable } from "@dnd-kit/core";
 import "./CanvasDraggable.css";
 import { useState, useEffect } from "react";
 
-export default function CanvasDraggable({ id, children, position, canvasSize, onDelete, onSize }) {
+export default function CanvasDraggable({ id, children, position, canvasSize, onSize }) {
 
   
   //standard dnd-kit draggable setup

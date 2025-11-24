@@ -8,6 +8,15 @@
   color: #EAEAEA;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.25s ease;
+
+  /* layout */
+  display: flex;
+  flex-direction: row; /* horizontal */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
 }
 
 /* hover */
@@ -18,17 +27,50 @@
   box-shadow: 0 4px 12px rgba(53, 146, 47, 0.25);
 }
 
-/* close or dismiss button */
+/* close button */
 .notification-card button {
   background: none;
   border: none;
   color: #EAEAEA;
   cursor: pointer;
-  float: right;
   font-size: 0.9rem;
   transition: color 0.2s ease;
+  margin-left: 12px;
+  flex-shrink: 0;
 }
 
 .notification-card button:hover {
   color: #35922f;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .notification-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+    max-width: 100%;
+  }
+
+  .notification-card button {
+    margin-left: 0;
+    margin-top: 8px;
+    align-self: flex-end;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .notification-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 16px;
+    max-width: 500px;
+  }
+
+  .notification-card button {
+    margin-left: 12px;
+    margin-top: 0;
+    align-self: auto;
+  }
 }

@@ -1,14 +1,26 @@
 .app-header {
-    background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
-    border-bottom: 1px solid #555;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
+  position: relative;           /* needed for absolute positioning inside */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(180deg, #2e3238 0%, #23272a 100%);
+  border-bottom: 1px solid #555;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
 }
 
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center h2 {
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
+}
 
 .left,
 .center,
@@ -25,15 +37,6 @@
 .app-logo {
     height: 150px;
     width: auto;
-}
-
-.center {
-    flex: 1;
-    justify-content: center;
-}
-
-.center h2 {
-  font-size: 3rem;
 }
 
 .nav-menu {
@@ -81,7 +84,6 @@
 }
 
 /* Footer */
-
 .app-footer {
     display: flex;
     flex-direction: column;
@@ -153,7 +155,7 @@
 /* Media Queries */
 
 
-/* Mobile Queries */
+/* Mobile */
 @media (max-width: 767px) {
   .app-header {
     flex-direction: column;
@@ -169,6 +171,17 @@
     width: 100%;
     justify-content: center;
     margin-bottom: 0.5rem;
+  }
+
+   .center {
+    position: static;       
+    transform: none;       
+    text-align: center;    
+    margin-bottom: 0.5rem;  /* space between logo and title */
+  }
+
+  .center h2 {
+    font-size: 2rem;
   }
 
   .nav-menu {
@@ -235,7 +248,7 @@
 }
 
 
-/* Tablet Queries */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
   .app-header {
     flex-direction: row;

@@ -13,9 +13,7 @@ export default function Landing({ setAuthenticated }) {
 
             <main className="landing-content">
                 <h2>Welcome to Query Keeper</h2>
-                
-                {/* REMOVE AFTER TEST */}
-                <button onClick={() => addToast("Hello!")}>Trigger</button>;
+
                 <p>
                     Your personal hub for managing projects, agents, and notifications.
                     Stay organized, track progress, and collaborate efficiently — all in one place.

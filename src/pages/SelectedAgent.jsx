@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import "./SelectedAgent.css";
 import { useNotifications } from "../contexts/NotificationsContext";
 import CopyButton from "../components/CopyButton";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
-export default function SelectedAgent({setTitle}) {
+export default function SelectedAgent({ setTitle }) {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToast } = useNotifications();
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
     // Get agents from localStorage
     const agents = JSON.parse(localStorage.getItem("agents")) || [];
@@ -86,12 +88,18 @@ export default function SelectedAgent({setTitle}) {
     };
 
     // Delete agent
-    const handleDelete = () => {
+    const confirmDelete = () => {
         const agents = JSON.parse(localStorage.getItem("agents")) || [];
         const updatedAgents = agents.filter(a => a.id !== agent.id);
         localStorage.setItem("agents", JSON.stringify(updatedAgents));
+        setShowDeleteConfirm(false);
         navigate("/agents");
     };
+
+    const cancelDelete = () => {
+        setShowDeleteConfirm(false);
+    };
+
     return (
         <div className="selected-agent-page">
             <main className="selected-agent-content">
@@ -252,9 +260,18 @@ export default function SelectedAgent({setTitle}) {
                     <div className="agent-actions">
                         <button type="button" className="edit-btn" onClick={() => setIsEditing(true)}>Edit Agent</button>
                         <button type="button" className="save-btn" onClick={handleSave}>Save</button>
-                        <button type="button" className="delete-btn" onClick={handleDelete}>Delete Agent</button>
+                        <button type="button" className="delete-btn" onClick={() => setShowDeleteConfirm(true)}>
+                            Delete Agent
+                        </button>
                     </div>
                 </div>
+                <ConfirmModal
+                    isOpen={showDeleteConfirm}
+                    title="Delete Agent?"
+                    message="Are you sure you want to delete this agent? This action cannot be undone."
+                    onConfirm={confirmDelete}
+                    onCancel={cancelDelete}
+                />
             </main>
         </div>
     );

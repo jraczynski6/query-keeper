@@ -22,7 +22,7 @@
 }
 
 .toast.hide {
-  animation: toastOut 0.5s ease forwards; /* 'forwards' keeps the final state */
+  animation: toastOut 0.5s ease forwards; /* keeps the final state */
 }
 
 /* Slide in */

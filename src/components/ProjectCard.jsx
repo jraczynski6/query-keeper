@@ -20,7 +20,7 @@ export default function ProjectCard({ project, onSelect, onPin, isSelected }) {
                     agent: {agent.firstName} {agent.lastName}
                 </p>
             )}
-            <button className="pin-btn" onClick={onPin}>Pin</button>
+            <button className="project-pin-btn" onClick={onPin}>Pin</button>
         </div>
     );
 }

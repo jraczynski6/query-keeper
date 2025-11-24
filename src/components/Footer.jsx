@@ -20,23 +20,6 @@ export default function Footer() {
         <footer className="app-footer">
             <div className="footer-note">
                 <p>Joseph Raczynski. Copyright text</p>
-
-{/* TODO: REMOVE on submit */}
-                <button
-                    onClick={clearAllLocalStorage}
-                    style={{
-                        marginTop: "0.5rem",
-                        padding: "0.5rem 1rem",
-                        background: "#ff5555",
-                        color: "#fff",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                    }}
-                >
-                    Clear Local Storage
-                </button>
-
             </div>
             <nav className="footer-nav">
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>

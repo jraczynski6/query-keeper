@@ -4,8 +4,9 @@ import queryTemplates from "../utils/queryTemplates";
 import { useParams, useNavigate } from "react-router-dom";
 import { useNotifications } from "../contexts/NotificationsContext";
 import "./SelectedProject.css";
+import ConfirmModal from "../components/modals/ConfirmModal";
 
-export default function SelectedProject({setTitle}) {
+export default function SelectedProject({ setTitle }) {
     const navigate = useNavigate();
     const { projectId } = useParams();
     const { addToast } = useNotifications();
@@ -19,6 +20,9 @@ export default function SelectedProject({setTitle}) {
     const [isEditing, setIsEditing] = useState(false);
     const [errors, setErrors] = useState({});
 
+    //delete confirm modal
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
@@ -26,8 +30,17 @@ export default function SelectedProject({setTitle}) {
     // Load project
     useEffect(() => {
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        const savedAgents = JSON.parse(localStorage.getItem("agents")) || [];
         const loadedProject = savedProjects.find((p) => p.id.toString() === projectId);
         if (loadedProject) {
+
+            if (loadedProject.agent?.id) {
+                const freshAgent = savedAgents.find(a => a.id === loadedProject.agent.id);
+                if (freshAgent) {
+                    loadedProject.agent = { ...freshAgent };
+                }
+            }
+
             setProject(loadedProject);
             setQueryDraft(loadedProject.query || "");
             setSelectedSize(loadedProject.sampleSize?.toString() || "");
@@ -39,7 +52,6 @@ export default function SelectedProject({setTitle}) {
 
     //dynamic page title
     useEffect(() => {
-        console.log("SelectedProject effect running:", project);
         if (project) {
             setTitle(project.title);
         } else {
@@ -91,11 +103,16 @@ export default function SelectedProject({setTitle}) {
         setIsEditing(false);
     };
 
-    const handleDelete = () => {
+    const confirmDelete = () => {
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
         const updatedProjects = savedProjects.filter((p) => p.id !== project.id);
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
+        setShowDeleteConfirm(false);
         navigate("/projects");
+    }
+
+    const cancelDelete = () => {
+        setShowDeleteConfirm(false);
     };
 
     const handleRegenerateQuery = () => {
@@ -122,7 +139,7 @@ export default function SelectedProject({setTitle}) {
                     <button onClick={handleEdit}>Edit Query</button>
                     <button onClick={handleSave}>Save</button>
                     <button onClick={openModal}>Submit Query</button>
-                    <button onClick={handleDelete} className="delete-btn">Delete Project</button>
+                    <button onClick={() => setShowDeleteConfirm(true)} className="delete-btn">Delete Project</button>
                 </aside>
 
                 {/* center wrapper */}
@@ -234,7 +251,28 @@ export default function SelectedProject({setTitle}) {
                                 />
                             )}
                         </fieldset>
+
+                        <div className="agent-info">
+                            <h3>Agent</h3>
+                            <p>Name: {project.agent.firstName} {project.agent.lastName}</p>
+
+                            <h4>Notes</h4>
+                            <p>
+                                {project.agent.notes?.trim()
+                                    ? project.agent.notes
+                                    : "No Notes available"}
+                            </p>
+                        </div>
+
                     </aside>
+
+                    <ConfirmModal
+                        isOpen={showDeleteConfirm}
+                        title={"Delete Project?"}
+                        message={"Are you sure you want to delete this project? This action cannot be undone."}
+                        onConfirm={confirmDelete}
+                        onCancel={cancelDelete}
+                    />
                 </div>
             </main>
 

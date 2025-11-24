@@ -52,7 +52,6 @@ export default function SelectedProject({ setTitle }) {
 
     //dynamic page title
     useEffect(() => {
-        console.log("SelectedProject effect running:", project);
         if (project) {
             setTitle(project.title);
         } else {

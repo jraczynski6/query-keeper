@@ -76,14 +76,14 @@
   font-size: 0.85rem;
   cursor: pointer;
   border: 1px solid #ff4d6d;
-  background-color: #ff4d6d; /* Pink background */
-  color: #ff4d6d; /* Same pink for text if you want, or use white: #fff */
+  background-color: #ff4d6d;
+  color: #ff4d6d;
   transition: background 0.2s, color 0.2s;
 }
 
 .delete-btn:hover {
-  background-color: #ff4d6d; /* Keep pink on hover */
-  color: #fff; /* Optional: white text on hover */
+  background-color: #ff4d6d;
+  color: #fff;
 }
 
 .delete-btn:focus,

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Footer from "./footer";
+import Footer from "./Footer";
 import Header from "./Header";
 import NavMenu from "./NavMenu/NavMenu";
 import "./Layout.css";

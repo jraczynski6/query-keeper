@@ -89,7 +89,7 @@
 
 }
 
-/* Tablet Query */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1199px) {
   .landing-page {
     padding: 3rem 2rem;

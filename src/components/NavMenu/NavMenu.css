@@ -86,7 +86,7 @@
 
 
 
-/* Mobile nav menu Queries */
+/* Mobile  */
 @media (max-width: 767px) {
   .nav-menu {
     flex-direction: column;
@@ -123,7 +123,7 @@
   }
 }
 
-/* Tablet Queries */
+/* Tablet*/
 @media (min-width: 768px) and (max-width: 1199px) {
   .nav-menu ul {
     flex-direction: row;

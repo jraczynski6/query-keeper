@@ -18,8 +18,17 @@ export default function Footer() {
 
     return (
         <footer className="app-footer">
-            <div className="footer-note">
-                <p>Joseph Raczynski. Copyright text</p>
+           <div className="footer-note">
+                <p>
+                    &copy; 2025 Joseph Raczynski. All rights reserved. |
+                    <a
+                        href="https://github.com/jraczynski6/query-keeper.git"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open Source on GitHub
+                    </a>
+                </p>
             </div>
             <nav className="footer-nav">
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>

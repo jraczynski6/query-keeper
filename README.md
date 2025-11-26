@@ -29,14 +29,14 @@ npm install
 
 4. **Run the development server locally**  
 npm start  
-# Open your browser at http://localhost:5173 to see the app.
+
 
 ## Usage
 
 Follow these steps to use Query Keeper after it is running:
 
 1. **Open the app**  
-Open your browser at http://localhost:5173 (or your live hosted URL) to access Query Keeper.
+   Open your browser and go to [Query Keeper](https://query-keeper.netlify.app/).
 
 2. **Set up your agent and author information**  
 Before generating any queries, fill in your agent details and author profile. This ensures your queries are correctly associated with the right agent/project.

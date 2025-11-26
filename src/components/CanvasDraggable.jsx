@@ -47,7 +47,7 @@ export default function CanvasDraggable({ id, children, position, canvasSize, on
       ? `translate3d(${x + transform.x}px, ${y + transform.y}px, 0)`
       : `translate3d(${x}px, ${y}px, 0)`,
     cursor: "grab",
-    userSelect: "none", 
+    userSelect: "none",
   };
 
   return (

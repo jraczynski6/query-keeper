@@ -99,6 +99,26 @@
     box-sizing: border-box;
 }
 
+.footer-note {
+    text-align: center;            /* Center the text */
+    padding: 1rem 0;               /* Vertical spacing */
+    font-size: 0.875rem;           /* Slightly smaller font */
+    color: #aaa;                    /* Light gray text for subtlety */
+
+}
+
+.footer-note a {
+    color: #e1e1e1;                 /* Accent color for links */
+    text-decoration: none;           /* Remove underline */
+    margin-left: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.footer-note a:hover {
+    color: #eeecec;                 /* Slightly lighter pink on hover */
+    text-decoration: underline;      /* Optional hover effect */
+}
+
 /* Footer nav links */
 .footer-nav {
     display: flex;

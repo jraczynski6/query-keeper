@@ -6,7 +6,6 @@ export default function About() {
             <main className="about-content">
                 
                 <h3>About Query Keeper</h3>
-                <p>Welcome to Query Keeper.</p>
 
                 <p>
                     Query Keeper is a React.js application developed in 2025 as part of a software development course project. 

@@ -6,6 +6,7 @@ import { DashboardProvider } from './contexts/DashboardContext';
 import "./index.css";
 import { NotificationsProvider } from './contexts/NotificationsContext';
 import ToastList from './components/toast/ToastList';
+import ScrollToTop from "./components/ScrollToTop";
 
 
 // Pages
@@ -28,6 +29,7 @@ function App() {
       <NotificationsProvider>
         <DashboardProvider>
           <Router>
+            <ScrollToTop />
             <Routes>
               {/* Public Route */}
               <Route

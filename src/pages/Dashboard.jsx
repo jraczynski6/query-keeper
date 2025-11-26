@@ -32,7 +32,8 @@ export default function Dashboard() {
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
   const navigate = useNavigate();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
-
+  const [topZ, setTopZ] = useState(10); // starting z-index
+  const [zIndices, setZIndices] = useState({}); // { id: zIndex }
 
   // define card height for handlers
   const CARD_HEIGHT = 180;
@@ -110,6 +111,18 @@ export default function Dashboard() {
     });
   };
 
+  //bring to front
+  const bringToFront = (id) => {
+    setTopZ((prev) => {
+      const newTop = prev + 1;
+      setZIndices((prevZ) => ({
+        ...prevZ,
+        [id]: newTop,
+      }));
+      return newTop;
+    });
+  };
+
   // add note
   const handleAddNote = () => {
     const newNote = createNoteCard(); // ensure createNoteCard uses fraction positions (e.g., 0.1,0.1) only way this works
@@ -161,7 +174,9 @@ export default function Dashboard() {
                   id={item.id}
                   position={{ x: absX, y: absY }}
                   canvasSize={canvasSize}
+                  zIndex={zIndices[item.id] ?? 1}
                   onSize={(id, size) => setCardWidth(size.width)}
+                  onMouseDown={() => bringToFront(item.id)}
                   onDelete={(id) => unpinItem({ id })}
                 >
                   {/* Note */}

@@ -1,17 +1,20 @@
-import { Navigate } from "react-router-dom"
+import { useRef, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { useNotifications } from "../contexts/NotificationsContext";
-import { useRef } from "react";
 
-export default function ProtectedRoute({ isAuthenticated, children}) {
+export default function ProtectedRoute({ isAuthenticated, children }) {
     const { addToast } = useNotifications();
     const warned = useRef(false);
 
-    if (!isAuthenticated) {
-        if (!warned.current) {
+    useEffect(() => {
+        if (!isAuthenticated && !warned.current) {
             addToast("Please sign in to continue.");
             warned.current = true;
         }
-        return <Navigate to={"/"}/>; //redirect
+    }, [isAuthenticated, addToast]);
+
+    if (!isAuthenticated) {
+        return <Navigate to="/" />;
     }
     return children;
 }

@@ -7,7 +7,7 @@
     cursor: grabbing;
 }
 
-.drag-handle {
+.drag-handle-icon {
   width: 24px;
   height: 24px;
   
@@ -27,12 +27,12 @@
   margin-bottom: 6px;
 }
 
-.drag-handle:hover {
+.drag-handle-icon:hover {
   transform: scale(1.2);
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-.drag-handle:active {
+.drag-handle-icon:active {
   cursor: grabbing;
   transform: scale(1);
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);

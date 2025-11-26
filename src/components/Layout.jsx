@@ -27,7 +27,7 @@ export default function Layout({ children, isAuthenticated, setAuthenticated, pa
                 title: "Follow up with Jane Doe",
                 message: "Check in with Jane Doe today."
             });
-        }, 120000); // 2 minute timer, adjust for demo
+        }, 170000); // 3 minute timer, adjust for demo
 
         return () => clearTimeout(timer);
     }, []);

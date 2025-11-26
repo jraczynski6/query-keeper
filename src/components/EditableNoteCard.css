@@ -1,6 +1,6 @@
 .note-card {
   background-color: #2a2a2a;          
-  border: 2px solid #FF5CA1;            
+  border: 2px solid #5cff61;            
   border-radius: 0.75rem;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 92, 161, 0.4); 
@@ -23,7 +23,7 @@
   resize: vertical;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  border: 1px solid #FF5CA1;            
+  border: 1px solid #5cff61;            
   background-color: #1e1e1e;             
   color: #fff;
   font-size: 0.9rem;

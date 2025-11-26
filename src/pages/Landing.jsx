@@ -15,15 +15,15 @@ export default function Landing({ setAuthenticated }) {
                 <h2>Welcome to Query Keeper</h2>
 
                 <p>
-                    Your personal hub for managing projects, agents, and notifications.
-                    Stay organized, track progress, and collaborate efficiently — all in one place.
+                    Your personal hub for managing projects, agents, and queries.
+                    Stay organized, track your progress, and work efficiently all in one place.
                 </p>
                 <p>
                     Explore your dashboard, pin your favorite agents or projects,
-                    and get instant updates with our notifications system.
+                    and stay informed with instant updates through the notifications system.
                 </p>
                 <p>
-                    Ready to get started? Sign in or register to begin your journey!
+                    Ready to begin? Sign in or register to start your creative journey!
                 </p>
 
                 <div className="landing-actions">

@@ -1,28 +1,32 @@
 .drag-handle-icon {
-  width: 24px;
-  height: 24px;
-  
-  background-color: #CCCCCC; /* light gray */
-  border-radius: 4px;
-  
-  display: flex; /*  center inner content */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
+  width: 24px;
+  height: 24px;
+
+  background-color: #E5E5E5;     /* << brighter, clearly visible */
+  border-radius: 4px;
+
+  color: #333;                   /* dark text inside for contrast */
+  font-weight: bold;
+  font-size: 16px;
+
   cursor: grab;
   user-select: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  transition: transform 0.1s, box-shadow 0.1s;
+
   margin-bottom: 6px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);  /* makes it pop from canvas */
 }
 
 .drag-handle-icon:hover {
   transform: scale(1.2);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.5);
 }
 
 .drag-handle-icon:active {
   cursor: grabbing;
   transform: scale(1);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }

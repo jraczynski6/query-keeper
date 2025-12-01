@@ -1,5 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { useState, useEffect } from "react";
+import "./CanvasDraggable.css"
 
 export default function CanvasDraggable({ id, children, position, canvasSize, zIndex = 1, onSize, onMouseDown, onDelete }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -50,8 +51,8 @@ export default function CanvasDraggable({ id, children, position, canvasSize, zI
   return (
     <div ref={measuredRef} style={style} onMouseDown={onMouseDown}>
       <div {...listeners} {...attributes} className="drag-handle">
-        <div className="drag-handle-icon" />
-      </div>
+  <span className="drag-handle-icon">: :</span>
+</div>
       <div>{children}</div>
     </div>
   );

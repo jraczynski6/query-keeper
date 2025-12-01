@@ -1,20 +1,11 @@
-.canvas-draggable {
-    position: absolute;
-    cursor: grab;
-}
-
-.canvas-draggable:active {
-    cursor: grabbing;
-}
-
 .drag-handle-icon {
   width: 24px;
   height: 24px;
   
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #CCCCCC; /* light gray */
   border-radius: 4px;
   
-  display: flex;
+  display: flex; /*  center inner content */
   align-items: center;
   justify-content: center;
 
@@ -22,8 +13,6 @@
   user-select: none;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
   transition: transform 0.1s, box-shadow 0.1s;
-
-  /* Gap between card and handle */
   margin-bottom: 6px;
 }
 

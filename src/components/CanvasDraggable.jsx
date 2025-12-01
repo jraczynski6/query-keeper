@@ -50,7 +50,7 @@ export default function CanvasDraggable({ id, children, position, canvasSize, zI
   return (
     <div ref={measuredRef} style={style} onMouseDown={onMouseDown}>
       <div {...listeners} {...attributes} className="drag-handle">
-         <span className="drag-handle-icon">: :</span>
+        <div className="drag-handle-icon" />
       </div>
       <div>{children}</div>
     </div>

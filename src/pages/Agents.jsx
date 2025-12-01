@@ -105,9 +105,9 @@ export default function Agents() {
                                     <p className="agent-email">{selectedAgent.email}</p>
 
                                     <p className="agent-links">
-                                        <span>{selectedAgent.website}</span>
-                                        <span>{selectedAgent.twitter}</span>
-                                        <span>{selectedAgent.instagram}</span>
+                                        <p>Website: {selectedAgent.website}</p>
+                                        <p>Twitter: {selectedAgent.twitter}</p>
+                                        <p>Instagram: {selectedAgent.instagram}</p>
                                     </p>
 
                                     <div className="agent-notes-preview">
